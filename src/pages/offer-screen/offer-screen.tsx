@@ -3,8 +3,7 @@ import Header from '../../components/header';
 function OfferScreen(): JSX.Element {
   return (
     <div className="page">
-      <Header>
-      </Header>
+      <Header></Header>
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
