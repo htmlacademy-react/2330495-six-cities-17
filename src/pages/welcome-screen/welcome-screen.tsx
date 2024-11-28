@@ -1,6 +1,7 @@
 import Card from '../../components/card';
 import Header from '../../components/header';
 import Location from '../../components/location';
+import {Helmet} from 'react-helmet-async';
 
 type WelcomeScreen = {
   amountPlaces: number;
@@ -9,6 +10,9 @@ type WelcomeScreen = {
 function WelcomeScreen({ amountPlaces }: WelcomeScreen): JSX.Element {
   return (
     <div className="page page--gray page--main">
+      <Helmet>
+        <title>Главная страница</title>
+      </Helmet>
       <Header></Header>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
