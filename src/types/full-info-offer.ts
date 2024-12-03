@@ -18,7 +18,7 @@ type City = {
 };
 
 // export type Goods ={
-//   goods: string[];
+//   goods: string;
 // }
 
 export type BaseOffer = {
