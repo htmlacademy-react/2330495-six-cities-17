@@ -1,6 +1,6 @@
-import { Offer } from '../types/offers';
+import { Offers } from '../types/offers';
 
-const offerListTotal: Offer[] = [
+const offerListTotal: Offers = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f01',
     title: 'Beautiful location',
@@ -21,7 +21,7 @@ const offerListTotal: Offer[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 4,
+    rating: 5,
     previewImage: 'https://url-to-image/image.png',
   },
   {
@@ -44,7 +44,7 @@ const offerListTotal: Offer[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 4,
+    rating: 5,
     previewImage: 'https://url-to-image/image.png',
   },
   {
@@ -90,7 +90,7 @@ const offerListTotal: Offer[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 4,
+    rating: 3,
     previewImage: 'https://url-to-image/image.png',
   },
 ];
