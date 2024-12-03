@@ -1,6 +1,6 @@
-import { Town } from './const';
+import { Town } from '../../const';
 
-function Location() {
+function LocationsList() {
   return (
     <ul className="locations__list tabs__list">
       <li className="locations__item">
@@ -37,4 +37,4 @@ function Location() {
   );
 }
 
-export default Location;
+export default LocationsList;
