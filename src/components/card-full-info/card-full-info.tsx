@@ -1,24 +1,27 @@
 import { Offer } from '../../types/offers';
 
-type CardProps = {
+type CardFullInfoProps = {
   offer: Offer;
 };
 
-function Card({ offer }: CardProps): JSX.Element {
+function CardFullInfo({ offer }: CardFullInfoProps): JSX.Element {
   return (
-    <article className="cities__card place-card">
-      <div className="cities__image-wrapper place-card__image-wrapper">
+    <article className="favorites__card place-card">
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div>
+      <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img
             className="place-card__image"
-            src="img/room.jpg"
-            width="260"
-            height="200"
+            src="img/apartment-small-03.jpg"
+            width="150"
+            height="110"
             alt="Place image"
           />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{offer.price}</b>
@@ -36,7 +39,7 @@ function Card({ offer }: CardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: '100%' }}></span>
             <span className="visually-hidden">{offer.rating}</span>
           </div>
         </div>
@@ -49,4 +52,4 @@ function Card({ offer }: CardProps): JSX.Element {
   );
 }
 
-export default Card;
+export default CardFullInfo;

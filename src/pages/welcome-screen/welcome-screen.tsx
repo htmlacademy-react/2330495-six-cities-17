@@ -4,12 +4,12 @@ import { Helmet } from 'react-helmet-async';
 import OffersList from '../../components/offers-list/offers-list';
 import { Offers } from '../../types/offers';
 
-type WelcomeScreen = {
+type WelcomeScreenProps = {
   amountPlaces: number;
  offers:Offers;
 };
 
-function WelcomeScreen({ amountPlaces,offers }: WelcomeScreen): JSX.Element {
+function WelcomeScreen({ amountPlaces,offers }: WelcomeScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>

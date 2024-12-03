@@ -1,5 +1,7 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
+import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
+import FormComments from '../../form-comments/form-comments';
 
 function OfferScreen(): JSX.Element {
   return (
@@ -96,7 +98,8 @@ function OfferScreen(): JSX.Element {
               </div>
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <ul className="offer__inside-list">
+                <OfferInsideList></OfferInsideList>
+                {/* <ul className="offer__inside-list">
                   <li className="offer__inside-item">Wi-Fi</li>
                   <li className="offer__inside-item">Washing machine</li>
                   <li className="offer__inside-item">Towels</li>
@@ -107,7 +110,7 @@ function OfferScreen(): JSX.Element {
                   <li className="offer__inside-item">Dishwasher</li>
                   <li className="offer__inside-item">Cabel TV</li>
                   <li className="offer__inside-item">Fridge</li>
-                </ul>
+                </ul> */}
               </div>
               <div className="offer__host">
                 <h2 className="offer__host-title">Meet the host</h2>
@@ -173,7 +176,8 @@ function OfferScreen(): JSX.Element {
                     </div>
                   </li>
                 </ul>
-                <form className="reviews__form form" action="#" method="post">
+                <FormComments></FormComments>
+                {/* <form className="reviews__form form" action="#" method="post">
                   <label
                     className="reviews__label form__label"
                     htmlFor="review"
@@ -280,9 +284,9 @@ function OfferScreen(): JSX.Element {
                       your stay with at least{' '}
                       <b className="reviews__text-amount">50 characters</b>.
                     </p>
-                    {/* <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button> */}
+                     <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
                   </div>
-                </form>
+                </form> */}
               </section>
             </div>
           </div>

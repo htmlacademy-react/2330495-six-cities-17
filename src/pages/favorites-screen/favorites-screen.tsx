@@ -1,7 +1,13 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
+import { Offers } from '../../types/offers';
+import CardFullInfo from '../../components/card-full-info/card-full-info';
 
-function FavoritesScreen(): JSX.Element {
+type FavoritesScreenProps = {
+  offers: Offers;
+};
+
+function FavoritesScreen({ offers }: FavoritesScreenProps): JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -22,7 +28,7 @@ function FavoritesScreen(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <article className="favorites__card place-card">
+                  {/* <article className="favorites__card place-card">
                     <div className="place-card__mark">
                       <span>Premium</span>
                     </div>
@@ -70,9 +76,9 @@ function FavoritesScreen(): JSX.Element {
                       </h2>
                       <p className="place-card__type">Apartment</p>
                     </div>
-                  </article>
+                  </article> */}
 
-                  <article className="favorites__card place-card">
+                  {/* <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">
                       <a href="#">
                         <img
@@ -117,7 +123,10 @@ function FavoritesScreen(): JSX.Element {
                       </h2>
                       <p className="place-card__type">Room</p>
                     </div>
-                  </article>
+                  </article> */}
+                  {offers.map((offer) => (
+                    <CardFullInfo key={offer.id} offer={offer} />
+                  ))}
                 </div>
               </li>
 

@@ -1,19 +1,25 @@
+import { User } from './reviews';
+
 type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
 
-type Host = {
-  name: string;
-  avatarUrl: string;
-  isPro: boolean;
-};
+// type Host = {
+//   name: string;
+//   avatarUrl: string;
+//   isPro: boolean;
+// };
 
 type City = {
   name: string;
   location: Location;
 };
+
+// export type Goods ={
+//   goods: string[];
+// }
 
 export type BaseOffer = {
   id: string;
@@ -32,7 +38,9 @@ export type FullInfoOffer = BaseOffer & {
   description: string;
   bedrooms: number;
   goods: string[];
-  host: Host;
+  host: User;
   images: string[];
   maxAdults: number;
 };
+
+export type FullInfoOffers = FullInfoOffer[];

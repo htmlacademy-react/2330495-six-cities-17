@@ -1,4 +1,5 @@
 
+
 import Card from '../card/card';
 import { Offers } from '../../types/offers';
 
