@@ -1,13 +1,15 @@
-import Card from '../../components/card';
-import Header from '../../components/header';
-import Location from '../../components/location';
-import {Helmet} from 'react-helmet-async';
+import Header from '../../components/header/header';
+import LocationsList from '../../components/locations-list/location';
+import { Helmet } from 'react-helmet-async';
+import OffersList from '../../components/offers-list/offers-list';
+import { Offers } from '../../types/offers';
 
 type WelcomeScreen = {
   amountPlaces: number;
+ offers:Offers;
 };
 
-function WelcomeScreen({ amountPlaces }: WelcomeScreen): JSX.Element {
+function WelcomeScreen({ amountPlaces,offers }: WelcomeScreen): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -18,7 +20,7 @@ function WelcomeScreen({ amountPlaces }: WelcomeScreen): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <Location></Location>
+            <LocationsList></LocationsList>
           </section>
         </div>
         <div className="cities">
@@ -54,13 +56,7 @@ function WelcomeScreen({ amountPlaces }: WelcomeScreen): JSX.Element {
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-              </div>
+              <OffersList offers= {offers}></OffersList>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

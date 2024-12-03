@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app';
-import offerListTotal from './mocks/offers-list-total';
+import App from './components/app/app';
+import offerListTotal from './mocks/offers';
 
 
 const amountPlaces = offerListTotal.length;
@@ -13,6 +13,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App amountPlaces = {amountPlaces}/>
+    <App
+      amountPlaces = {amountPlaces}
+      offers = {offerListTotal}
+    />
   </React.StrictMode>
 );

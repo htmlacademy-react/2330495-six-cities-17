@@ -1,7 +1,6 @@
-import { OfferListTotal } from '../types/offers-list-total';
+import { Offer } from '../types/offers';
 
-
-const offerListTotal:OfferListTotal = [
+const offerListTotal: Offer[] = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f01',
     title: 'Beautiful location',
@@ -93,9 +92,7 @@ const offerListTotal:OfferListTotal = [
     isPremium: false,
     rating: 4,
     previewImage: 'https://url-to-image/image.png',
-  }
+  },
 ];
 
 export default offerListTotal;
-
-

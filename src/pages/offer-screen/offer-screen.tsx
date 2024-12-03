@@ -1,4 +1,4 @@
-import Header from '../../components/header';
+import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 
 function OfferScreen(): JSX.Element {
@@ -266,7 +266,8 @@ function OfferScreen(): JSX.Element {
                       </svg>
                     </label>
                   </div>
-                  <textarea className="reviews__textarea form__textarea"
+                  <textarea
+                    className="reviews__textarea form__textarea"
                     id="review"
                     name="review"
                     placeholder="Tell how was your stay, what you like and what can be improved"
