@@ -1,20 +1,35 @@
 import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
 
+
 type CardProps = {
   offer: Offer;
+  cardClassName: string;
 };
 
-function Card({ offer }: CardProps): JSX.Element {
+const IMAGE_SIZES = {
+  'favorites__card place-card': { width: 150, height: 110 },
+  'cities__card place-card': { width: 260, height: 200 },
+};
+
+
+function Card({ offer, cardClassName }: CardProps): JSX.Element {
+
+  const cardClass = `${cardClassName}__card place-card`;
+  const imgCardClass = `${cardClassName}__image-wrapper place-card__image-wrapper`;
+  const { width, height } = IMAGE_SIZES[cardClass as keyof typeof IMAGE_SIZES] || { width: 260, height: 200 };
+
+
   return (
-    <article className="cities__card place-card">
-      <div className="cities__image-wrapper place-card__image-wrapper">
+
+    <article className={cardClass}>
+      <div className={imgCardClass}>
         <a href="#">
           <img
             className="place-card__image"
             src="img/room.jpg"
-            width="260"
-            height="200"
+            width={width}
+            height={height}
             alt="Place image"
           />
         </a>

@@ -1,13 +1,16 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
-import CardFullInfo from '../../components/card-full-info/card-full-info';
+// import CardFullInfo from '../../components/card-full-info/card-full-info';
+// import Card from '../../components/card/card';
+import FavoritesPlacesList from '../../components/favoriets-places-list/favoriets-places-list';
 
 type FavoritesScreenProps = {
   offers: Offers;
+  cardClassName:string;
 };
 
-function FavoritesScreen({ offers }: FavoritesScreenProps): JSX.Element {
+function FavoritesScreen({ offers,cardClassName }: FavoritesScreenProps): JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -27,11 +30,13 @@ function FavoritesScreen({ offers }: FavoritesScreenProps): JSX.Element {
                     </a>
                   </div>
                 </div>
-                <div className="favorites__places">
+                {/* <div className="favorites__places">
                   {offers.map((offer) => (
-                    <CardFullInfo key={offer.id} offer={offer} />
+                    // <CardFullInfo key={offer.id} offer={offer} />
+                    <Card key={offer.id} offer={offer} cardClassName={cardClassName}/>
                   ))}
-                </div>
+                </div> */}
+                <FavoritesPlacesList offers={offers} cardClassName={cardClassName}></FavoritesPlacesList>
               </li>
 
               <li className="favorites__locations-items">

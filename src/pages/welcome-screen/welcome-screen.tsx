@@ -1,15 +1,16 @@
 import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/location';
 import { Helmet } from 'react-helmet-async';
-import OffersList from '../../components/offers-list/offers-list';
+import CitiesPlacesList from '../../components/cities-places-list/cities-places-list';
 import { Offers } from '../../types/offers';
 
 type WelcomeScreenProps = {
   amountPlaces: number;
  offers:Offers;
+ cardClassName:string;
 };
 
-function WelcomeScreen({ amountPlaces,offers }: WelcomeScreenProps): JSX.Element {
+function WelcomeScreen({ amountPlaces,offers,cardClassName }: WelcomeScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -56,7 +57,7 @@ function WelcomeScreen({ amountPlaces,offers }: WelcomeScreenProps): JSX.Element
                   </li>
                 </ul>
               </form>
-              <OffersList offers= {offers}></OffersList>
+              <CitiesPlacesList offers= {offers} cardClassName={cardClassName}></CitiesPlacesList>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

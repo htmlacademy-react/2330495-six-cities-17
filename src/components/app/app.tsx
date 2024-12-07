@@ -9,13 +9,16 @@ import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
 
-
 type AppScreenProps = {
   amountPlaces: number;
   offers: Offers;
+
 };
 
 function App({ amountPlaces, offers }: AppScreenProps): JSX.Element {
+  const citiesCardClassName = 'cities';
+  const favoritesCardClassName = 'favorites';
+
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -23,14 +26,21 @@ function App({ amountPlaces, offers }: AppScreenProps): JSX.Element {
           <Route
             path={AppRoute.Main}
             element={
-              <WelcomeScreen amountPlaces={amountPlaces} offers={offers} />
+              <WelcomeScreen
+                amountPlaces={amountPlaces}
+                offers={offers}
+                cardClassName={citiesCardClassName}
+              />
             }
           />
           <Route
             path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <FavoritesScreen offers={offers} />
+                <FavoritesScreen
+                  offers={offers}
+                  cardClassName={favoritesCardClassName}
+                />
               </PrivateRoute>
             }
           />
