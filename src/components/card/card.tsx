@@ -16,7 +16,7 @@ const IMAGE_SIZES = {
 
 function Card({ offer, cardClassName }: CardProps): JSX.Element {
 
-  const {price} = offer;
+  const {price,title,type,rating} = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
   const imgCardClass = `${cardClassName}__image-wrapper place-card__image-wrapper`;
@@ -56,13 +56,13 @@ function Card({ offer, cardClassName }: CardProps): JSX.Element {
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
             <span style={{ width: '80%' }}></span>
-            <span className="visually-hidden">{offer.rating}</span>
+            <span className="visually-hidden">{rating}</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+          <Link to={`/offer/${offer.id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );
