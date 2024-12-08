@@ -1,16 +1,22 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
 import FormComments from '../../form-comments/form-comments';
 import Card from '../../components/card/card';
 import { Offers } from '../../types/offers';
+import { FullInfoOffer } from '../../types/offer';
 
 type OfferScreenProps = {
   cardClassName: string;
   offers: Offers;
+  fullOffer: FullInfoOffer;
 };
 
-function OfferScreen({ cardClassName, offers }: OfferScreenProps): JSX.Element {
+function OfferScreen({
+  cardClassName,
+  offers,
+  fullOffer,
+}: OfferScreenProps): JSX.Element {
+  const { goods } = fullOffer;
   return (
     <div className="page">
       <Helmet>
@@ -105,19 +111,14 @@ function OfferScreen({ cardClassName, offers }: OfferScreenProps): JSX.Element {
               </div>
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <OfferInsideList></OfferInsideList>
-                {/* <ul className="offer__inside-list">
-                  <li className="offer__inside-item">Wi-Fi</li>
-                  <li className="offer__inside-item">Washing machine</li>
-                  <li className="offer__inside-item">Towels</li>
-                  <li className="offer__inside-item">Heating</li>
-                  <li className="offer__inside-item">Coffee machine</li>
-                  <li className="offer__inside-item">Baby seat</li>
-                  <li className="offer__inside-item">Kitchen</li>
-                  <li className="offer__inside-item">Dishwasher</li>
-                  <li className="offer__inside-item">Cabel TV</li>
-                  <li className="offer__inside-item">Fridge</li>
-                </ul> */}
+
+                <ul className="offer__inside-list">
+                  {goods.map((good) => (
+                    <li key={good} className="offer__inside-item">
+                      {good}
+                    </li>
+                  ))}
+                </ul>
               </div>
               <div className="offer__host">
                 <h2 className="offer__host-title">Meet the host</h2>

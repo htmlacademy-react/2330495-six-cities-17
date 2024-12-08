@@ -1,6 +1,6 @@
-import { FullInfoOffers } from '../types/full-info-offer';
+import { FullInfoOffer } from '../types/offer';
 
-export const fullInfoOffer: FullInfoOffers = [{
+const fullInfoOffer: FullInfoOffer = {
   id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
@@ -24,7 +24,7 @@ export const fullInfoOffer: FullInfoOffers = [{
   description:
     'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
   bedrooms: 3,
-  goods: ['Heating'],
+  goods: ['Heating', 'Wi-Fi', 'Towels', 'Baby seat'],
   host: {
     name: 'Oliver Conner',
     avatarUrl: 'https://url-to-image/image.png',
@@ -32,4 +32,6 @@ export const fullInfoOffer: FullInfoOffers = [{
   },
   images: ['https://url-to-image/image.png'],
   maxAdults: 4,
-}];
+};
+
+export default fullInfoOffer;

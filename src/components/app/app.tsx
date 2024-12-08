@@ -1,5 +1,5 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
+import WelcomeScreen from '../../pages/main-screen/main-screen';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
 import AuthScreen from '../../pages/auth-screen/auth-screen';
@@ -8,16 +8,20 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
+// import { FullInfoOffers } from '../../types/full-info-offer';
+import { FullInfoOffer } from '../../types/offer';
 
 type AppScreenProps = {
   amountPlaces: number;
   offers: Offers;
-
+  // fullOffers:FullInfoOffers;
+  fullOffer:FullInfoOffer;
 };
 
-function App({ amountPlaces, offers }: AppScreenProps): JSX.Element {
+function App({ amountPlaces, offers,fullOffer }: AppScreenProps): JSX.Element {
   const citiesCardClassName = 'cities';
   const favoritesCardClassName = 'favorites';
+  const nearCardClassName = 'near-places';
 
   return (
     <HelmetProvider>
@@ -44,7 +48,7 @@ function App({ amountPlaces, offers }: AppScreenProps): JSX.Element {
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Offer} element={<OfferScreen />} />
+          <Route path={AppRoute.Offer} element={<OfferScreen cardClassName={nearCardClassName} offers={offers} fullOffer ={fullOffer}/>}/>
           <Route path={AppRoute.Login} element={<AuthScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
