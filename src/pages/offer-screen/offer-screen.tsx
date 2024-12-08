@@ -2,8 +2,15 @@ import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
 import FormComments from '../../form-comments/form-comments';
+import Card from '../../components/card/card';
+import { Offers } from '../../types/offers';
 
-function OfferScreen(): JSX.Element {
+type OfferScreenProps = {
+  cardClassName: string;
+  offers: Offers;
+};
+
+function OfferScreen({ cardClassName, offers }: OfferScreenProps): JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -177,6 +184,7 @@ function OfferScreen(): JSX.Element {
                   </li>
                 </ul>
                 <FormComments></FormComments>
+                {/* <Details name=''></Details> */}
                 {/* <form className="reviews__form form" action="#" method="post">
                   <label
                     className="reviews__label form__label"
@@ -298,7 +306,7 @@ function OfferScreen(): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <article className="near-places__card place-card">
+              {/* <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
                   <a href="#">
                     <img
@@ -440,7 +448,15 @@ function OfferScreen(): JSX.Element {
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
-              </article>
+              </article> */}
+              {/* <Card cardClassName={cardClassName} offers={offers}></Card> */}
+              {offers.map((offer) => (
+                <Card
+                  key={offer.id}
+                  offer={offer}
+                  cardClassName={cardClassName}
+                />
+              ))}
             </div>
           </section>
         </div>

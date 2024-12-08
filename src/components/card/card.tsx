@@ -10,10 +10,13 @@ type CardProps = {
 const IMAGE_SIZES = {
   'favorites__card place-card': { width: 150, height: 110 },
   'cities__card place-card': { width: 260, height: 200 },
+  'near-places__card place-card': { width: 260, height: 200 },
 };
 
 
 function Card({ offer, cardClassName }: CardProps): JSX.Element {
+
+  const {price} = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
   const imgCardClass = `${cardClassName}__image-wrapper place-card__image-wrapper`;
@@ -37,7 +40,7 @@ function Card({ offer, cardClassName }: CardProps): JSX.Element {
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{offer.price}</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
