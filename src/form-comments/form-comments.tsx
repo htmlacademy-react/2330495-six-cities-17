@@ -1,13 +1,19 @@
-import React from 'react';
-function ReviewsForm() {
-  const [formData, setFormData] = React.useState('');
-}
 
-const handleFieldChange = (evt) => {
-  const {value} = evt.target;
-};
+// import React, { useState } from 'react';
+
 
 function FormComments(): JSX.Element {
+
+  // const [formData, setFormData] = React.useState({name:'',});
+  // const handleFieldChange = (evt) => {
+  //   // Код для обновления состояния
+  //   evt.preventDefault();
+  //   const{name,value}= evt.target;
+  //   console.log(name);
+  //   console.log(value);
+  //   setFormData({...formData, [name]: value});
+  // };
+
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
@@ -100,13 +106,13 @@ function FormComments(): JSX.Element {
         </label>
       </div>
       <textarea
-      onChange={handleFieldChange}
+        // onChange={handleFieldChange}
+        // value={formData.review}
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
       >
-
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -117,7 +123,8 @@ function FormComments(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          // disabled=""
+          //Обязательно исправить было  disabled=''
+          // disabled={formData.review.length < 50 }
         >
           Submit
         </button>
@@ -125,5 +132,18 @@ function FormComments(): JSX.Element {
     </form>
   );
 }
+
+// export function Details({ name }) {
+//   return (
+//     <>
+//       <h2>Проверка введённых данных:</h2>
+//       <p>
+//         <b>Комментарий: </b>
+//         <br />
+//         {name}
+//       </p>
+//     </>
+//   );
+// }
 
 export default FormComments;

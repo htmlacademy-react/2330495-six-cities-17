@@ -2,13 +2,13 @@ import Card from '../card/card';
 import { Offers } from '../../types/offers';
 
 type CitiesPlacesLisProps = {
-  amountPlaces: number;
+  onHandleActiveIdChange: (id: string | null) => void;
   offers: Offers;
   cardClassName: string;
 };
 
 function CitiesPlacesList({
-  amountPlaces,
+  onHandleActiveIdChange,
   offers,
   cardClassName,
 }: CitiesPlacesLisProps): JSX.Element {
@@ -16,7 +16,7 @@ function CitiesPlacesList({
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">
-        {amountPlaces} places to stay in Amsterdam
+        {offers.length} places to stay in Amsterdam
       </b>
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
@@ -43,7 +43,12 @@ function CitiesPlacesList({
       </form>
       <div className="cities__places-list places__list tabs__content">
         {offers.map((offer) => (
-          <Card key={offer.id} offer={offer} cardClassName={cardClassName} />
+          <Card
+            key={offer.id}
+            offer={offer}
+            cardClassName={cardClassName}
+            onHandleActiveIdChange={onHandleActiveIdChange}
+          />
         ))}
       </div>
     </section>

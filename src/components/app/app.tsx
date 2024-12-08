@@ -1,5 +1,5 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import WelcomeScreen from '../../pages/main-screen/main-screen';
+import MainScreen from '../../pages/main-screen/main-screen';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
 import AuthScreen from '../../pages/auth-screen/auth-screen';
@@ -8,20 +8,25 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
-// import { FullInfoOffers } from '../../types/full-info-offer';
 import { FullInfoOffer } from '../../types/offer';
+import { useState } from 'react';
 
 type AppScreenProps = {
-  amountPlaces: number;
   offers: Offers;
-  // fullOffers:FullInfoOffers;
-  fullOffer:FullInfoOffer;
+  fullOffer: FullInfoOffer;
 };
 
-function App({ amountPlaces, offers,fullOffer }: AppScreenProps): JSX.Element {
+function App({ offers, fullOffer }: AppScreenProps): JSX.Element {
   const citiesCardClassName = 'cities';
   const favoritesCardClassName = 'favorites';
   const nearCardClassName = 'near-places';
+
+  const [isActiveId, setIsActiveId] = useState<string | null>(null);
+  console.log(isActiveId);
+
+  const handleActiveIdChange = (id: string | null) => {
+    setIsActiveId(id);
+  };
 
   return (
     <HelmetProvider>
@@ -30,10 +35,11 @@ function App({ amountPlaces, offers,fullOffer }: AppScreenProps): JSX.Element {
           <Route
             path={AppRoute.Main}
             element={
-              <WelcomeScreen
-                amountPlaces={amountPlaces}
+              <MainScreen
+                // amountPlaces={amountPlaces}
                 offers={offers}
                 cardClassName={citiesCardClassName}
+                onHandleActiveIdChange={handleActiveIdChange}
               />
             }
           />
@@ -48,7 +54,17 @@ function App({ amountPlaces, offers,fullOffer }: AppScreenProps): JSX.Element {
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Offer} element={<OfferScreen cardClassName={nearCardClassName} offers={offers} fullOffer ={fullOffer}/>}/>
+          <Route
+            path={AppRoute.Offer}
+            element={
+              <OfferScreen
+                cardClassName={nearCardClassName}
+                offers={offers}
+                fullOffer={fullOffer}
+                onHandleActiveIdChange={handleActiveIdChange}
+              />
+            }
+          />
           <Route path={AppRoute.Login} element={<AuthScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>

@@ -1,10 +1,10 @@
 import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
 
-
 type CardProps = {
   offer: Offer;
   cardClassName: string;
+  onHandleActiveIdChange: (id: string | null) => void;
 };
 
 const IMAGE_SIZES = {
@@ -13,19 +13,25 @@ const IMAGE_SIZES = {
   'near-places__card place-card': { width: 260, height: 200 },
 };
 
-
-function Card({ offer, cardClassName }: CardProps): JSX.Element {
-
-  const {price,title,type,rating} = offer;
+function Card({
+  offer,
+  cardClassName,
+  onHandleActiveIdChange,
+}: CardProps): JSX.Element {
+  const { price, title, type, rating } = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
   const imgCardClass = `${cardClassName}__image-wrapper place-card__image-wrapper`;
-  const { width, height } = IMAGE_SIZES[cardClass as keyof typeof IMAGE_SIZES] || { width: 260, height: 200 };
-
+  const { width, height } = IMAGE_SIZES[
+    cardClass as keyof typeof IMAGE_SIZES
+  ] || { width: 260, height: 200 };
 
   return (
-
-    <article className={cardClass}>
+    <article
+      className={cardClass}
+      onMouseEnter={() => onHandleActiveIdChange(offer.id)}
+      onMouseLeave={() => onHandleActiveIdChange(null)}
+    >
       <div className={imgCardClass}>
         <a href="#">
           <img
