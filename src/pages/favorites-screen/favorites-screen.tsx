@@ -12,7 +12,8 @@ type FavoritesScreenProps = {
 
 function FavoritesScreen({
   offers,
-  cardClassName,onHandleActiveIdChange
+  cardClassName,
+  onHandleActiveIdChange,
 }: FavoritesScreenProps): JSX.Element {
   return (
     <div className="page">
@@ -38,8 +39,7 @@ function FavoritesScreen({
                   offers={offers}
                   cardClassName={cardClassName}
                   onHandleActiveIdChange={onHandleActiveIdChange}
-                >
-                </FavoritesPlacesList>
+                />
               </li>
 
               <li className="favorites__locations-items">
