@@ -1,37 +1,38 @@
 import { Town } from '../../const';
+import { Link } from 'react-router-dom';
 
 function LocationsList() {
   return (
     <ul className="locations__list tabs__list">
       <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
+        <Link className="locations__item-link tabs__item" to="#">
           <span>{Town.Paris}</span>
-        </a>
+        </Link>
       </li>
       <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
+        <Link className="locations__item-link tabs__item" to="#">
           <span>{Town.Cologne}</span>
-        </a>
+        </Link>
       </li>
       <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
+        <Link className="locations__item-link tabs__item" to="#">
           <span>{Town.Brussels}</span>
-        </a>
+        </Link>
       </li>
       <li className="locations__item">
-        <a className="locations__item-link tabs__item tabs__item--active">
+        <Link className="locations__item-link tabs__item tabs__item--active" to="#">
           <span>{Town.Amsterdam}</span>
-        </a>
+        </Link>
       </li>
       <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
+        <Link className="locations__item-link tabs__item" to="#">
           <span>{Town.Hamburg}</span>
-        </a>
+        </Link>
       </li>
       <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
+        <Link className="locations__item-link tabs__item" to="#">
           <span>{Town.Dusseldorf}</span>
-        </a>
+        </Link>
       </li>
     </ul>
   );

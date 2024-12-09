@@ -33,7 +33,7 @@ function Card({
       onMouseLeave={() => onHandleActiveIdChange(null)}
     >
       <div className={imgCardClass}>
-        <a href="#">
+        <Link to="#">
           <img
             className="place-card__image"
             src="img/room.jpg"
@@ -41,7 +41,7 @@ function Card({
             height={height}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

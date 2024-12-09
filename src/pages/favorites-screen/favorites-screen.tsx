@@ -2,6 +2,7 @@ import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
 import FavoritesPlacesList from '../../components/favoriets-places-list/favoriets-places-list';
+import { Link } from 'react-router-dom';
 
 type FavoritesScreenProps = {
   offers: Offers;
@@ -27,9 +28,9 @@ function FavoritesScreen({
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="#">
+                    <Link className="locations__item-link" to="#">
                       <span>Amsterdam</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -44,15 +45,15 @@ function FavoritesScreen({
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="#">
+                    <Link className="locations__item-link" to="#">
                       <span>Cologne</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <a href="#">
+                      <Link to="#">
                         <img
                           className="place-card__image"
                           src="img/apartment-small-04.jpg"
@@ -60,7 +61,7 @@ function FavoritesScreen({
                           height="110"
                           alt="Place image"
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="favorites__card-info place-card__info">
                       <div className="place-card__price-wrapper">
@@ -91,7 +92,7 @@ function FavoritesScreen({
                         </div>
                       </div>
                       <h2 className="place-card__name">
-                        <a href="#">White castle</a>
+                        <Link to="#">White castle</Link>
                       </h2>
                       <p className="place-card__type">Apartment</p>
                     </div>
@@ -103,7 +104,7 @@ function FavoritesScreen({
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to="main.html">
           <img
             className="footer__logo"
             src="img/logo.svg"
@@ -111,7 +112,7 @@ function FavoritesScreen({
             width="64"
             height="33"
           />
-        </a>
+        </Link>
       </footer>
     </div>
   );
