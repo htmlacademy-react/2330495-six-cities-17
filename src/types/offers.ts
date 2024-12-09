@@ -1,4 +1,4 @@
-import { BaseOffer } from './full-info-offer';
+import { BaseOffer } from './offer';
 
 export type Offer = BaseOffer & {
   previewImage: string;

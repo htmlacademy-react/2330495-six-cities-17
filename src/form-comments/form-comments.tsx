@@ -1,21 +1,28 @@
+import React, { useState } from 'react';
 
-// import React, { useState } from 'react';
-
+const initialState = { rating: '', review: '' };
 
 function FormComments(): JSX.Element {
+  const [formData, setFormData] = useState(initialState);
+  const isSubmitDisabled = !formData.rating || formData.review.length < 50;
 
-  // const [formData, setFormData] = React.useState({name:'',});
-  // const handleFieldChange = (evt) => {
-  //   // Код для обновления состояния
-  //   evt.preventDefault();
-  //   const{name,value}= evt.target;
-  //   console.log(name);
-  //   console.log(value);
-  //   setFormData({...formData, [name]: value});
-  // };
+  const handleFieldChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const submittedData = { ...formData };
+    // eslint-disable-next-line no-console
+    console.log('Submitted Data:', submittedData);
+    setFormData(initialState);
+  };
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -23,9 +30,11 @@ function FormComments(): JSX.Element {
         <input
           className="form__rating-input visually-hidden"
           name="rating"
-          value="5"
           id="5-stars"
           type="radio"
+          value="5"
+          onChange={handleFieldChange}
+          checked={formData.rating === '5'}
         />
         <label
           htmlFor="5-stars"
@@ -43,6 +52,8 @@ function FormComments(): JSX.Element {
           value="4"
           id="4-stars"
           type="radio"
+          onChange={handleFieldChange}
+          checked={formData.rating === '4'}
         />
         <label
           htmlFor="4-stars"
@@ -60,6 +71,8 @@ function FormComments(): JSX.Element {
           value="3"
           id="3-stars"
           type="radio"
+          onChange={handleFieldChange}
+          checked={formData.rating === '3'}
         />
         <label
           htmlFor="3-stars"
@@ -77,6 +90,8 @@ function FormComments(): JSX.Element {
           value="2"
           id="2-stars"
           type="radio"
+          onChange={handleFieldChange}
+          checked={formData.rating === '2'}
         />
         <label
           htmlFor="2-stars"
@@ -94,6 +109,8 @@ function FormComments(): JSX.Element {
           value="1"
           id="1-star"
           type="radio"
+          onChange={handleFieldChange}
+          checked={formData.rating === '1'}
         />
         <label
           htmlFor="1-star"
@@ -106,8 +123,8 @@ function FormComments(): JSX.Element {
         </label>
       </div>
       <textarea
-        // onChange={handleFieldChange}
-        // value={formData.review}
+        onChange={handleFieldChange}
+        value={formData.review}
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
@@ -124,7 +141,7 @@ function FormComments(): JSX.Element {
           className="reviews__submit form__submit button"
           type="submit"
           //Обязательно исправить было  disabled=''
-          // disabled={formData.review.length < 50 }
+          disabled={isSubmitDisabled}
         >
           Submit
         </button>
@@ -132,18 +149,5 @@ function FormComments(): JSX.Element {
     </form>
   );
 }
-
-// export function Details({ name }) {
-//   return (
-//     <>
-//       <h2>Проверка введённых данных:</h2>
-//       <p>
-//         <b>Комментарий: </b>
-//         <br />
-//         {name}
-//       </p>
-//     </>
-//   );
-// }
 
 export default FormComments;

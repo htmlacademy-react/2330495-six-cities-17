@@ -4,8 +4,6 @@ import App from './components/app/app';
 import offerListTotal from './mocks/offers';
 import fullInfoOffer from './mocks/offer';
 
-// const amountPlaces = offerListTotal.length;
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

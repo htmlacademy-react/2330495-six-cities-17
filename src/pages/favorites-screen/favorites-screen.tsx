@@ -6,11 +6,12 @@ import FavoritesPlacesList from '../../components/favoriets-places-list/favoriet
 type FavoritesScreenProps = {
   offers: Offers;
   cardClassName: string;
+  onHandleActiveIdChange: (id: string | null) => void;
 };
 
 function FavoritesScreen({
   offers,
-  cardClassName,
+  cardClassName,onHandleActiveIdChange
 }: FavoritesScreenProps): JSX.Element {
   return (
     <div className="page">
@@ -35,6 +36,7 @@ function FavoritesScreen({
                 <FavoritesPlacesList
                   offers={offers}
                   cardClassName={cardClassName}
+                  onHandleActiveIdChange={onHandleActiveIdChange}
                 >
                 </FavoritesPlacesList>
               </li>

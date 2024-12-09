@@ -22,6 +22,8 @@ function App({ offers, fullOffer }: AppScreenProps): JSX.Element {
   const nearCardClassName = 'near-places';
 
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
+
+  // eslint-disable-next-line no-console
   console.log(isActiveId);
 
   const handleActiveIdChange = (id: string | null) => {
@@ -36,7 +38,6 @@ function App({ offers, fullOffer }: AppScreenProps): JSX.Element {
             path={AppRoute.Main}
             element={
               <MainScreen
-                // amountPlaces={amountPlaces}
                 offers={offers}
                 cardClassName={citiesCardClassName}
                 onHandleActiveIdChange={handleActiveIdChange}
@@ -50,6 +51,7 @@ function App({ offers, fullOffer }: AppScreenProps): JSX.Element {
                 <FavoritesScreen
                   offers={offers}
                   cardClassName={favoritesCardClassName}
+                  onHandleActiveIdChange={handleActiveIdChange}
                 />
               </PrivateRoute>
             }

@@ -16,9 +16,9 @@ const IMAGE_SIZES = {
 function Card({
   offer,
   cardClassName,
-  onHandleActiveIdChange,
+  onHandleActiveIdChange
 }: CardProps): JSX.Element {
-  const { price, title, type, rating } = offer;
+  const { price, title, type, rating, id } = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
   const imgCardClass = `${cardClassName}__image-wrapper place-card__image-wrapper`;
@@ -29,7 +29,7 @@ function Card({
   return (
     <article
       className={cardClass}
-      onMouseEnter={() => onHandleActiveIdChange(offer.id)}
+      onMouseEnter={() => onHandleActiveIdChange(id)}
       onMouseLeave={() => onHandleActiveIdChange(null)}
     >
       <div className={imgCardClass}>
@@ -66,7 +66,7 @@ function Card({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{title}</Link>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

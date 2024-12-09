@@ -3,7 +3,7 @@ import LocationsList from '../../components/locations-list/location';
 import { Helmet } from 'react-helmet-async';
 import CitiesPlacesList from '../../components/cities-places-list/cities-places-list';
 import { Offers } from '../../types/offers';
-// import { useState } from 'react';
+
 
 type MainScreenProps = {
  offers:Offers;
@@ -11,11 +11,7 @@ type MainScreenProps = {
  onHandleActiveIdChange: (id: string | null) => void;
 };
 
-function MainScreen({ offers,cardClassName, onHandleActiveIdChange, }: MainScreenProps): JSX.Element {
-  // const[isActiveId,setIsActiveId] = useState<string>;
-
-  // console.log(isActiveId);
-  // const handleActiveIdChange = (id: string)=>setIsActiveId(id);
+function MainScreen({ offers,cardClassName, onHandleActiveIdChange }: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
