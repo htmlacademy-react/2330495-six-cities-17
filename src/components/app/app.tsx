@@ -10,6 +10,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
 import { FullInfoOffer } from '../../types/offer';
 import { useState } from 'react';
+import Map from '../map/map';
 
 type AppScreenProps = {
   offers: Offers;

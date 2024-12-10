@@ -12,7 +12,7 @@ type Location = {
 //   isPro: boolean;
 // };
 
-type City = {
+export type City = {
   name: string;
   location: Location;
 };
