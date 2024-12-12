@@ -11,7 +11,7 @@ type MainScreenProps = {
   onHandleActiveIdChange: (id: string | null) => void;
   city: City;
   points: Locations;
-  isActiveId:string | null;
+  isActiveId: string | null;
 };
 
 function MainScreen({
@@ -19,7 +19,8 @@ function MainScreen({
   cardClassName,
   onHandleActiveIdChange,
   city,
-  points, isActiveId
+  points,
+  isActiveId,
 }: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
@@ -42,8 +43,7 @@ function MainScreen({
             city={city}
             points={points}
             isActiveId={isActiveId}
-          >
-          </CitiesPlacesList>
+          />
         </div>
       </main>
     </div>
