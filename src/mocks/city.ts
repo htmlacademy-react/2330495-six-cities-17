@@ -1,6 +1,6 @@
 import { City } from '../types/offer';
 
-export const CITY: City = {
+export const city: City = {
   name: 'Amsterdam',
   location: {
     latitude: 52.35514938496378,
