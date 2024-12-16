@@ -4,6 +4,7 @@ import App from './components/app/app';
 import offerListTotal from './mocks/offers';
 import fullInfoOffer from './mocks/offer';
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -14,6 +15,8 @@ root.render(
       // amountPlaces={amountPlaces}
       offers={offerListTotal}
       fullOffer ={fullInfoOffer}
+      city={fullInfoOffer.city}
+      points={offerListTotal.map((offer) => offer.location)}
     />
   </React.StrictMode>
 );

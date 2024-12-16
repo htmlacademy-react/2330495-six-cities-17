@@ -3,15 +3,25 @@ import LocationsList from '../../components/locations-list/location';
 import { Helmet } from 'react-helmet-async';
 import CitiesPlacesList from '../../components/cities-places-list/cities-places-list';
 import { Offers } from '../../types/offers';
-
+import { City, Locations } from '../../types/offer';
 
 type MainScreenProps = {
- offers:Offers;
- cardClassName:string;
- onHandleActiveIdChange: (id: string | null) => void;
+  offers: Offers;
+  cardClassName: string;
+  onHandleActiveIdChange: (id: string | null) => void;
+  city: City;
+  points: Locations;
+  isActiveId: string | null;
 };
 
-function MainScreen({ offers,cardClassName, onHandleActiveIdChange }: MainScreenProps): JSX.Element {
+function MainScreen({
+  offers,
+  cardClassName,
+  onHandleActiveIdChange,
+  city,
+  points,
+  isActiveId,
+}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -26,12 +36,14 @@ function MainScreen({ offers,cardClassName, onHandleActiveIdChange }: MainScreen
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <CitiesPlacesList offers={offers} cardClassName={cardClassName} onHandleActiveIdChange={onHandleActiveIdChange}></CitiesPlacesList>
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
-          </div>
+          <CitiesPlacesList
+            offers={offers}
+            cardClassName={cardClassName}
+            onHandleActiveIdChange={onHandleActiveIdChange}
+            city={city}
+            points={points}
+            isActiveId={isActiveId}
+          />
         </div>
       </main>
     </div>

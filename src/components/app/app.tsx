@@ -8,15 +8,18 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
-import { FullInfoOffer } from '../../types/offer';
+import { FullInfoOffer,City,Locations } from '../../types/offer';
 import { useState } from 'react';
+
 
 type AppScreenProps = {
   offers: Offers;
   fullOffer: FullInfoOffer;
+  city:City;
+  points:Locations;
 };
 
-function App({ offers, fullOffer }: AppScreenProps): JSX.Element {
+function App({ offers, fullOffer,points }: AppScreenProps): JSX.Element {
   const citiesCardClassName = 'cities';
   const favoritesCardClassName = 'favorites';
   const nearCardClassName = 'near-places';
@@ -41,6 +44,9 @@ function App({ offers, fullOffer }: AppScreenProps): JSX.Element {
                 offers={offers}
                 cardClassName={citiesCardClassName}
                 onHandleActiveIdChange={handleActiveIdChange}
+                city={fullOffer.city}
+                points={points}
+                isActiveId={isActiveId}
               />
             }
           />

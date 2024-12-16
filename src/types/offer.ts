@@ -1,10 +1,12 @@
 import { User } from './reviews';
 
-type Location = {
+export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
+
+export type Locations= Location[]
 
 // type Host = {
 //   name: string;
@@ -12,7 +14,7 @@ type Location = {
 //   isPro: boolean;
 // };
 
-type City = {
+export type City = {
   name: string;
   location: Location;
 };
