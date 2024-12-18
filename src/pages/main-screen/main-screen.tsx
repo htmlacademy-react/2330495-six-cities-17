@@ -3,7 +3,7 @@ import LocationsList from '../../components/locations-list/location-list';
 import { Helmet } from 'react-helmet-async';
 import CitiesPlacesList from '../../components/cities-places-list/cities-places-list';
 import { Offers } from '../../types/offers';
-import { City, Locations } from '../../types/offer';
+import { City, Location } from '../../types/offer';
 // import { useState } from 'react';
 
 type MainScreenProps = {
@@ -11,8 +11,9 @@ type MainScreenProps = {
   cardClassName: string;
   // onHandleActiveIdChange: (id: string | null) => void;
   city: City;
-  points: Locations;
+  // points: Locations;
   // isActiveId: string | null;
+  points:{id:string;location:Location}[];
 };
 
 function MainScreen({

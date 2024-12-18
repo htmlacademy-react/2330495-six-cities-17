@@ -1,7 +1,7 @@
 import Card from '../card/card';
 import { Offers } from '../../types/offers';
 import Map from '../../components/map/map';
-import { City, Locations } from '../../types/offer';
+import { City, Location } from '../../types/offer';
 import { useState } from 'react';
 
 type CitiesPlacesLisProps = {
@@ -9,7 +9,7 @@ type CitiesPlacesLisProps = {
   offers: Offers;
   cardClassName: string;
   city: City;
-  points: Locations;
+  points:{id:string;location:Location}[];
   // isActiveId:string | null;
 };
 
@@ -24,7 +24,7 @@ function CitiesPlacesList({
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
 
   // eslint-disable-next-line no-console
-  console.log(isActiveId);
+  // console.log(isActiveId);
 
   const handleActiveIdChange = (id: string | null) => {
     setIsActiveId(id);

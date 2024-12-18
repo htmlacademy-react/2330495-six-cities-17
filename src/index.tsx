@@ -18,7 +18,7 @@ root.render(
         offers={offerListTotal}
         fullOffer={fullInfoOffer}
         city={fullInfoOffer.city}
-        points={offerListTotal.map((offer) => offer.location)}
+        points={offerListTotal.map(({id,location}) => ({id,location}))}
       />
     </Provider>
   </React.StrictMode>

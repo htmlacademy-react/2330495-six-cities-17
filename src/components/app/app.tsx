@@ -8,14 +8,14 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
-import { FullInfoOffer,City,Locations } from '../../types/offer';
+import { FullInfoOffer,City,Location } from '../../types/offer';
 // import { useState } from 'react';
 
 type AppScreenProps = {
   offers: Offers;
   fullOffer: FullInfoOffer;
   city:City;
-  points:Locations;
+  points:{id:string;location:Location}[];
 };
 
 function App({ offers, fullOffer,points }: AppScreenProps): JSX.Element {

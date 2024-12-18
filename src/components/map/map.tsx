@@ -3,11 +3,11 @@ import {Icon, Marker, layerGroup} from 'leaflet';
 import useMap from '../../hooks/use-map';
 import { URL_MARKER_CURRENT,URL_MARKER_DEFAULT } from '../../const';
 import 'leaflet/dist/leaflet.css';
-import { City, Locations } from '../../types/offer';
+import { City, Location } from '../../types/offer';
 
 type MapProps = {
   city: City;
-  points: Locations;
+  points:{id:string;location:Location}[];
   isActiveId: string | null;
 };
 
@@ -32,13 +32,13 @@ function Map({ city, points, isActiveId }: MapProps): JSX.Element {
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.latitude,
-          lng: point.longitude,
+          lat: point.location.latitude,
+          lng: point.location.longitude,
         });
 
         marker
           .setIcon(
-            isActiveId !== undefined
+            isActiveId === point.id
               ? currentCustomIcon
               : defaultCustomIcon
 

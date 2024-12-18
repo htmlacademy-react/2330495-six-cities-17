@@ -29,8 +29,10 @@ function Card({
   return (
     <article
       className={cardClass}
-      onMouseEnter={() => onHandleActiveIdChange?.(id)}
-      onMouseLeave={() => onHandleActiveIdChange?.(null)}
+      onMouseEnter={onHandleActiveIdChange && (()=>onHandleActiveIdChange(id)) }
+      onMouseLeave={onHandleActiveIdChange && (()=>onHandleActiveIdChange(null)) }
+      // onMouseEnter={() => onHandleActiveIdChange?.(id)}
+      // onMouseLeave={() => onHandleActiveIdChange?.(null)}
     >
       <div className={imgCardClass}>
         <Link to="#">
