@@ -18,11 +18,10 @@ export const initialState: State = {
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, action: PayloadAction<Town>) => {
-      state.currentCity = action.payload; // обновляем текущий город
+      state.currentCity = action.payload;
     })
     .addCase(loadOffers, (state, action: PayloadAction<Offer[]>) => {
-      state.offers = action.payload; // обновляем список предложений
+      state.offers = action.payload;
     });
 });
-
 export { reducer };

@@ -4,18 +4,23 @@ import Card from '../../components/card/card';
 type FavoritesPlacesListProps = {
   offers: Offers;
   cardClassName: string;
-  onHandleActiveIdChange: (id: string | null) => void;
+  // onHandleActiveIdChange: (id: string | null) => void;
 };
 
 function FavoritesPlacesList({
-  onHandleActiveIdChange,
+  // onHandleActiveIdChange,
   offers,
   cardClassName,
 }: FavoritesPlacesListProps): JSX.Element {
   return (
     <div className="favorites__places">
       {offers.map((offer) => (
-        <Card key={offer.id} offer={offer} cardClassName={cardClassName} onHandleActiveIdChange={onHandleActiveIdChange} />
+        <Card
+          key={offer.id}
+          offer={offer}
+          // onHandleActiveIdChange={onHandleActiveIdChange}
+          cardClassName={cardClassName}
+        />
       ))}
     </div>
   );

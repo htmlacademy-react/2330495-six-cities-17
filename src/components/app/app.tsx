@@ -9,8 +9,7 @@ import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
 import { FullInfoOffer,City,Locations } from '../../types/offer';
-import { useState } from 'react';
-
+// import { useState } from 'react';
 
 type AppScreenProps = {
   offers: Offers;
@@ -24,14 +23,15 @@ function App({ offers, fullOffer,points }: AppScreenProps): JSX.Element {
   const favoritesCardClassName = 'favorites';
   const nearCardClassName = 'near-places';
 
-  const [isActiveId, setIsActiveId] = useState<string | null>(null);
+  // const [isActiveId, setIsActiveId] = useState<string | null>(null);
 
-  // eslint-disable-next-line no-console
-  console.log(isActiveId);
 
-  const handleActiveIdChange = (id: string | null) => {
-    setIsActiveId(id);
-  };
+  // // eslint-disable-next-line no-console
+  // console.log(isActiveId);
+
+  // const handleActiveIdChange = (id: string | null) => {
+  //   setIsActiveId(id);
+  // };
 
   return (
     <HelmetProvider>
@@ -43,10 +43,11 @@ function App({ offers, fullOffer,points }: AppScreenProps): JSX.Element {
               <MainScreen
                 offers={offers}
                 cardClassName={citiesCardClassName}
-                onHandleActiveIdChange={handleActiveIdChange}
+                // onHandleActiveIdChange={handleActiveIdChange}
                 city={fullOffer.city}
                 points={points}
-                isActiveId={isActiveId}
+                // isActiveId={isActiveId}
+
               />
             }
           />
@@ -57,7 +58,7 @@ function App({ offers, fullOffer,points }: AppScreenProps): JSX.Element {
                 <FavoritesScreen
                   offers={offers}
                   cardClassName={favoritesCardClassName}
-                  onHandleActiveIdChange={handleActiveIdChange}
+                  // onHandleActiveIdChange={handleActiveIdChange}
                 />
               </PrivateRoute>
             }
@@ -69,7 +70,7 @@ function App({ offers, fullOffer,points }: AppScreenProps): JSX.Element {
                 cardClassName={nearCardClassName}
                 offers={offers}
                 fullOffer={fullOffer}
-                onHandleActiveIdChange={handleActiveIdChange}
+                // onHandleActiveIdChange={handleActiveIdChange}
               />
             }
           />

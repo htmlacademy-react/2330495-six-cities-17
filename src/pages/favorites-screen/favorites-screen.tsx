@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 type FavoritesScreenProps = {
   offers: Offers;
   cardClassName: string;
-  onHandleActiveIdChange: (id: string | null) => void;
+  // onHandleActiveIdChange: (id: string | null) => void;
 };
 
 function FavoritesScreen({
   offers,
   cardClassName,
-  onHandleActiveIdChange,
+  // onHandleActiveIdChange,
 }: FavoritesScreenProps): JSX.Element {
   return (
     <div className="page">
@@ -38,7 +38,7 @@ function FavoritesScreen({
                 <FavoritesPlacesList
                   offers={offers}
                   cardClassName={cardClassName}
-                  onHandleActiveIdChange={onHandleActiveIdChange}
+                  // onHandleActiveIdChange={onHandleActiveIdChange}
                 />
               </li>
 
