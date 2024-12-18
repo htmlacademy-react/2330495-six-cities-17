@@ -2,23 +2,33 @@ import Card from '../card/card';
 import { Offers } from '../../types/offers';
 import Map from '../../components/map/map';
 import { City, Locations } from '../../types/offer';
+import { useState } from 'react';
 
 type CitiesPlacesLisProps = {
-  onHandleActiveIdChange: (id: string | null) => void;
+  // onHandleActiveIdChange: (id: string | null) => void;
   offers: Offers;
   cardClassName: string;
   city: City;
   points: Locations;
-  isActiveId:string | null;
+  // isActiveId:string | null;
 };
 
 function CitiesPlacesList({
-  onHandleActiveIdChange,
+  // onHandleActiveIdChange,
   offers,
   cardClassName,
   city,
-  points,isActiveId
+  points,
+  // isActiveId
 }: CitiesPlacesLisProps): JSX.Element {
+  const [isActiveId, setIsActiveId] = useState<string | null>(null);
+
+  // eslint-disable-next-line no-console
+  console.log(isActiveId);
+
+  const handleActiveIdChange = (id: string | null) => {
+    setIsActiveId(id);
+  };
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -55,7 +65,7 @@ function CitiesPlacesList({
               key={offer.id}
               offer={offer}
               cardClassName={cardClassName}
-              onHandleActiveIdChange={onHandleActiveIdChange}
+              onHandleActiveIdChange={handleActiveIdChange}
             />
           ))}
         </div>
