@@ -1,13 +1,13 @@
 import { useRef, useEffect } from 'react';
-import {Icon, Marker, layerGroup} from 'leaflet';
+import { Icon, Marker, LayerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
-import { URL_MARKER_CURRENT,URL_MARKER_DEFAULT } from '../../const';
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import 'leaflet/dist/leaflet.css';
 import { City, Location } from '../../types/offer';
 
 type MapProps = {
   city: City;
-  points:{id:string;location:Location}[];
+  points: { id: string; location: Location }[];
   isActiveId: string | null;
 };
 
@@ -24,33 +24,31 @@ const currentCustomIcon = new Icon({
 });
 
 function Map({ city, points, isActiveId }: MapProps): JSX.Element {
-  const mapRef = useRef(null);
+  const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
-      const markerLayer = layerGroup().addTo(map);
+      const markerLayer = new LayerGroup().addTo(map);
+
       points.forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,
           lng: point.location.longitude,
         });
 
-        marker
-          .setIcon(
-            isActiveId === point.id
-              ? currentCustomIcon
-              : defaultCustomIcon
-
-          )
-          .addTo(markerLayer);
+        marker.setIcon(
+          isActiveId === point.id ? currentCustomIcon : defaultCustomIcon
+        );
+        marker.addTo(markerLayer);
       });
 
       return () => {
-        map.removeLayer(markerLayer);
+        markerLayer.clearLayers(); // Удаляем маркеры
       };
     }
   }, [map, points, isActiveId]);
+
   return <section className="cities__map map" ref={mapRef}></section>;
 }
 
