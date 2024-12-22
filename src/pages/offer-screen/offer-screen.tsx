@@ -9,14 +9,14 @@ type OfferScreenProps = {
   cardClassName: string;
   offers: Offers;
   fullOffer: FullInfoOffer;
-  onHandleActiveIdChange: (id: string | null) => void;
+  // onHandleActiveIdChange: (id: string | null) => void;
 };
 
 function OfferScreen({
   cardClassName,
   offers,
   fullOffer,
-  onHandleActiveIdChange
+  // onHandleActiveIdChange
 }: OfferScreenProps): JSX.Element {
   const { goods } = fullOffer;
   return (
@@ -203,7 +203,7 @@ function OfferScreen({
                   key={offer.id}
                   offer={offer}
                   cardClassName={cardClassName}
-                  onHandleActiveIdChange={onHandleActiveIdChange}
+                  // onHandleActiveIdChange={onHandleActiveIdChange}
                 />
               ))}
             </div>

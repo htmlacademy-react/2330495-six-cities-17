@@ -1,30 +1,49 @@
 import Card from '../card/card';
-import { Offers } from '../../types/offers';
 import Map from '../../components/map/map';
-import { City, Locations } from '../../types/offer';
+import { useState } from 'react';
+// import { RootState } from '../../store';
+import { RootState } from '../../types/state';
+import { useSelector } from 'react-redux';
+import { City} from '../../types/offer';
+import { Town } from '../../const';
 
-type CitiesPlacesLisProps = {
-  onHandleActiveIdChange: (id: string | null) => void;
-  offers: Offers;
-  cardClassName: string;
-  city: City;
-  points: Locations;
-  isActiveId:string | null;
+type CitiesPlacesListProps = {
+  cardClassName: string; // Передача класса через пропсы
 };
 
-function CitiesPlacesList({
-  onHandleActiveIdChange,
-  offers,
-  cardClassName,
-  city,
-  points,isActiveId
-}: CitiesPlacesLisProps): JSX.Element {
+function CitiesPlacesList({ cardClassName }: CitiesPlacesListProps): JSX.Element {
+  const [isActiveId, setIsActiveId] = useState<string | null>(null);
+
+  // Получение текущего города и предложений из состояния Redux
+  const currentCity = useSelector((state: RootState) => state.currentCity);
+  const offersCity = useSelector((state: RootState) =>
+    state.offers.filter((offer) => offer.city.name as Town === currentCity)
+  );
+
+  // Получение текущего города
+  const city: City | null = offersCity.length > 0 ? offersCity[0].city : null;
+
+  // Создание списка точек на карте
+  const points = offersCity.map((offer) => ({
+    id: offer.id,
+    location: offer.location,
+  }));
+
+  const handleActiveIdChange = (id: string | null) => {
+    setIsActiveId(id);
+  };
+
+  // Если предложений для текущего города нет
+  if (!city) {
+    return <p>No offers available for {currentCity}</p>;
+  }
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">
-          {offers.length} places to stay in Amsterdam
+          {offersCity.length} places to stay in {currentCity}
         </b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>
@@ -50,12 +69,12 @@ function CitiesPlacesList({
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {offers.map((offer) => (
+          {offersCity.map((offer) => (
             <Card
               key={offer.id}
               offer={offer}
               cardClassName={cardClassName}
-              onHandleActiveIdChange={onHandleActiveIdChange}
+              onHandleActiveIdChange={handleActiveIdChange}
             />
           ))}
         </div>

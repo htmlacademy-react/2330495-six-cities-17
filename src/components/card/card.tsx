@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 type CardProps = {
   offer: Offer;
   cardClassName: string;
-  onHandleActiveIdChange: (id: string | null) => void;
+  onHandleActiveIdChange?: (id: string | null) => void;
 };
 
 const IMAGE_SIZES = {
@@ -16,7 +16,7 @@ const IMAGE_SIZES = {
 function Card({
   offer,
   cardClassName,
-  onHandleActiveIdChange
+  onHandleActiveIdChange,
 }: CardProps): JSX.Element {
   const { price, title, type, rating, id } = offer;
 
@@ -29,8 +29,10 @@ function Card({
   return (
     <article
       className={cardClass}
-      onMouseEnter={() => onHandleActiveIdChange(id)}
-      onMouseLeave={() => onHandleActiveIdChange(null)}
+      onMouseEnter={onHandleActiveIdChange && (()=>onHandleActiveIdChange(id)) }
+      onMouseLeave={onHandleActiveIdChange && (()=>onHandleActiveIdChange(null)) }
+      // onMouseEnter={() => onHandleActiveIdChange?.(id)}
+      // onMouseLeave={() => onHandleActiveIdChange?.(null)}
     >
       <div className={imgCardClass}>
         <Link to="#">
