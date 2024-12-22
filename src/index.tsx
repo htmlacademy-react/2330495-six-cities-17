@@ -20,8 +20,8 @@ root.render(
         // amountPlaces={amountPlaces}
         offers={offerListTotal}
         fullOffer={fullInfoOffer}
-        city={fullInfoOffer.city}
-        points={offerListTotal.map(({id,location}) => ({id,location}))}
+        // city={fullInfoOffer.city}
+        // points={offerListTotal.map(({id,location}) => ({id,location}))}
       />
     </Provider>
   </React.StrictMode>
