@@ -2,36 +2,14 @@ import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/location-list';
 import { Helmet } from 'react-helmet-async';
 import CitiesPlacesList from '../../components/cities-places-list/cities-places-list';
-// import { Offers } from '../../types/offers';
-// import { City, Location } from '../../types/offer';
-// // import { useState } from 'react';
 
 type MainScreenProps = {
-  // offers: Offers;
   cardClassName: string;
-  // onHandleActiveIdChange: (id: string | null) => void;
-  // city: City;
-  // points: Locations;
-  // isActiveId: string | null;
-  // points:{id:string;location:Location}[];
 };
 
 function MainScreen({
-  // offers,
   cardClassName,
-  // onHandleActiveIdChange,
-  // city,
-  // points,
-}: // isActiveId
-MainScreenProps): JSX.Element {
-  // const [isActiveId, setIsActiveId] = useState<string | null>(null);
-
-  // // eslint-disable-next-line no-console
-  // console.log(isActiveId);
-
-  // const handleActiveIdChange = (id: string | null) => {
-  //   setIsActiveId(id);
-  // };
+}:MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -47,12 +25,7 @@ MainScreenProps): JSX.Element {
         </div>
         <div className="cities">
           <CitiesPlacesList
-            // offers={offers}
             cardClassName={cardClassName}
-            // onHandleActiveIdChange={handleActiveIdChange}
-            // city={city}
-            // points={points}
-            // isActiveId={isActiveId}
           />
         </div>
       </main>

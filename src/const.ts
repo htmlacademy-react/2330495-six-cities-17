@@ -30,3 +30,9 @@ export enum ActionType {
   ChangeCity = 'CHANGE_CITY',
   LoadOffers = 'LOAD_OFFERS',
 }
+
+export enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+}
