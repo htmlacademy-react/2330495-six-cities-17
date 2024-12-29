@@ -3,6 +3,7 @@ import { changeCity, loadOffers, requireAuthorization} from './action';
 import { Town, AuthorizationStatus } from '../const';
 import { Offer } from '../types/offers';
 
+
 type State = {
   currentCity: Town;
   offers: Offer[];

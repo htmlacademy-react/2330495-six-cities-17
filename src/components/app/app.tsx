@@ -9,29 +9,17 @@ import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offers } from '../../types/offers';
 import { FullInfoOffer} from '../../types/offer';
-// import { useState } from 'react';
+
 
 type AppScreenProps = {
   offers: Offers;
   fullOffer: FullInfoOffer;
-  // city:City;
-  // points:{id:string;location:Location}[];
 };
 
 function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
   const citiesCardClassName = 'cities';
   const favoritesCardClassName = 'favorites';
   const nearCardClassName = 'near-places';
-
-  // const [isActiveId, setIsActiveId] = useState<string | null>(null);
-
-
-  // // eslint-disable-next-line no-console
-  // console.log(isActiveId);
-
-  // const handleActiveIdChange = (id: string | null) => {
-  //   setIsActiveId(id);
-  // };
 
   return (
     <HelmetProvider>
@@ -41,13 +29,7 @@ function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
             path={AppRoute.Main}
             element={
               <MainScreen
-                // offers={offers}
                 cardClassName={citiesCardClassName}
-                // onHandleActiveIdChange={handleActiveIdChange}
-                // city={fullOffer.city}
-                // points={points}
-                // isActiveId={isActiveId}
-
               />
             }
           />
@@ -58,7 +40,6 @@ function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
                 <FavoritesScreen
                   offers={offers}
                   cardClassName={favoritesCardClassName}
-                  // onHandleActiveIdChange={handleActiveIdChange}
                 />
               </PrivateRoute>
             }
