@@ -5,13 +5,14 @@ import offerListTotal from './mocks/offers';
 import fullInfoOffer from './mocks/offer';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { loadOffers } from './store/action';
+// import { loadOffers } from './store/action';
+import { fetchOffersAction } from './store/api-actions';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-store.dispatch(loadOffers(offerListTotal));
+store.dispatch(fetchOffersAction());
 
 root.render(
   <React.StrictMode>

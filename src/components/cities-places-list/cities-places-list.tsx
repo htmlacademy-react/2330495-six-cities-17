@@ -1,29 +1,38 @@
 import Card from '../card/card';
 import Map from '../../components/map/map';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { RootState } from '../../store';
-import { RootState } from '../../types/state';
-import { useSelector } from 'react-redux';
-import { City} from '../../types/offer';
+import { RootState, AppDispatch } from '../../types/state';
+import { useDispatch, useSelector } from 'react-redux';
+import { City } from '../../types/offer';
 import { Town } from '../../const';
+import { fetchOffersAction } from '../../store/api-actions';
+
 
 type CitiesPlacesListProps = {
-  cardClassName: string; // Передача класса через пропсы
+  cardClassName: string;
 };
 
-function CitiesPlacesList({ cardClassName }: CitiesPlacesListProps): JSX.Element {
+function CitiesPlacesList({
+  cardClassName,
+}: CitiesPlacesListProps): JSX.Element {
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
+  const dispatch: AppDispatch = useDispatch();
 
-  // Получение текущего города и предложений из состояния Redux
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  }, [dispatch]);
+
+
   const currentCity = useSelector((state: RootState) => state.currentCity);
   const offersCity = useSelector((state: RootState) =>
-    state.offers.filter((offer) => offer.city.name as Town === currentCity)
+    state.offers.filter((offer) => (offer.city.name as Town) === currentCity)
   );
 
-  // Получение текущего города
+
   const city: City | null = offersCity.length > 0 ? offersCity[0].city : null;
 
-  // Создание списка точек на карте
+
   const points = offersCity.map((offer) => ({
     id: offer.id,
     location: offer.location,
@@ -33,7 +42,6 @@ function CitiesPlacesList({ cardClassName }: CitiesPlacesListProps): JSX.Element
     setIsActiveId(id);
   };
 
-  // Если предложений для текущего города нет
   if (!city) {
     return <p>No offers available for {currentCity}</p>;
   }
