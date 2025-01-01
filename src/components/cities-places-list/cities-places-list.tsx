@@ -4,13 +4,14 @@ import { useState, useEffect } from 'react';
 // import { RootState } from '../../store';
 import { RootState, AppDispatch } from '../../types/state';
 import { useDispatch, useSelector } from 'react-redux';
-import { City} from '../../types/offer';
+import { City } from '../../types/offer';
 import { Offers } from '../../types/offers';
-import { Town,SortItem} from '../../const';
+import { Town, SortItem } from '../../const';
 import { fetchOffersAction } from '../../store/api-actions';
 import Sorting from '../sorting/sorting';
 import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
-
+// import Spinner from '../spinner/spinner';
+import Spinner from '../spinner/spinner';
 
 type CitiesPlacesListProps = {
   cardClassName: string;
@@ -43,11 +44,14 @@ function CitiesPlacesList({
     state.offers.filter((offer) => (offer.city.name as Town) === currentCity)
   );
 
+  const isLoading = useSelector((state: RootState) => state.isLoading);
+
   const currentSort = useSelector((state: RootState) => state.currentSort);
 
   const sortedOffers = sortOffers(offersCity, currentSort);
 
-  const city: City | null = sortedOffers.length > 0 ? sortedOffers[0].city : null;
+  const city: City | null =
+    sortedOffers.length > 0 ? sortedOffers[0].city : null;
 
   const points = sortedOffers.map((offer) => ({
     id: offer.id,
@@ -57,6 +61,10 @@ function CitiesPlacesList({
   const handleActiveIdChange = (id: string | null) => {
     setIsActiveId(id);
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   if (!city) {
     return <MainEmptyScreen />;

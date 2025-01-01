@@ -2,6 +2,7 @@ import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { changeCity, loadOffers, requireAuthorization,changeSorting} from './action';
 import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer } from '../types/offers';
+import {fetchOffersAction} from './api-actions';
 
 
 type State = {
@@ -9,6 +10,7 @@ type State = {
   offers: Offer[];
   authorizationStatus:AuthorizationStatus;
   currentSort:SortItem;
+  isLoading: boolean;
 }
 
 export const initialState: State = {
@@ -16,6 +18,7 @@ export const initialState: State = {
   offers: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   currentSort:SortItem.Popular,
+  isLoading: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -31,6 +34,16 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeSorting, (state, action:PayloadAction<SortItem>) => {
       state.currentSort = action.payload;
+    })
+    .addCase(fetchOffersAction.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(fetchOffersAction.fulfilled, (state, action: PayloadAction<Offer[]>) => {
+      state.isLoading = false; // Завершение загрузки
+      state.offers = action.payload; // Обновление данных
+    })
+    .addCase(fetchOffersAction.rejected, (state) => {
+      state.isLoading = false; // Загрузка завершена с ошибкой
     });
 
 });

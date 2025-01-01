@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../types/state';
 import { Offers } from '../types/offers';
 import { APIRoute } from '../const';
 
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
+export const fetchOffersAction = createAsyncThunk<Offers, undefined, {
   dispatch: AppDispatch;
   state: RootState;
   extra: AxiosInstance;
@@ -14,5 +14,6 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<Offers>(APIRoute.Offers);
     dispatch(loadOffers(data));
+    return data;
   },
 );
