@@ -9,6 +9,7 @@ import { Offers } from '../../types/offers';
 import { Town,SortItem} from '../../const';
 import { fetchOffersAction } from '../../store/api-actions';
 import Sorting from '../sorting/sorting';
+import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
 
 
 type CitiesPlacesListProps = {
@@ -58,7 +59,7 @@ function CitiesPlacesList({
   };
 
   if (!city) {
-    return <p>No offers available for {currentCity}</p>;
+    return <MainEmptyScreen />;
   }
 
   return (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Logo from '../../components/logo/logo';
+import Logo from '../../components/header-left/header-left';
 import { Helmet } from 'react-helmet-async';
 
 function AuthScreen(): JSX.Element {
