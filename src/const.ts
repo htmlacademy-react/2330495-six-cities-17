@@ -39,7 +39,7 @@ export enum APIRoute {
 
 export enum SortItem {
   Popular = 'Popular',
-  PriceLow = 'low to high',
-  PriceHigh = ' high to low',
+  PriceLow = 'Low to high',
+  PriceHigh = ' High to low',
   Rating = 'Top rated first',
 }
