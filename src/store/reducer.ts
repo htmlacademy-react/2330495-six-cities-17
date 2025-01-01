@@ -1,6 +1,6 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
-import { changeCity, loadOffers, requireAuthorization} from './action';
-import { Town, AuthorizationStatus } from '../const';
+import { changeCity, loadOffers, requireAuthorization,changeSorting} from './action';
+import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer } from '../types/offers';
 
 
@@ -8,12 +8,14 @@ type State = {
   currentCity: Town;
   offers: Offer[];
   authorizationStatus:AuthorizationStatus;
+  currentSort:SortItem;
 }
 
 export const initialState: State = {
   currentCity: Town.Paris,
   offers: [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  currentSort:SortItem.Popular,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -26,6 +28,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action:PayloadAction<AuthorizationStatus>) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(changeSorting, (state, action:PayloadAction<SortItem>) => {
+      state.currentSort = action.payload;
     });
 
 });
