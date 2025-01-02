@@ -140,7 +140,6 @@ function FormComments(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          //Обязательно исправить было  disabled=''
           disabled={isSubmitDisabled}
         >
           Submit

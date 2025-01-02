@@ -26,10 +26,10 @@ export const URL_MARKER_DEFAULT =
 export const URL_MARKER_CURRENT =
  './public/img/pin-active.svg';
 
-export enum ActionType {
-  ChangeCity = 'CHANGE_CITY',
-  LoadOffers = 'LOAD_OFFERS',
-}
+// export enum ActionType {
+//   ChangeCity = 'CHANGE_CITY',
+//   LoadOffers = 'LOAD_OFFERS',
+// }
 
 export enum APIRoute {
   Offers = '/offers',
@@ -42,4 +42,10 @@ export enum SortItem {
   PriceLow = 'Low to high',
   PriceHigh = ' High to low',
   Rating = 'Top rated first',
+}
+
+export enum CardClassName {
+  Cities = 'cities',
+  Favorites = 'favorites',
+  NearPlaces = 'near-places',
 }

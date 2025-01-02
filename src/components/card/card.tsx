@@ -35,7 +35,7 @@ function Card({
     cardClass as keyof typeof IMAGE_SIZES
   ] || { width: 260, height: 200 };
 
-  const ratingPercentage = `${Math.round(rating * 20)}%`;
+  const ratingPercentage = `${Math.round(rating) * 20}%`;
 
   return (
     <article
@@ -73,7 +73,7 @@ function Card({
           <button
             className={`place-card__bookmark-button ${
               isFavorite ? 'place-card__bookmark-button--active' : ''
-            } button`} // Отображение статуса "В избранное"
+            } button`}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">

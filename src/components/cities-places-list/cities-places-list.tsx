@@ -10,7 +10,7 @@ import { Town, SortItem } from '../../const';
 import { fetchOffersAction } from '../../store/api-actions';
 import Sorting from '../sorting/sorting';
 import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
-// import Spinner from '../spinner/spinner';
+
 import Spinner from '../spinner/spinner';
 
 type CitiesPlacesListProps = {
@@ -39,12 +39,13 @@ function CitiesPlacesList({
   useEffect(() => {
     dispatch(fetchOffersAction());
   }, [dispatch]);
+
+  const isLoading = useSelector((state: RootState) => state.isLoading);
+
   const currentCity = useSelector((state: RootState) => state.currentCity);
   const offersCity = useSelector((state: RootState) =>
     state.offers.filter((offer) => (offer.city.name as Town) === currentCity)
   );
-
-  const isLoading = useSelector((state: RootState) => state.isLoading);
 
   const currentSort = useSelector((state: RootState) => state.currentSort);
 
@@ -63,7 +64,8 @@ function CitiesPlacesList({
   };
 
   if (isLoading) {
-    return <Spinner />;
+    // return <Spinner />;
+    return <p> Загрузка</p>;
   }
 
   if (!city) {
