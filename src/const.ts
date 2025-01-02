@@ -49,3 +49,5 @@ export enum CardClassName {
   Favorites = 'favorites',
   NearPlaces = 'near-places',
 }
+
+export const TIMEOUT_SHOW_ERROR = 2000;
