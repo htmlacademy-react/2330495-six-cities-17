@@ -4,6 +4,7 @@ import { FullInfoOffer } from '../../types/offer';
 // import FormComments from '../form-comments/form-comments';
 
 import Reviews from '../reviews/reviews';
+import OfferMap from '../offer-map/offer-map';
 
 
 function FullOfferCard({ fullOffer }: { fullOffer: FullInfoOffer }): JSX.Element {
@@ -172,7 +173,8 @@ function FullOfferCard({ fullOffer }: { fullOffer: FullInfoOffer }): JSX.Element
           <Reviews></Reviews>
         </div>
       </div>
-      <section className="offer__map map"></section>
+      {/* <section className="offer__map map"></section> */}
+      <OfferMap></OfferMap>
     </section>
   );
 }
