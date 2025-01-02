@@ -6,6 +6,7 @@ import { Offer } from '../../types/offers';
 import { FullInfoOffer } from '../../types/offer';
 import FullOfferCard from '../../components/full-offer-card/full-offer-card';
 
+
 type OfferScreenProps = {
   cardClassName: string;
   offers: Offer[];

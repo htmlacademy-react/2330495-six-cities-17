@@ -8,7 +8,7 @@ export enum AppRoute {
 export enum Town {
   Paris = 'Paris',
   Cologne = 'Cologne',
-  Brussels = ' Brussels',
+  Brussels = 'Brussels',
   Amsterdam = 'Amsterdam',
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf',
@@ -40,7 +40,7 @@ export enum APIRoute {
 export enum SortItem {
   Popular = 'Popular',
   PriceLow = 'Low to high',
-  PriceHigh = ' High to low',
+  PriceHigh = 'High to low',
   Rating = 'Top rated first',
 }
 

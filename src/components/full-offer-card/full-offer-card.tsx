@@ -1,14 +1,30 @@
-
 import { FullInfoOffer } from '../../types/offer';
 // import fullInfoOffer from '../../mocks/offer';
 // import FormComments from '../form-comments/form-comments';
 
 import Reviews from '../reviews/reviews';
 import OfferMap from '../offer-map/offer-map';
+import OfferHost from '../offer-host/offer-host';
 
+function FullOfferCard({
+  fullOffer,
+}: {
+  fullOffer: FullInfoOffer;
+}): JSX.Element {
+  const {
+    goods,
+    price,
+    title,
+    type,
+    bedrooms,maxAdults,
+    // rating,
+    // id,
+    // isPremium,
+    // isFavorite,
+  } = fullOffer;
 
-function FullOfferCard({ fullOffer }: { fullOffer: FullInfoOffer }): JSX.Element {
-  const { goods } = fullOffer;
+  // const ratingPercentage = `${Math.round(rating) * 20}%`;
+
   return (
     <section className="offer">
       <div className="offer__gallery-container container">
@@ -63,9 +79,7 @@ function FullOfferCard({ fullOffer }: { fullOffer: FullInfoOffer }): JSX.Element
             <span>Premium</span>
           </div>
           <div className="offer__name-wrapper">
-            <h1 className="offer__name">
-              Beautiful &amp; luxurious studio at great location
-            </h1>
+            <h1 className="offer__name">{title}</h1>
             <button className="offer__bookmark-button button" type="button">
               <svg className="offer__bookmark-icon" width="31" height="33">
                 <use xlinkHref="#icon-bookmark"></use>
@@ -81,16 +95,16 @@ function FullOfferCard({ fullOffer }: { fullOffer: FullInfoOffer }): JSX.Element
             <span className="offer__rating-value rating__value">4.8</span>
           </div>
           <ul className="offer__features">
-            <li className="offer__feature offer__feature--entire">Apartment</li>
+            <li className="offer__feature offer__feature--entire">{type}</li>
             <li className="offer__feature offer__feature--bedrooms">
-              3 Bedrooms
+              {bedrooms} Bedrooms
             </li>
             <li className="offer__feature offer__feature--adults">
-              Max 4 adults
+              Max {maxAdults} adults
             </li>
           </ul>
           <div className="offer__price">
-            <b className="offer__price-value">&euro;120</b>
+            <b className="offer__price-value">&euro;{price}</b>
             <span className="offer__price-text">&nbsp;night</span>
           </div>
           <div className="offer__inside">
@@ -104,76 +118,10 @@ function FullOfferCard({ fullOffer }: { fullOffer: FullInfoOffer }): JSX.Element
               ))}
             </ul>
           </div>
-          <div className="offer__host">
-            <h2 className="offer__host-title">Meet the host</h2>
-            <div className="offer__host-user user">
-              <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
-                <img
-                  className="offer__avatar user__avatar"
-                  src="img/avatar-angelina.jpg"
-                  width="74"
-                  height="74"
-                  alt="Host avatar"
-                />
-              </div>
-              <span className="offer__user-name">Angelina</span>
-              <span className="offer__user-status">Pro</span>
-            </div>
-            <div className="offer__description">
-              <p className="offer__text">
-                A quiet cozy and picturesque that hides behind a a river by the
-                unique lightness of Amsterdam. The building is green and from
-                18th century.
-              </p>
-              <p className="offer__text">
-                An independent House, strategically located between Rembrand
-                Square and National Opera, but where the bustle of the city
-                comes to rest in this alley flowery and colorful.
-              </p>
-            </div>
-          </div>
-          {/* <section className="offer__reviews reviews">
-            <h2 className="reviews__title">
-              Reviews &middot; <span className="reviews__amount">1</span>
-            </h2>
-            <ul className="reviews__list">
-              <li className="reviews__item">
-                <div className="reviews__user user">
-                  <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                    <img
-                      className="reviews__avatar user__avatar"
-                      src="img/avatar-max.jpg"
-                      width="54"
-                      height="54"
-                      alt="Reviews avatar"
-                    />
-                  </div>
-                  <span className="reviews__user-name">Max</span>
-                </div>
-                <div className="reviews__info">
-                  <div className="reviews__rating rating">
-                    <div className="reviews__stars rating__stars">
-                      <span style={{ width: '80%' }}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <p className="reviews__text">
-                    A quiet cozy and picturesque that hides behind a a river by
-                    the unique lightness of Amsterdam. The building is green and
-                    from 18th century.
-                  </p>
-                  <time className="reviews__time" dateTime="2019-04-24">
-                    April 2019
-                  </time>
-                </div>
-              </li>
-            </ul>
-            <FormComments></FormComments>
-          </section> */}
+          <OfferHost></OfferHost>
           <Reviews></Reviews>
         </div>
       </div>
-      {/* <section className="offer__map map"></section> */}
       <OfferMap></OfferMap>
     </section>
   );

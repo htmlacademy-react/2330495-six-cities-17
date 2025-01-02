@@ -1,13 +1,13 @@
 import Card from '../card/card';
 import Map from '../../components/map/map';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // import { RootState } from '../../store';
-import { RootState, AppDispatch } from '../../types/state';
-import { useDispatch, useSelector } from 'react-redux';
+import { RootState} from '../../types/state';
+import { useSelector } from 'react-redux';
 import { City } from '../../types/offer';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { Town, SortItem } from '../../const';
-import { fetchOffersAction } from '../../store/api-actions';
+// import { fetchOffersAction } from '../../store/api-actions';
 import Sorting from '../sorting/sorting';
 import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
 
@@ -17,7 +17,7 @@ type CitiesPlacesListProps = {
   cardClassName: string;
 };
 
-const sortOffers = (offers: Offers, sortType: SortItem) => {
+const sortOffers = (offers: Offer[], sortType: SortItem) => {
   switch (sortType) {
     case SortItem.PriceLow:
       return [...offers].sort((a, b) => a.price - b.price);
@@ -34,11 +34,11 @@ function CitiesPlacesList({
   cardClassName,
 }: CitiesPlacesListProps): JSX.Element {
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
-  const dispatch: AppDispatch = useDispatch();
+  // const dispatch: AppDispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchOffersAction());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchOffersAction());
+  // }, [dispatch]);
 
   const isLoading = useSelector((state: RootState) => state.isLoading);
 
@@ -64,8 +64,8 @@ function CitiesPlacesList({
   };
 
   if (isLoading) {
-    // return <Spinner />;
-    return <p> Загрузка</p>;
+    return <Spinner />;
+    // return <p> Загрузка</p>;
   }
 
   if (!city) {

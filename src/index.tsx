@@ -5,7 +5,6 @@ import offerListTotal from './mocks/offers';
 import fullInfoOffer from './mocks/offer';
 import { Provider } from 'react-redux';
 import { store } from './store';
-// import { loadOffers } from './store/action';
 import { fetchOffersAction } from './store/api-actions';
 
 const root = ReactDOM.createRoot(
@@ -18,11 +17,8 @@ root.render(
   <React.StrictMode>
     <Provider store = {store}>
       <App
-        // amountPlaces={amountPlaces}
         offers={offerListTotal}
         fullOffer={fullInfoOffer}
-        // city={fullInfoOffer.city}
-        // points={offerListTotal.map(({id,location}) => ({id,location}))}
       />
     </Provider>
   </React.StrictMode>

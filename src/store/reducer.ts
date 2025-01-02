@@ -39,11 +39,11 @@ const reducer = createReducer(initialState, (builder) => {
       state.isLoading = true;
     })
     .addCase(fetchOffersAction.fulfilled, (state, action: PayloadAction<Offer[]>) => {
-      state.isLoading = false; // Завершение загрузки
-      state.offers = action.payload; // Обновление данных
+      state.isLoading = false;
+      state.offers = action.payload;
     })
     .addCase(fetchOffersAction.rejected, (state) => {
-      state.isLoading = false; // Загрузка завершена с ошибкой
+      state.isLoading = false;
     });
 
 });
