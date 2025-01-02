@@ -2,7 +2,7 @@ import Card from '../card/card';
 import Map from '../../components/map/map';
 import { useState } from 'react';
 // import { RootState } from '../../store';
-import { RootState} from '../../types/state';
+import { RootState } from '../../types/state';
 import { useSelector } from 'react-redux';
 import { City } from '../../types/offer';
 import { Offer } from '../../types/offers';
@@ -51,6 +51,7 @@ function CitiesPlacesList({
 
   const sortedOffers = sortOffers(offersCity, currentSort);
 
+
   const city: City | null =
     sortedOffers.length > 0 ? sortedOffers[0].city : null;
 
@@ -71,6 +72,7 @@ function CitiesPlacesList({
   if (!city) {
     return <MainEmptyScreen />;
   }
+
 
   return (
     <div className="cities__places-container container">

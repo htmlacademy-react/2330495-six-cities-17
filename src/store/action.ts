@@ -10,3 +10,5 @@ export const requireAuthorization = createAction<AuthorizationStatus>(
 export const changeSorting = createAction<SortItem>(
   'main/changeSorting'
 );
+
+export const setError = createAction<string | null>('main/setError');

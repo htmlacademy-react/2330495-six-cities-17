@@ -1,11 +1,12 @@
 // import React from 'react';
-import './spinner.css';
+// import './spinner.css';
 
-function Spinner() {
+function Spinner(): JSX.Element {
   return (
-    <div className="spinner-container">
-      <div className="spinner"></div>
-    </div>
+    // <div className="spinner-container">
+    //   <div className="spinner"></div>
+    // </div>
+    <p>Loading ...</p>
   );
 }
 
