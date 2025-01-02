@@ -9,6 +9,9 @@ import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offer } from '../../types/offers';
 import { FullInfoOffer} from '../../types/offer';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../types/state';
+import Spinner from '../../pages/spinner/spinner';
 
 
 type AppScreenProps = {
@@ -20,6 +23,15 @@ function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
   const citiesCardClassName = CardClassName.Cities;
   const favoritesCardClassName = CardClassName.Favorites;
   const nearCardClassName = CardClassName.NearPlaces;
+
+  const authorizationStatus = useSelector((state:RootState) => state.authorizationStatus);
+  const isDataLoading = useSelector((state:RootState) => state.isDataLoading);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <HelmetProvider>

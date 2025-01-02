@@ -4,11 +4,11 @@ import {
   loadOffers,
   requireAuthorization,
   changeSorting,
-  setError,
+  setError,setDataLoadingStatus
 } from './action';
 import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer } from '../types/offers';
-// import { fetchOffersAction } from './api-actions';
+
 
 type State = {
   currentCity: Town;
@@ -17,6 +17,7 @@ type State = {
   currentSort: SortItem;
   isLoading: boolean;
   error: string | null;
+  isDataLoading: boolean;
 };
 
 export const initialState: State = {
@@ -26,6 +27,7 @@ export const initialState: State = {
   currentSort: SortItem.Popular,
   isLoading: false,
   error: null,
+  isDataLoading: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -45,18 +47,11 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(changeSorting, (state, action: PayloadAction<SortItem>) => {
       state.currentSort = action.payload;
     })
-    // .addCase(fetchOffersAction.pending, (state) => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(fetchOffersAction.fulfilled, (state, action: PayloadAction<Offer[]>) => {
-    //   state.isLoading = false;
-    //   state.offers = action.payload;
-    // })
-    // .addCase(fetchOffersAction.rejected, (state) => {
-    //   state.isLoading = false;
-    // });
     .addCase(setError, (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
+    })
+    .addCase(setDataLoadingStatus, (state, action: PayloadAction<boolean>) => {
+      state.isDataLoading = action.payload;
     });
 });
 export { reducer };

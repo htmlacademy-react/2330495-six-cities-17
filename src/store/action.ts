@@ -4,6 +4,7 @@ import { Offer } from '../types/offers';
 
 export const changeCity = createAction<Town>('main/changeCity');
 export const loadOffers = createAction<Offer[]>('data/loadOffers');
+export const setDataLoadingStatus = createAction<boolean>('data/setDataLoadingStatus');
 export const requireAuthorization = createAction<AuthorizationStatus>(
   'user/requireAuthorization'
 );

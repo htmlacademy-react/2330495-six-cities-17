@@ -11,7 +11,7 @@ import { Town, SortItem } from '../../const';
 import Sorting from '../sorting/sorting';
 import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
 
-import Spinner from '../spinner/spinner';
+import Spinner from '../../pages/spinner/spinner';
 
 type CitiesPlacesListProps = {
   cardClassName: string;
