@@ -1,11 +1,11 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import FavoritesPlacesList from '../../components/favoriets-places-list/favoriets-places-list';
 import { Link } from 'react-router-dom';
 
 type FavoritesScreenProps = {
-  offers: Offers;
+  offers: Offer[];
   cardClassName: string;
   // onHandleActiveIdChange: (id: string | null) => void;
 };

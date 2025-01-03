@@ -1,14 +1,12 @@
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import Card from '../../components/card/card';
 
 type FavoritesPlacesListProps = {
-  offers: Offers;
+  offers: Offer[];
   cardClassName: string;
-  // onHandleActiveIdChange: (id: string | null) => void;
 };
 
 function FavoritesPlacesList({
-  // onHandleActiveIdChange,
   offers,
   cardClassName,
 }: FavoritesPlacesListProps): JSX.Element {
