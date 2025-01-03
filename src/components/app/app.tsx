@@ -4,22 +4,34 @@ import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
 import AuthScreen from '../../pages/auth-screen/auth-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, CardClassName } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { FullInfoOffer} from '../../types/offer';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../types/state';
+import Spinner from '../../pages/spinner/spinner';
 
 
 type AppScreenProps = {
-  offers: Offers;
+  offers: Offer[];
   fullOffer: FullInfoOffer;
 };
 
 function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
-  const citiesCardClassName = 'cities';
-  const favoritesCardClassName = 'favorites';
-  const nearCardClassName = 'near-places';
+  const citiesCardClassName = CardClassName.Cities;
+  const favoritesCardClassName = CardClassName.Favorites;
+  const nearCardClassName = CardClassName.NearPlaces;
+
+  const authorizationStatus = useSelector((state:RootState) => state.authorizationStatus);
+  const isDataLoading = useSelector((state:RootState) => state.isDataLoading);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <HelmetProvider>

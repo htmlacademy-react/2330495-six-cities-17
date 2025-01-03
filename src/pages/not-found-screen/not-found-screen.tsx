@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import HeaderLeft from '../../components/header-left/header-left';
 
 function NotFoundScreen(): JSX.Element {
   return (
@@ -6,7 +7,7 @@ function NotFoundScreen(): JSX.Element {
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <div className="header__left">
+            {/* <div className="header__left">
               <Link className="header__logo-link" to="main.html">
                 <img
                   className="header__logo"
@@ -16,7 +17,8 @@ function NotFoundScreen(): JSX.Element {
                   height={41}
                 />
               </Link>
-            </div>
+            </div> */}
+            <HeaderLeft></HeaderLeft>
           </div>
         </div>
       </header>

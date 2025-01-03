@@ -4,27 +4,58 @@ import { useState } from 'react';
 // import { RootState } from '../../store';
 import { RootState } from '../../types/state';
 import { useSelector } from 'react-redux';
-import { City} from '../../types/offer';
-import { Town } from '../../const';
+import { City } from '../../types/offer';
+import { Offer } from '../../types/offers';
+import { Town, SortItem } from '../../const';
+// import { fetchOffersAction } from '../../store/api-actions';
+import Sorting from '../sorting/sorting';
+import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
+
+import Spinner from '../../pages/spinner/spinner';
 
 type CitiesPlacesListProps = {
-  cardClassName: string; // Передача класса через пропсы
+  cardClassName: string;
 };
 
-function CitiesPlacesList({ cardClassName }: CitiesPlacesListProps): JSX.Element {
-  const [isActiveId, setIsActiveId] = useState<string | null>(null);
+const sortOffers = (offers: Offer[], sortType: SortItem) => {
+  switch (sortType) {
+    case SortItem.PriceLow:
+      return [...offers].sort((a, b) => a.price - b.price);
+    case SortItem.PriceHigh:
+      return [...offers].sort((a, b) => b.price - a.price);
+    case SortItem.Rating:
+      return [...offers].sort((a, b) => b.rating - a.rating);
+    default:
+      return offers;
+  }
+};
 
-  // Получение текущего города и предложений из состояния Redux
+function CitiesPlacesList({
+  cardClassName,
+}: CitiesPlacesListProps): JSX.Element {
+  const [isActiveId, setIsActiveId] = useState<string | null>(null);
+  // const dispatch: AppDispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchOffersAction());
+  // }, [dispatch]);
+
+  const isLoading = useSelector((state: RootState) => state.isLoading);
+
   const currentCity = useSelector((state: RootState) => state.currentCity);
   const offersCity = useSelector((state: RootState) =>
-    state.offers.filter((offer) => offer.city.name as Town === currentCity)
+    state.offers.filter((offer) => (offer.city.name as Town) === currentCity)
   );
 
-  // Получение текущего города
-  const city: City | null = offersCity.length > 0 ? offersCity[0].city : null;
+  const currentSort = useSelector((state: RootState) => state.currentSort);
 
-  // Создание списка точек на карте
-  const points = offersCity.map((offer) => ({
+  const sortedOffers = sortOffers(offersCity, currentSort);
+
+
+  const city: City | null =
+    sortedOffers.length > 0 ? sortedOffers[0].city : null;
+
+  const points = sortedOffers.map((offer) => ({
     id: offer.id,
     location: offer.location,
   }));
@@ -33,43 +64,26 @@ function CitiesPlacesList({ cardClassName }: CitiesPlacesListProps): JSX.Element
     setIsActiveId(id);
   };
 
-  // Если предложений для текущего города нет
-  if (!city) {
-    return <p>No offers available for {currentCity}</p>;
+  if (isLoading) {
+    return <Spinner />;
+    // return <p> Загрузка</p>;
   }
+
+  if (!city) {
+    return <MainEmptyScreen />;
+  }
+
 
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">
-          {offersCity.length} places to stay in {currentCity}
+          {sortedOffers.length} places to stay in {currentCity}
         </b>
-        <form className="places__sorting" action="#" method="get">
-          <span className="places__sorting-caption">Sort by</span>
-          <span className="places__sorting-type" tabIndex={0}>
-            Popular
-            <svg className="places__sorting-arrow" width="7" height="4">
-              <use xlinkHref="#icon-arrow-select"></use>
-            </svg>
-          </span>
-          <ul className="places__options places__options--custom places__options--opened">
-            <li className="places__option places__option--active" tabIndex={0}>
-              Popular
-            </li>
-            <li className="places__option" tabIndex={0}>
-              Price: low to high
-            </li>
-            <li className="places__option" tabIndex={0}>
-              Price: high to low
-            </li>
-            <li className="places__option" tabIndex={0}>
-              Top rated first
-            </li>
-          </ul>
-        </form>
+        <Sorting />
         <div className="cities__places-list places__list tabs__content">
-          {offersCity.map((offer) => (
+          {sortedOffers.map((offer) => (
             <Card
               key={offer.id}
               offer={offer}

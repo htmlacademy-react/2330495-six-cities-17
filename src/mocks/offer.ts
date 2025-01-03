@@ -2,9 +2,9 @@ import { FullInfoOffer } from '../types/offer';
 
 const fullInfoOffer: FullInfoOffer = {
   id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
-  title: 'Beautiful & luxurious studio at great location',
+  title: 'Beautiful  studio at great location',
   type: 'apartment',
-  price: 120,
+  price: 117,
   city: {
     name: 'Amsterdam',
     location: {

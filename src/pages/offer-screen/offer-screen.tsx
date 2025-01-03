@@ -1,13 +1,15 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-import FormComments from '../../form-comments/form-comments';
+// import FormComments from '../../form-comments/form-comments';
 import Card from '../../components/card/card';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { FullInfoOffer } from '../../types/offer';
+import FullOfferCard from '../../components/full-offer-card/full-offer-card';
+
 
 type OfferScreenProps = {
   cardClassName: string;
-  offers: Offers;
+  offers: Offer[];
   fullOffer: FullInfoOffer;
   // onHandleActiveIdChange: (id: string | null) => void;
 };
@@ -18,15 +20,15 @@ function OfferScreen({
   fullOffer,
   // onHandleActiveIdChange
 }: OfferScreenProps): JSX.Element {
-  const { goods } = fullOffer;
+  // const { goods } = fullOffer;
   return (
     <div className="page">
       <Helmet>
-        <title>Предложения</title>
+        <title>Предложение</title>
       </Helmet>
       <Header></Header>
       <main className="page__main page__main--offer">
-        <section className="offer">
+        {/* <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
               <div className="offer__image-wrapper">
@@ -191,7 +193,8 @@ function OfferScreen({
             </div>
           </div>
           <section className="offer__map map"></section>
-        </section>
+        </section> */}
+        <FullOfferCard fullOffer={fullOffer}></FullOfferCard>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">
