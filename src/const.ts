@@ -52,3 +52,5 @@ export enum CardClassName {
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const MAX_NEAR_PLACES_OFFERS = 3;

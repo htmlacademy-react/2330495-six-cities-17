@@ -2,7 +2,6 @@ import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 // import FormComments from '../../form-comments/form-comments';
 import Card from '../../components/card/card';
-import { Offer } from '../../types/offers';
 import { FullInfoOffer } from '../../types/offer';
 import FullOfferCard from '../../components/full-offer-card/full-offer-card';
 import { useEffect } from 'react';
@@ -12,22 +11,14 @@ import { RootState } from '../../types/state';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import Spinner from '../spinner/spinner';
+import { MAX_NEAR_PLACES_OFFERS } from '../../const';
+import { useOffersCity } from '../../hooks/use-offers-city';
 
 type OfferScreenProps = {
   cardClassName: string;
-  offers: Offer[];
-  // fullOffer: FullInfoOffer;
-  // onHandleActiveIdChange: (id: string | null) => void;
 };
 
-function OfferScreen({
-  cardClassName,
-  offers,
-}: // fullOffer,
-// onHandleActiveIdChange
-OfferScreenProps): JSX.Element {
-  // const { goods } = fullOffer;
-
+function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
   const { id } = useParams<{ id: string }>();
 
   const dispatch = useAppDispatch();
@@ -42,6 +33,8 @@ OfferScreenProps): JSX.Element {
     }
   }, [id, dispatch]);
 
+  const offersCity = useOffersCity();
+
   return (
     <div className="page">
       <Helmet>
@@ -52,7 +45,7 @@ OfferScreenProps): JSX.Element {
         {currentOffer ? (
           <FullOfferCard currentOffer={currentOffer}></FullOfferCard>
         ) : (
-          <Spinner/>
+          <Spinner />
         )}
         <div className="container">
           <section className="near-places places">
@@ -60,7 +53,7 @@ OfferScreenProps): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              {offers.map((offer) => (
+              {offersCity.slice(0, MAX_NEAR_PLACES_OFFERS).map((offer) => (
                 <Card
                   key={offer.id}
                   offer={offer}

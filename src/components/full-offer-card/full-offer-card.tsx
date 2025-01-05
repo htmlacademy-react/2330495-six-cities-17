@@ -18,7 +18,7 @@ function FullOfferCard({
     type,
     bedrooms,
     maxAdults,
-    images,
+    images,host
     // rating,
     // id,
     // isPremium,
@@ -89,7 +89,7 @@ function FullOfferCard({
               ))}
             </ul>
           </div>
-          <OfferHost></OfferHost>
+          <OfferHost name={host.name} avatarUrl={host.avatarUrl} isPro={host.isPro}></OfferHost>
           <Reviews></Reviews>
         </div>
       </div>
