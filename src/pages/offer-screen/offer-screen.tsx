@@ -11,6 +11,7 @@ import { fetchOfferById } from '../../store/api-actions';
 import { RootState } from '../../types/state';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
+import Spinner from '../spinner/spinner';
 
 type OfferScreenProps = {
   cardClassName: string;
@@ -51,7 +52,7 @@ OfferScreenProps): JSX.Element {
         {currentOffer ? (
           <FullOfferCard currentOffer={currentOffer}></FullOfferCard>
         ) : (
-          <p>Loading offer...</p> // Показываем сообщение или индикатор загрузки
+          <Spinner/>
         )}
         <div className="container">
           <section className="near-places places">
