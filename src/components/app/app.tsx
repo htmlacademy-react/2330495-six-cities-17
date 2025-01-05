@@ -8,7 +8,7 @@ import { AppRoute, AuthorizationStatus, CardClassName } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offer } from '../../types/offers';
-import { FullInfoOffer} from '../../types/offer';
+// import { FullInfoOffer} from '../../types/offer';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../types/state';
 import Spinner from '../../pages/spinner/spinner';
@@ -16,10 +16,10 @@ import Spinner from '../../pages/spinner/spinner';
 
 type AppScreenProps = {
   offers: Offer[];
-  fullOffer: FullInfoOffer;
+  // fullOffer: FullInfoOffer;
 };
 
-function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
+function App({ offers }: AppScreenProps): JSX.Element {
   const citiesCardClassName = CardClassName.Cities;
   const favoritesCardClassName = CardClassName.Favorites;
   const nearCardClassName = CardClassName.NearPlaces;
@@ -62,7 +62,7 @@ function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
               <OfferScreen
                 cardClassName={nearCardClassName}
                 offers={offers}
-                fullOffer={fullOffer}
+                // fullOffer={fullOffer}
                 // onHandleActiveIdChange={handleActiveIdChange}
               />
             }

@@ -33,6 +33,7 @@ export const URL_MARKER_CURRENT =
 
 export enum APIRoute {
   Offers = '/offers',
+  FullInfoOffer = '/offers/',
   Login = '/login',
   Logout = '/logout',
 }

@@ -7,24 +7,27 @@ import OfferMap from '../offer-map/offer-map';
 import OfferHost from '../offer-host/offer-host';
 
 function FullOfferCard({
-  fullOffer,
+  currentOffer,
 }: {
-  fullOffer: FullInfoOffer;
-}): JSX.Element {
+  currentOffer: FullInfoOffer;
+}): JSX.Element | null {
   const {
     goods,
     price,
     title,
     type,
-    bedrooms,maxAdults,
+    bedrooms,
+    maxAdults,
     // rating,
     // id,
     // isPremium,
     // isFavorite,
-  } = fullOffer;
+  } = currentOffer;
 
   // const ratingPercentage = `${Math.round(rating) * 20}%`;
-
+  if (!currentOffer || !currentOffer.goods) {
+    return null; // Или можно отобразить сообщение о загрузке
+  }
   return (
     <section className="offer">
       <div className="offer__gallery-container container">
@@ -111,7 +114,7 @@ function FullOfferCard({
             <h2 className="offer__inside-title">What&apos;s inside</h2>
 
             <ul className="offer__inside-list">
-              {goods.map((good) => (
+              {goods?.map((good) => (
                 <li key={good} className="offer__inside-item">
                   {good}
                 </li>

@@ -1,8 +1,8 @@
-import { loadOffers, requireAuthorization,setError, setDataLoadingStatus } from './action';
+import { loadOffers, requireAuthorization,setError, setDataLoadingStatus, LoadCurrentOffer } from './action';
 import { AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../types/state';
-import { Offer } from '../types/offers';
+import { Offer, FullInfoOffer } from '../types/offers';
 import { APIRoute,AuthorizationStatus,TIMEOUT_SHOW_ERROR } from '../const';
 import { saveToken,dropToken } from '../services/token';
 import { AuthData } from '../types/auth-data';
@@ -74,5 +74,18 @@ export const clearErrorAction = createAsyncThunk(
       TIMEOUT_SHOW_ERROR,
     );
   },
+);
+
+export const fetchOfferById = createAsyncThunk<FullInfoOffer | null, string, {
+  dispatch: AppDispatch;
+  state: RootState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOfferById',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<FullInfoOffer | null>(`/offers/${offerId}`);
+    dispatch(LoadCurrentOffer(data));
+    return data;
+  }
 );
 
