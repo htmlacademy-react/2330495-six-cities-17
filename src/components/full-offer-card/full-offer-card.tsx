@@ -1,7 +1,4 @@
 import { FullInfoOffer } from '../../types/offer';
-// import fullInfoOffer from '../../mocks/offer';
-// import FormComments from '../form-comments/form-comments';
-
 import Reviews from '../reviews/reviews';
 import OfferMap from '../offer-map/offer-map';
 import OfferHost from '../offer-host/offer-host';

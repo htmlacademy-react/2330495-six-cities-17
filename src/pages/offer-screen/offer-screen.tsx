@@ -14,6 +14,7 @@ import Spinner from '../spinner/spinner';
 import { MAX_NEAR_PLACES_OFFERS } from '../../const';
 import { useOffersCity } from '../../hooks/use-offers-city';
 
+
 type OfferScreenProps = {
   cardClassName: string;
 };
@@ -22,6 +23,7 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
   const { id } = useParams<{ id: string }>();
 
   const dispatch = useAppDispatch();
+  const offersCity = useOffersCity();
 
   const currentOffer = useSelector<RootState, FullInfoOffer | null>(
     (state) => state.currentOffer
@@ -33,7 +35,7 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
     }
   }, [id, dispatch]);
 
-  const offersCity = useOffersCity();
+
 
   return (
     <div className="page">

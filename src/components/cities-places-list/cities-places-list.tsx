@@ -3,7 +3,7 @@ import Map from '../../components/map/map';
 import { useState } from 'react';
 // import { RootState } from '../../store';
 import { RootState } from '../../types/state';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { City } from '../../types/offer';
 import { Offer } from '../../types/offers';
 import { SortItem } from '../../const';
@@ -11,6 +11,8 @@ import { SortItem } from '../../const';
 import Sorting from '../sorting/sorting';
 import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
 import { useOffersCity } from '../../hooks/use-offers-city';
+import { useCurrentCity } from '../../hooks/use-current-city';
+import { useAppSelector } from '../../hooks';
 
 import Spinner from '../../pages/spinner/spinner';
 
@@ -35,24 +37,16 @@ function CitiesPlacesList({
   cardClassName,
 }: CitiesPlacesListProps): JSX.Element {
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
-  // const dispatch: AppDispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchOffersAction());
-  // }, [dispatch]);
 
-  const isLoading = useSelector((state: RootState) => state.isLoading);
+  const isLoading = useAppSelector((state: RootState) => state.isLoading);
 
-  // const currentCity = useSelector((state: RootState) => state.currentCity);
-  // const offersCity = useSelector((state: RootState) =>
-  //   state.offers.filter((offer) => (offer.city.name as Town) === currentCity)
-  // );
 
-  const currentCity = useSelector((state: RootState) => state.currentCity);
+  const currentCity = useCurrentCity();
 
   const offersCity = useOffersCity();
 
-  const currentSort = useSelector((state: RootState) => state.currentSort);
+  const currentSort = useAppSelector((state: RootState) => state.currentSort);
 
   const sortedOffers = sortOffers(offersCity, currentSort);
 
