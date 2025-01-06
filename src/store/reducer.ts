@@ -4,10 +4,11 @@ import {
   loadOffers,
   requireAuthorization,
   changeSorting,
-  setError,setDataLoadingStatus, LoadCurrentOffer
+  setError,setDataLoadingStatus, LoadCurrentOffer, loadComments,
 } from './action';
 import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer,FullInfoOffer } from '../types/offers';
+import { Review } from '../types/reviews';
 
 
 type State = {
@@ -20,6 +21,7 @@ type State = {
   isDataLoading: boolean;
   // fullOffers:FullInfoOffer [];
   currentOffer: FullInfoOffer | null;
+  reviews: Review [];
 };
 
 export const initialState: State = {
@@ -32,6 +34,7 @@ export const initialState: State = {
   isDataLoading: false,
   // fullOffers:[],
   currentOffer: null,
+  reviews: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -62,6 +65,9 @@ const reducer = createReducer(initialState, (builder) => {
     // })
     .addCase(LoadCurrentOffer, (state, action: PayloadAction<FullInfoOffer | null>) => {
       state.currentOffer = action.payload;
+    })
+    .addCase(loadComments, (state, action: PayloadAction< Review []>) => {
+      state.reviews = action.payload;
     });
 
 });

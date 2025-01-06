@@ -1,4 +1,4 @@
-import { loadOffers, requireAuthorization,setError, setDataLoadingStatus, LoadCurrentOffer } from './action';
+import { loadOffers, requireAuthorization,setError, setDataLoadingStatus, LoadCurrentOffer,loadComments } from './action';
 import { AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../types/state';
@@ -8,6 +8,7 @@ import { saveToken,dropToken } from '../services/token';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { store } from '.';
+import { Review } from '../types/reviews';
 
 export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
@@ -89,3 +90,16 @@ export const fetchOfferById = createAsyncThunk<FullInfoOffer | null, string, {
   }
 );
 
+export const fetchReviewsAction = createAsyncThunk<Review[], string, {
+  dispatch: AppDispatch;
+  state: RootState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchReviewsAction',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<Review[]>(`/comments/${offerId}`);
+
+    dispatch(loadComments(data));
+    return data;
+  }
+);

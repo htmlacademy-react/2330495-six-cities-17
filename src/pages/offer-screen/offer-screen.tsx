@@ -14,7 +14,6 @@ import Spinner from '../spinner/spinner';
 import { MAX_NEAR_PLACES_OFFERS } from '../../const';
 import { useOffersCity } from '../../hooks/use-offers-city';
 
-
 type OfferScreenProps = {
   cardClassName: string;
 };
@@ -34,8 +33,6 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
       dispatch(fetchOfferById(id));
     }
   }, [id, dispatch]);
-
-
 
   return (
     <div className="page">

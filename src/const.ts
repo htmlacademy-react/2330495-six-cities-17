@@ -36,6 +36,7 @@ export enum APIRoute {
   FullInfoOffer = '/offers/',
   Login = '/login',
   Logout = '/logout',
+  Reviews = '/comments'
 }
 
 export enum SortItem {
