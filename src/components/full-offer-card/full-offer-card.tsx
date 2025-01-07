@@ -1,13 +1,21 @@
 import { FullInfoOffer } from '../../types/offer';
 import Reviews from '../reviews/reviews';
-import OfferMap from '../offer-map/offer-map';
+// import OfferMap from '../../utils/map-components';
 import OfferHost from '../offer-host/offer-host';
+import { OfferMap } from '../../utils/map-components';
+import { Point } from '../../types/map-points';
+
+type FullOfferCardProps = {
+  currentOffer: FullInfoOffer;
+  points: Point[];
+  isActiveId: string | null;
+};
 
 function FullOfferCard({
   currentOffer,
-}: {
-  currentOffer: FullInfoOffer;
-}): JSX.Element | null {
+  points,
+  isActiveId,
+}: FullOfferCardProps): JSX.Element | null {
   const {
     goods,
     price,
@@ -15,9 +23,11 @@ function FullOfferCard({
     type,
     bedrooms,
     maxAdults,
-    images,host,
+    images,
+    host,
     rating,
     id,
+    city,
     // isPremium,
     // isFavorite,
   } = currentOffer;
@@ -57,7 +67,7 @@ function FullOfferCard({
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">
-              <span style={{width: ratingPercentage }}></span>
+              <span style={{ width: ratingPercentage }}></span>
               <span className="visually-hidden">{`Rating: ${rating}`}</span>
             </div>
             <span className="offer__rating-value rating__value">{rating}</span>
@@ -86,11 +96,16 @@ function FullOfferCard({
               ))}
             </ul>
           </div>
-          <OfferHost name={host.name} avatarUrl={host.avatarUrl} isPro={host.isPro}></OfferHost>
-          <Reviews offerId = {id}></Reviews>
+          <OfferHost
+            name={host.name}
+            avatarUrl={host.avatarUrl}
+            isPro={host.isPro}
+          >
+          </OfferHost>
+          <Reviews offerId={id}></Reviews>
         </div>
       </div>
-      <OfferMap></OfferMap>
+      <OfferMap city={city} points={points} isActiveId={isActiveId} />
     </section>
   );
 }

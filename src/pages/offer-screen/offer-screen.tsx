@@ -1,29 +1,34 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 // import FormComments from '../../form-comments/form-comments';
-// import Card from '../../components/card/card';
-import { FullInfoOffer} from '../../types/offers';
+import Card from '../../components/card/card';
+import { FullInfoOffer } from '../../types/offers';
 import FullOfferCard from '../../components/full-offer-card/full-offer-card';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { fetchOfferById,fetchNearbyOffersAction } from '../../store/api-actions';
+import {
+  fetchOfferById,
+  fetchNearbyOffersAction,
+} from '../../store/api-actions';
 import { RootState } from '../../types/state';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import Spinner from '../spinner/spinner';
-// import { MAX_NEAR_PLACES_OFFERS } from '../../const';
-import NearbyPlacesList from '../../components/nearby-places-list/nearby-places-list';
+import { MAX_NEAR_PLACES_OFFERS } from '../../const';
+// import NearbyPlacesList from '../../components/nearby-places-list/nearby-places-list';
 // import { useOffersCity } from '../../hooks/use-offers-city';
 import { CardClassName } from '../../const';
-
+import { Offer } from '../../types/offers';
+import { useState } from 'react';
 
 type OfferScreenProps = {
- cardClassName: CardClassName;
+  cardClassName: CardClassName;
   // onHandleActiveIdChange
 };
 
 function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
   const { id } = useParams<{ id: string }>();
+  const [isActiveId, setIsActiveId] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
   // const offersCity = useOffersCity();
@@ -32,9 +37,9 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
     (state) => state.currentOffer
   );
 
-  // const nearbyOffers = useSelector<RootState, Offer[]>(
-  //   (state) => state.nearbyOffers
-  // );
+  const nearbyOffers = useSelector<RootState, Offer[]>(
+    (state) => state.nearbyOffers
+  );
 
   useEffect(() => {
     if (id) {
@@ -43,7 +48,16 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
     }
   }, [id, dispatch]);
 
-  // const OffersSliced = nearbyOffers.slice(0, MAX_NEAR_PLACES_OFFERS);
+  const points = nearbyOffers.map((offer) => ({
+    id: offer.id,
+    location: offer.location,
+  }));
+
+  const handleActiveIdChange = (idOffer: string | null) => {
+    setIsActiveId(idOffer);
+  };
+
+  const OffersSliced = nearbyOffers.slice(0, MAX_NEAR_PLACES_OFFERS);
 
   return (
     <div className="page">
@@ -53,7 +67,12 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
       <Header></Header>
       <main className="page__main page__main--offer">
         {currentOffer ? (
-          <FullOfferCard currentOffer={currentOffer}></FullOfferCard>
+          <FullOfferCard
+            currentOffer={currentOffer}
+            points={points}
+            isActiveId={isActiveId}
+          >
+          </FullOfferCard>
         ) : (
           <Spinner />
         )}
@@ -62,17 +81,17 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            {/* <div className="near-places__list places__list">
+            <div className="near-places__list places__list">
               {OffersSliced.map((offer) => (
                 <Card
                   key={offer.id}
                   offer={offer}
                   cardClassName={cardClassName}
-                  // onHandleActiveIdChange={onHandleActiveIdChange}
+                  onHandleActiveIdChange={handleActiveIdChange}
                 />
               ))}
-            </div> */}
-            <NearbyPlacesList cardClassName={cardClassName}></NearbyPlacesList>
+            </div>
+            {/* <NearbyPlacesList cardClassName={cardClassName}></NearbyPlacesList> */}
           </section>
         </div>
       </main>

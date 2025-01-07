@@ -57,6 +57,13 @@ export enum CardClassName {
   NearPlaces = 'near-places',
 }
 
+export enum MapClassName {
+  Cities = 'cities__map',
+  Offer = 'offer__map',
+}
+
+
+
 export const TIMEOUT_SHOW_ERROR = 2000;
 
 export const MAX_NEAR_PLACES_OFFERS = 3;

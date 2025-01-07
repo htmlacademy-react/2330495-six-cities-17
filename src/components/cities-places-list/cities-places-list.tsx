@@ -1,5 +1,5 @@
 import Card from '../card/card';
-import Map from '../../components/map/map';
+// import Map from '../../components/map/map';
 import { useState } from 'react';
 // import { RootState } from '../../store';
 import { RootState } from '../../types/state';
@@ -15,6 +15,7 @@ import { useCurrentCity } from '../../hooks/use-current-city';
 import { useAppSelector } from '../../hooks';
 import { CardClassName } from '../../const';
 import Spinner from '../../pages/spinner/spinner';
+import { CitiesMap } from '../../utils/map-components';
 
 type CitiesPlacesListProps = {
   cardClassName: CardClassName;
@@ -93,7 +94,7 @@ function CitiesPlacesList({
         </div>
       </section>
       <div className="cities__right-section">
-        <Map city={city} points={points} isActiveId={isActiveId}></Map>
+        <CitiesMap city={city} points={points} isActiveId={isActiveId}/>
       </div>
     </div>
   );
