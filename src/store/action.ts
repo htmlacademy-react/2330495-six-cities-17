@@ -5,7 +5,9 @@ import { Offer,FullInfoOffer } from '../types/offers';
 import { Review } from '../types/reviews';
 
 export const changeCity = createAction<Town>('main/changeCity');
+
 export const loadOffers = createAction<Offer[]>('data/loadOffers');
+
 export const setDataLoadingStatus = createAction<boolean>('data/setDataLoadingStatus');
 export const requireAuthorization = createAction<AuthorizationStatus>(
   'user/requireAuthorization'
@@ -23,3 +25,5 @@ export const setError = createAction<string | null>('main/setError');
 export const loadComments = createAction<Review []>(
   'reviews/loadComments'
 );
+
+export const loadNearbyOffers = createAction<Offer[]>('data/loadNearbyOffers');

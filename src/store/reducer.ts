@@ -4,7 +4,7 @@ import {
   loadOffers,
   requireAuthorization,
   changeSorting,
-  setError,setDataLoadingStatus, LoadCurrentOffer, loadComments,
+  setError,setDataLoadingStatus, LoadCurrentOffer, loadComments,loadNearbyOffers
 } from './action';
 import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer,FullInfoOffer } from '../types/offers';
@@ -22,6 +22,7 @@ type State = {
   // fullOffers:FullInfoOffer [];
   currentOffer: FullInfoOffer | null;
   reviews: Review [];
+  nearbyOffers: Offer[];
 };
 
 export const initialState: State = {
@@ -35,6 +36,7 @@ export const initialState: State = {
   // fullOffers:[],
   currentOffer: null,
   reviews: [],
+  nearbyOffers: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -60,15 +62,16 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setDataLoadingStatus, (state, action: PayloadAction<boolean>) => {
       state.isDataLoading = action.payload;
     })
-    // .addCase(loadFullOffers, (state, action: PayloadAction<FullInfoOffer []>) => {
-    //   state.fullOffers = action.payload;
-    // })
     .addCase(LoadCurrentOffer, (state, action: PayloadAction<FullInfoOffer | null>) => {
       state.currentOffer = action.payload;
     })
     .addCase(loadComments, (state, action: PayloadAction< Review []>) => {
       state.reviews = action.payload;
+    })
+    .addCase(loadNearbyOffers, (state, action: PayloadAction<Offer[]>) => {
+      state.nearbyOffers = action.payload;
     });
+
 
 });
 export { reducer };

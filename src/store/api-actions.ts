@@ -4,7 +4,7 @@ import {
   setError,
   setDataLoadingStatus,
   LoadCurrentOffer,
-  loadComments,
+  loadComments,loadNearbyOffers
 } from './action';
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -133,6 +133,6 @@ export const fetchNearbyOffersAction = createAsyncThunk<
     buildApiRoute(APIRoute.Offers, offerId, 'nearby')
   );
 
-  dispatch(loadOffers(data));
+  dispatch(loadNearbyOffers(data));
   return data;
 });

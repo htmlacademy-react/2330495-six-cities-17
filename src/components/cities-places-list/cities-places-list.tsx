@@ -13,11 +13,11 @@ import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
 import { useOffersCity } from '../../hooks/use-offers-city';
 import { useCurrentCity } from '../../hooks/use-current-city';
 import { useAppSelector } from '../../hooks';
-
+import { CardClassName } from '../../const';
 import Spinner from '../../pages/spinner/spinner';
 
 type CitiesPlacesListProps = {
-  cardClassName: string;
+  cardClassName: CardClassName;
 };
 
 const sortOffers = (offers: Offer[], sortType: SortItem) => {

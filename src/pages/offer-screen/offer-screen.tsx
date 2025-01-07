@@ -1,40 +1,49 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 // import FormComments from '../../form-comments/form-comments';
-import Card from '../../components/card/card';
-import { FullInfoOffer } from '../../types/offer';
+// import Card from '../../components/card/card';
+import { FullInfoOffer} from '../../types/offers';
 import FullOfferCard from '../../components/full-offer-card/full-offer-card';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { fetchOfferById } from '../../store/api-actions';
+import { fetchOfferById,fetchNearbyOffersAction } from '../../store/api-actions';
 import { RootState } from '../../types/state';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import Spinner from '../spinner/spinner';
-import { MAX_NEAR_PLACES_OFFERS } from '../../const';
-import { useOffersCity } from '../../hooks/use-offers-city';
+// import { MAX_NEAR_PLACES_OFFERS } from '../../const';
+import NearbyPlacesList from '../../components/nearby-places-list/nearby-places-list';
+// import { useOffersCity } from '../../hooks/use-offers-city';
+import { CardClassName } from '../../const';
+
 
 type OfferScreenProps = {
-  cardClassName: string;
+ cardClassName: CardClassName;
+  // onHandleActiveIdChange
 };
 
 function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
   const { id } = useParams<{ id: string }>();
 
   const dispatch = useAppDispatch();
-  const offersCity = useOffersCity();
+  // const offersCity = useOffersCity();
 
   const currentOffer = useSelector<RootState, FullInfoOffer | null>(
     (state) => state.currentOffer
   );
 
+  // const nearbyOffers = useSelector<RootState, Offer[]>(
+  //   (state) => state.nearbyOffers
+  // );
+
   useEffect(() => {
     if (id) {
       dispatch(fetchOfferById(id));
+      dispatch(fetchNearbyOffersAction(id));
     }
   }, [id, dispatch]);
 
-  const OffersSliced = offersCity.slice(0, MAX_NEAR_PLACES_OFFERS);
+  // const OffersSliced = nearbyOffers.slice(0, MAX_NEAR_PLACES_OFFERS);
 
   return (
     <div className="page">
@@ -53,7 +62,7 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <div className="near-places__list places__list">
+            {/* <div className="near-places__list places__list">
               {OffersSliced.map((offer) => (
                 <Card
                   key={offer.id}
@@ -62,7 +71,8 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
                   // onHandleActiveIdChange={onHandleActiveIdChange}
                 />
               ))}
-            </div>
+            </div> */}
+            <NearbyPlacesList cardClassName={cardClassName}></NearbyPlacesList>
           </section>
         </div>
       </main>
