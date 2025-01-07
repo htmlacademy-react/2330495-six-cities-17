@@ -34,6 +34,8 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
     }
   }, [id, dispatch]);
 
+  const OffersSliced = offersCity.slice(0, MAX_NEAR_PLACES_OFFERS);
+
   return (
     <div className="page">
       <Helmet>
@@ -52,7 +54,7 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              {offersCity.slice(0, MAX_NEAR_PLACES_OFFERS).map((offer) => (
+              {OffersSliced.map((offer) => (
                 <Card
                   key={offer.id}
                   offer={offer}

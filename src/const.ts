@@ -33,10 +33,15 @@ export const URL_MARKER_CURRENT =
 
 export enum APIRoute {
   Offers = '/offers',
+  // /six-cities/offers
   FullInfoOffer = '/offers/',
+  // /six-cities/offers/{offerId}
+  //  /six-cities/offers/{offerId}/nearby
+  // FavoritsOffers /six-cities/favorite
   Login = '/login',
   Logout = '/logout',
   Reviews = '/comments'
+  // /six-cities/comments/{offerId}
 }
 
 export enum SortItem {
