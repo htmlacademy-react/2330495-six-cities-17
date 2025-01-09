@@ -20,11 +20,9 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const URL_MARKER_DEFAULT =
- './public/img/pin.svg';
+export const URL_MARKER_DEFAULT = './public/img/pin.svg';
 
-export const URL_MARKER_CURRENT =
- './public/img/pin-active.svg';
+export const URL_MARKER_CURRENT = './public/img/pin-active.svg';
 
 // export enum ActionType {
 //   ChangeCity = 'CHANGE_CITY',
@@ -40,7 +38,7 @@ export enum APIRoute {
   // FavoritsOffers /six-cities/favorite
   Login = '/login',
   Logout = '/logout',
-  Reviews = '/comments'
+  Reviews = '/comments',
   // /six-cities/comments/{offerId}
 }
 
@@ -61,8 +59,6 @@ export enum MapClassName {
   Cities = 'cities__map',
   Offer = 'offer__map',
 }
-
-
 
 export const TIMEOUT_SHOW_ERROR = 2000;
 
