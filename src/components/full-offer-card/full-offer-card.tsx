@@ -105,7 +105,7 @@ function FullOfferCard({
           <Reviews offerId={id}></Reviews>
         </div>
       </div>
-      <OfferMap city={city} points={points} isActiveId={isActiveId} />
+      <OfferMap city={city} points={points} isActiveId={isActiveId || id} />
     </section>
   );
 }

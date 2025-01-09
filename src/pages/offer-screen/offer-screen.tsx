@@ -48,16 +48,21 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
     }
   }, [id, dispatch]);
 
-  const points = nearbyOffers.map((offer) => ({
-    id: offer.id,
-    location: offer.location,
-  }));
+  const offersSliced = nearbyOffers.slice(0, MAX_NEAR_PLACES_OFFERS);
+
+  const points = [
+    ...offersSliced.map((offer) => ({
+      id: offer.id,
+      location: offer.location,
+    })),
+    ...(currentOffer
+      ? [{ id: currentOffer.id, location: currentOffer.location }]
+      : []),
+  ];
 
   const handleActiveIdChange = (idOffer: string | null) => {
     setIsActiveId(idOffer);
   };
-
-  const OffersSliced = nearbyOffers.slice(0, MAX_NEAR_PLACES_OFFERS);
 
   return (
     <div className="page">
@@ -71,8 +76,7 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
             currentOffer={currentOffer}
             points={points}
             isActiveId={isActiveId}
-          >
-          </FullOfferCard>
+          ></FullOfferCard>
         ) : (
           <Spinner />
         )}
@@ -82,7 +86,7 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              {OffersSliced.map((offer) => (
+              {offersSliced.map((offer) => (
                 <Card
                   key={offer.id}
                   offer={offer}
