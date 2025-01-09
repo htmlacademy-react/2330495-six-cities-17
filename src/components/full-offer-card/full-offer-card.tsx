@@ -100,8 +100,8 @@ function FullOfferCard({
             name={host.name}
             avatarUrl={host.avatarUrl}
             isPro={host.isPro}
-          >
-          </OfferHost>
+          />
+          {/* </OfferHost> */}
           <Reviews offerId={id}></Reviews>
         </div>
       </div>
