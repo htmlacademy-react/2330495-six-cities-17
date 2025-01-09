@@ -82,7 +82,8 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
             currentOffer={currentOffer}
             points={points}
             isActiveId={isActiveId}
-          ></FullOfferCard>
+          >
+          </FullOfferCard>
         ) : (
           <Spinner />
         )}
