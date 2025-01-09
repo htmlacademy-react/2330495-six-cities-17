@@ -20,6 +20,7 @@ import { MAX_NEAR_PLACES_OFFERS } from '../../const';
 import { CardClassName } from '../../const';
 import { Offer } from '../../types/offers';
 import { useState } from 'react';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 type OfferScreenProps = {
   cardClassName: CardClassName;
@@ -63,6 +64,11 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
   const handleActiveIdChange = (idOffer: string | null) => {
     setIsActiveId(idOffer);
   };
+
+
+  if (!currentOffer) {
+    return <NotFoundScreen />;
+  }
 
   return (
     <div className="page">
