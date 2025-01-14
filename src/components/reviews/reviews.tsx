@@ -34,7 +34,7 @@ function Reviews({ offerId }: ReviewsProps): JSX.Element {
           <UserReview key={review.id} review={review} />
         ))}
       </ul>
-      <FormComments></FormComments>
+      <FormComments offerId={offerId}></FormComments>
     </section>
   );
 }

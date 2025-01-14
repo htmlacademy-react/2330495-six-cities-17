@@ -4,7 +4,8 @@ import {
   setError,
   setDataLoadingStatus,
   LoadCurrentOffer,
-  loadComments,loadNearbyOffers
+  loadComments,
+  loadNearbyOffers,
 } from './action';
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -114,7 +115,8 @@ export const fetchReviewsAction = createAsyncThunk<
   }
 >('data/fetchReviews', async (offerId, { dispatch, extra: api }) => {
   const { data } = await api.get<Review[]>(
-    buildApiRoute(APIRoute. Reviews, offerId));
+    buildApiRoute(APIRoute.Reviews, offerId)
+  );
 
   dispatch(loadComments(data));
   return data;
@@ -136,3 +138,18 @@ export const fetchNearbyOffersAction = createAsyncThunk<
   dispatch(loadNearbyOffers(data));
   return data;
 });
+
+export const postComment = createAsyncThunk<
+  void,
+  { offerId: string; comment: string; rating: number },
+  { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
+>(
+  'data/postComment',
+  async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
+    const { data } = await api.post<Review[]>(`/comments/${offerId}`, {
+      comment,
+      rating,
+    });
+    dispatch(loadComments(data));
+  }
+);
