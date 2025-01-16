@@ -145,11 +145,22 @@ export const postComment = createAsyncThunk<
   { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
 >(
   'data/postComment',
-  async ({ offerId, comment, rating }, { dispatch, extra: api }) => {
-    const { data } = await api.post<Review[]>(`/comments/${offerId}`, {
-      comment,
-      rating,
-    });
-    dispatch(loadComments(data));
+  async ({ offerId, comment, rating }, { dispatch, getState, extra: api }) => {
+    try {
+      const response = await api.post<Review>(`/comments/${offerId}`, {
+        comment,
+        rating,
+      });
+
+      const currentReviews = getState().reviews;
+
+      const updatedReviews = [...currentReviews, response.data];
+
+      dispatch(loadComments(updatedReviews));
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error posting comment:', error);
+      throw error;
+    }
   }
 );

@@ -62,7 +62,14 @@ function App({ offers }: AppScreenProps): JSX.Element {
               />
             }
           />
-          <Route path={AppRoute.Login} element={<AuthScreen />} />
+          <Route
+            path={AppRoute.Login}
+            element={
+              <PrivateRoute authorizationStatus={authorizationStatus}>
+                <AuthScreen />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>
