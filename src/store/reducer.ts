@@ -4,11 +4,18 @@ import {
   loadOffers,
   requireAuthorization,
   changeSorting,
-  setError,setDataLoadingStatus
+  setError,
+  setDataLoadingStatus,
+  LoadCurrentOffer,
+  loadComments,
+  loadNearbyOffers,
+  setUser,
+  clearUser,
 } from './action';
 import { Town, AuthorizationStatus, SortItem } from '../const';
-import { Offer } from '../types/offers';
-
+import { Offer, FullInfoOffer } from '../types/offers';
+import { Review } from '../types/reviews';
+import { UserData } from '../types/user-data';
 
 type State = {
   currentCity: Town;
@@ -18,6 +25,11 @@ type State = {
   isLoading: boolean;
   error: string | null;
   isDataLoading: boolean;
+  // fullOffers:FullInfoOffer [];
+  currentOffer: FullInfoOffer | null;
+  reviews: Review[];
+  nearbyOffers: Offer[];
+  user: UserData | null;
 };
 
 export const initialState: State = {
@@ -28,6 +40,11 @@ export const initialState: State = {
   isLoading: false,
   error: null,
   isDataLoading: false,
+  // fullOffers:[],
+  currentOffer: null,
+  reviews: [],
+  nearbyOffers: [],
+  user: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -52,6 +69,25 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setDataLoadingStatus, (state, action: PayloadAction<boolean>) => {
       state.isDataLoading = action.payload;
+    })
+    .addCase(
+      LoadCurrentOffer,
+      (state, action: PayloadAction<FullInfoOffer | null>) => {
+        state.currentOffer = action.payload;
+      }
+    )
+    .addCase(loadComments, (state, action: PayloadAction<Review[]>) => {
+      state.reviews = action.payload;
+    })
+    .addCase(loadNearbyOffers, (state, action: PayloadAction<Offer[]>) => {
+      state.nearbyOffers = action.payload;
+    })
+    .addCase(setUser, (state, action: PayloadAction<UserData>) => {
+      state.user = action.payload;
+    })
+    .addCase(clearUser, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+      state.user = null;
     });
 });
 export { reducer };

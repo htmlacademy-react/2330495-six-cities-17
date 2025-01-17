@@ -4,8 +4,16 @@ import { Helmet } from 'react-helmet-async';
 import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
+// import { AppRoute } from '../../const';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { toast } from 'react-toastify';
+import { useAppSelector } from '../../hooks';
+import { useState } from 'react';
 import { AppRoute } from '../../const';
-
+import { useEffect } from 'react';
+import { AuthorizationStatus } from '../../const';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AuthScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -13,7 +21,19 @@ function AuthScreen(): JSX.Element {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const authorizationStatus = useAppSelector(
+    (state) => state.authorizationStatus
+  );
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth && isSubmitted) {
+      toast.success('You have successfully logged in!');
+      setTimeout(() => {
+        navigate(AppRoute.Main);
+      }, 1500);
+    }
+  }, [authorizationStatus, isSubmitted, navigate]);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -25,6 +45,9 @@ function AuthScreen(): JSX.Element {
           password: passwordRef.current.value,
         })
       );
+      setIsSubmitted(true); //
+      loginRef.current.value = '';
+      passwordRef.current.value = '';
     }
   };
 
@@ -60,7 +83,7 @@ function AuthScreen(): JSX.Element {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  // required=""
+                  required
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -71,12 +94,10 @@ function AuthScreen(): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  // required=""
+                  required
                 />
               </div>
               <button
-              // Уточнить на главную ли страницу перенаправление
-                onClick={() => navigate(AppRoute.Main)}
                 className="login__submit form__submit button"
                 type="submit"
               >
@@ -93,6 +114,7 @@ function AuthScreen(): JSX.Element {
           </section>
         </div>
       </main>
+      <ToastContainer autoClose={1500} />
     </div>
   );
 }

@@ -1,12 +1,13 @@
 import { Town } from '../../const';
 import { Link } from 'react-router-dom';
 import { changeCity } from '../../store/action';
-import { RootState } from '../../types/state';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
+import { useCurrentCity } from '../../hooks/use-current-city';
+import { AppDispatch } from '../../types/state';
 
 function LocationsList() {
-  const dispatch = useDispatch();
-  const currentCity = useSelector((state: RootState) => state.currentCity);
+  const dispatch: AppDispatch = useDispatch();
+  const currentCity = useCurrentCity();
   const handleCityClick = (city: Town) => {
     dispatch(changeCity(city));
   };

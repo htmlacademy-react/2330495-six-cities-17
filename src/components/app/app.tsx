@@ -8,29 +8,28 @@ import { AppRoute, AuthorizationStatus, CardClassName } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { Offer } from '../../types/offers';
-import { FullInfoOffer} from '../../types/offer';
+// import { FullInfoOffer} from '../../types/offer';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../types/state';
 import Spinner from '../../pages/spinner/spinner';
 
-
 type AppScreenProps = {
   offers: Offer[];
-  fullOffer: FullInfoOffer;
+  // fullOffer: FullInfoOffer;
 };
 
-function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
+function App({ offers }: AppScreenProps): JSX.Element {
   const citiesCardClassName = CardClassName.Cities;
   const favoritesCardClassName = CardClassName.Favorites;
   const nearCardClassName = CardClassName.NearPlaces;
 
-  const authorizationStatus = useSelector((state:RootState) => state.authorizationStatus);
-  const isDataLoading = useSelector((state:RootState) => state.isDataLoading);
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.authorizationStatus
+  );
+  const isDataLoading = useSelector((state: RootState) => state.isDataLoading);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
-    return (
-      <Spinner />
-    );
+    return <Spinner />;
   }
 
   return (
@@ -39,11 +38,7 @@ function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={
-              <MainScreen
-                cardClassName={citiesCardClassName}
-              />
-            }
+            element={<MainScreen cardClassName={citiesCardClassName} />}
           />
           <Route
             path={AppRoute.Favorites}
@@ -61,13 +56,21 @@ function App({ fullOffer,offers }: AppScreenProps): JSX.Element {
             element={
               <OfferScreen
                 cardClassName={nearCardClassName}
-                offers={offers}
-                fullOffer={fullOffer}
+                // offers={offers}
+                // fullOffer={fullOffer}
                 // onHandleActiveIdChange={handleActiveIdChange}
               />
             }
           />
-          <Route path={AppRoute.Login} element={<AuthScreen />} />
+          <Route
+            path={AppRoute.Login}
+            // element={
+            //   <PrivateRoute authorizationStatus={authorizationStatus}>
+            //     <AuthScreen />
+            //   </PrivateRoute>
+            // }
+            element={<AuthScreen />}
+          />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>

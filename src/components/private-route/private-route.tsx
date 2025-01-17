@@ -17,3 +17,4 @@ function PrivateRoute(props: PrivateRouteProps): JSX.Element {
 }
 
 export default PrivateRoute;
+
