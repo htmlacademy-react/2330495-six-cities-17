@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-// import { clearUser } from '../../store/action';
 import { AuthorizationStatus } from '../../const';
 import { logoutAction } from '../../store/api-actions';
 import { RootState } from '../../types/state';
