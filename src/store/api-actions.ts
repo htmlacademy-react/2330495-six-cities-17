@@ -5,7 +5,7 @@ import {
   setDataLoadingStatus,
   LoadCurrentOffer,
   loadComments,
-  loadNearbyOffers,
+  loadNearbyOffers,setUser
 } from './action';
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -63,13 +63,26 @@ export const loginAction = createAsyncThunk<
 >(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    const {
-      data: { token },
-    } = await api.post<UserData>(APIRoute.Login, { email, password });
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    try {
+      const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+      console.log('API Response:', data);
+
+      // Сохраняем токен
+      saveToken(data.token);
+      console.log('Saved token:', data.token);
+      // Устанавливаем статус авторизации
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+
+      // Сохраняем данные пользователя
+      dispatch(setUser(data));
+      console.log('User dispatched:', data);
+    } catch (error) {
+      console.error('Error during login:', error);
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    }
   }
 );
+
 
 export const logoutAction = createAsyncThunk<
   void,

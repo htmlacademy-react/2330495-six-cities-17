@@ -9,6 +9,8 @@ import {
 import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer,FullInfoOffer } from '../types/offers';
 import { Review } from '../types/reviews';
+import { UserData } from '../types/user-data';
+import { setUser } from './action';
 
 
 type State = {
@@ -23,6 +25,7 @@ type State = {
   currentOffer: FullInfoOffer | null;
   reviews: Review [];
   nearbyOffers: Offer[];
+  user: UserData | null;
 };
 
 export const initialState: State = {
@@ -37,6 +40,7 @@ export const initialState: State = {
   currentOffer: null,
   reviews: [],
   nearbyOffers: [],
+  user: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -70,6 +74,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadNearbyOffers, (state, action: PayloadAction<Offer[]>) => {
       state.nearbyOffers = action.payload;
+    })
+    .addCase(setUser, (state, action: PayloadAction<UserData>) => {
+      state.user = action.payload;
     });
 
 

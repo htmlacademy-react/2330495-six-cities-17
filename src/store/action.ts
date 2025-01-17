@@ -3,6 +3,7 @@ import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer,FullInfoOffer } from '../types/offers';
 // import Review from '../components/review/review';
 import { Review } from '../types/reviews';
+import { UserData } from '../types/user-data';
 
 export const changeCity = createAction<Town>('main/changeCity');
 
@@ -27,3 +28,5 @@ export const loadComments = createAction<Review []>(
 );
 
 export const loadNearbyOffers = createAction<Offer[]>('data/loadNearbyOffers');
+
+export const setUser = createAction<UserData>('user/setUser');

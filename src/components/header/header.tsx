@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom';
 import HeaderLeft from '../header-left/header-left';
+// import { AuthorizationStatus } from '../../const';
+import { useAppSelector} from '../../hooks';
+import { RootState } from '../../types/state';
+import { AuthorizationStatus } from '../../const';
 
 function Header(): JSX.Element {
+  const { authorizationStatus, user } = useAppSelector((state: RootState) => ({
+    authorizationStatus: state.authorizationStatus,
+    user: state.user,
+  }));
+
+  const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
+  console.log('User data:', user);
   return (
     <header className="header">
       <div className="container">

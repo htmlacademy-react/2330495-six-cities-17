@@ -64,11 +64,16 @@ function App({ offers }: AppScreenProps): JSX.Element {
           />
           <Route
             path={AppRoute.Login}
+            // element={
+            //   <PrivateRoute authorizationStatus={authorizationStatus}>
+            //     <AuthScreen />
+            //   </PrivateRoute>
+            // }
             element={
-              <PrivateRoute authorizationStatus={authorizationStatus}>
-                <AuthScreen />
-              </PrivateRoute>
-            }
+
+              <AuthScreen />
+
+          }
           />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>

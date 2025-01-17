@@ -5,13 +5,15 @@ import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 // import { AppRoute } from '../../const';
-import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { toast } from 'react-toastify';
 import { useAppSelector } from '../../hooks';
 import { useState } from 'react';
 import { AppRoute } from '../../const';
 import { useEffect } from 'react';
 import { AuthorizationStatus } from '../../const';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AuthScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -26,8 +28,10 @@ function AuthScreen(): JSX.Element {
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth && isSubmitted) {
-      toast.success('Вы успешно авторизовались!');
-      navigate(AppRoute.Main);
+      toast.success('You have successfully logged in!');
+      setTimeout(() => {
+        navigate(AppRoute.Main);
+      }, 2000);
     }
   }, [authorizationStatus, isSubmitted, navigate]);
 
@@ -110,6 +114,7 @@ function AuthScreen(): JSX.Element {
           </section>
         </div>
       </main>
+      <ToastContainer autoClose={3000} />
     </div>
   );
 }
