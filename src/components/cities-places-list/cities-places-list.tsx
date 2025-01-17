@@ -76,7 +76,7 @@ function CitiesPlacesList({
   }
 
   if (!city) {
-    return <MainEmptyScreen />;
+    return <MainEmptyScreen currentCity = {currentCity}/>;
   }
 
   return (
