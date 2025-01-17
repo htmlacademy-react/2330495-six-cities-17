@@ -7,10 +7,12 @@ import { RootState } from '../../types/state';
 
 function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();
-   const user = useAppSelector((state: RootState) => state.user);
-    const authorizationStatus = useAppSelector((state: RootState) => state.authorizationStatus);
+  const user = useAppSelector((state: RootState) => state.user);
+  const authorizationStatus = useAppSelector(
+    (state: RootState) => state.authorizationStatus
+  );
 
- const handleLogout = () => {
+  const handleLogout = () => {
     dispatch(logoutAction());
   };
 
@@ -19,10 +21,7 @@ function HeaderNav(): JSX.Element {
       <nav className="header__nav">
         <ul className="header__nav-list">
           <li className="header__nav-item user">
-            <Link
-              className="header__nav-link header__nav-link--profile"
-              to="#"
-            >
+            <Link className="header__nav-link header__nav-link--profile" to="#">
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
               <span className="header__user-name user__name">{user.email}</span>
               <span className="header__favorite-count">3</span>

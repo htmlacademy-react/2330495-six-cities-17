@@ -8,7 +8,7 @@ type MainScreenProps = {
   cardClassName: CardClassName;
 };
 
-function MainScreen ({ cardClassName }:MainScreenProps): JSX.Element {
+function MainScreen({ cardClassName }: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -23,9 +23,7 @@ function MainScreen ({ cardClassName }:MainScreenProps): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          <CitiesPlacesList
-            cardClassName={cardClassName}
-          />
+          <CitiesPlacesList cardClassName={cardClassName} />
         </div>
       </main>
     </div>

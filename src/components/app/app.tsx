@@ -69,11 +69,7 @@ function App({ offers }: AppScreenProps): JSX.Element {
             //     <AuthScreen />
             //   </PrivateRoute>
             // }
-            element={
-
-              <AuthScreen />
-
-          }
+            element={<AuthScreen />}
           />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
