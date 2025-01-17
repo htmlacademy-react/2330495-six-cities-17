@@ -4,14 +4,18 @@ import {
   loadOffers,
   requireAuthorization,
   changeSorting,
-  setError,setDataLoadingStatus, LoadCurrentOffer, loadComments,loadNearbyOffers
+  setError,
+  setDataLoadingStatus,
+  LoadCurrentOffer,
+  loadComments,
+  loadNearbyOffers,
+  setUser,
+  clearUser,
 } from './action';
 import { Town, AuthorizationStatus, SortItem } from '../const';
-import { Offer,FullInfoOffer } from '../types/offers';
+import { Offer, FullInfoOffer } from '../types/offers';
 import { Review } from '../types/reviews';
 import { UserData } from '../types/user-data';
-import { setUser } from './action';
-
 
 type State = {
   currentCity: Town;
@@ -23,7 +27,7 @@ type State = {
   isDataLoading: boolean;
   // fullOffers:FullInfoOffer [];
   currentOffer: FullInfoOffer | null;
-  reviews: Review [];
+  reviews: Review[];
   nearbyOffers: Offer[];
   user: UserData | null;
 };
@@ -66,10 +70,13 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setDataLoadingStatus, (state, action: PayloadAction<boolean>) => {
       state.isDataLoading = action.payload;
     })
-    .addCase(LoadCurrentOffer, (state, action: PayloadAction<FullInfoOffer | null>) => {
-      state.currentOffer = action.payload;
-    })
-    .addCase(loadComments, (state, action: PayloadAction< Review []>) => {
+    .addCase(
+      LoadCurrentOffer,
+      (state, action: PayloadAction<FullInfoOffer | null>) => {
+        state.currentOffer = action.payload;
+      }
+    )
+    .addCase(loadComments, (state, action: PayloadAction<Review[]>) => {
       state.reviews = action.payload;
     })
     .addCase(loadNearbyOffers, (state, action: PayloadAction<Offer[]>) => {
@@ -77,8 +84,10 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setUser, (state, action: PayloadAction<UserData>) => {
       state.user = action.payload;
+    })
+    .addCase(clearUser, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+      state.user = null;
     });
-
-
 });
 export { reducer };

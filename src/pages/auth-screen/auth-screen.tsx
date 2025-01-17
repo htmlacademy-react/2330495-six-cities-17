@@ -31,7 +31,7 @@ function AuthScreen(): JSX.Element {
       toast.success('You have successfully logged in!');
       setTimeout(() => {
         navigate(AppRoute.Main);
-      }, 2000);
+      }, 1500);
     }
   }, [authorizationStatus, isSubmitted, navigate]);
 
@@ -114,7 +114,7 @@ function AuthScreen(): JSX.Element {
           </section>
         </div>
       </main>
-      <ToastContainer autoClose={3000} />
+      <ToastContainer autoClose={1500} />
     </div>
   );
 }

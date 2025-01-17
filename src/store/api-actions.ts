@@ -67,13 +67,13 @@ export const loginAction = createAsyncThunk<
       const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
       console.log('API Response:', data);
 
-      // Сохраняем токен
+
       saveToken(data.token);
       console.log('Saved token:', data.token);
-      // Устанавливаем статус авторизации
+
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
 
-      // Сохраняем данные пользователя
+  
       dispatch(setUser(data));
       console.log('User dispatched:', data);
     } catch (error) {
