@@ -30,4 +30,5 @@ export const loadComments = createAction<Review[]>('reviews/loadComments');
 export const loadNearbyOffers = createAction<Offer[]>('data/loadNearbyOffers');
 
 export const setUser = createAction<UserData>('user/setUser');
+
 export const clearUser = createAction<void>('user/clearUser');

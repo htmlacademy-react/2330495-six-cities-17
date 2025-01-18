@@ -1,10 +1,16 @@
 import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
+import { AuthorizationStatus } from '../../const';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type CardProps = {
   offer: Offer;
   cardClassName: string;
   onHandleActiveIdChange?: (id: string | null) => void;
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
+  authorizationStatus: AuthorizationStatus;
 };
 
 const IMAGE_SIZES = {
@@ -17,17 +23,11 @@ function Card({
   offer,
   cardClassName,
   onHandleActiveIdChange,
+  isFavorite,
+  onToggleFavorite,
+  authorizationStatus,
 }: CardProps): JSX.Element {
-  const {
-    price,
-    title,
-    type,
-    rating,
-    id,
-    isPremium,
-    isFavorite,
-    previewImage,
-  } = offer;
+  const { price, title, type, rating, id, isPremium, previewImage } = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
   const imgCardClass = `${cardClassName}__image-wrapper place-card__image-wrapper`;
@@ -36,6 +36,14 @@ function Card({
   ] || { width: 260, height: 200 };
 
   const ratingPercentage = `${Math.round(rating) * 20}%`;
+  const handleFavoriteClick = () => {
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      toast.error('You must be logged in to add to favorites!');
+      return;
+    }
+
+    onToggleFavorite();
+  };
 
   return (
     <article
@@ -74,6 +82,7 @@ function Card({
             className={`place-card__bookmark-button ${
               isFavorite ? 'place-card__bookmark-button--active' : ''
             } button`}
+            onClick={handleFavoriteClick}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -96,6 +105,7 @@ function Card({
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
+      <ToastContainer />
     </article>
   );
 }

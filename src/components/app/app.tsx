@@ -56,9 +56,6 @@ function App({ offers }: AppScreenProps): JSX.Element {
             element={
               <OfferScreen
                 cardClassName={nearCardClassName}
-                // offers={offers}
-                // fullOffer={fullOffer}
-                // onHandleActiveIdChange={handleActiveIdChange}
               />
             }
           />
