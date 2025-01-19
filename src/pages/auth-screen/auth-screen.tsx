@@ -4,16 +4,10 @@ import { Helmet } from 'react-helmet-async';
 import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-// import { AppRoute } from '../../const';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { toast } from 'react-toastify';
 import { useAppSelector } from '../../hooks';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AppRoute } from '../../const';
-import { useEffect } from 'react';
 import { AuthorizationStatus } from '../../const';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function AuthScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -28,10 +22,7 @@ function AuthScreen(): JSX.Element {
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth && isSubmitted) {
-      toast.success('You have successfully logged in!');
-      setTimeout(() => {
-        navigate(AppRoute.Main);
-      }, 1500);
+      navigate(AppRoute.Main);
     }
   }, [authorizationStatus, isSubmitted, navigate]);
 
@@ -45,7 +36,7 @@ function AuthScreen(): JSX.Element {
           password: passwordRef.current.value,
         })
       );
-      setIsSubmitted(true); //
+      setIsSubmitted(true);
       loginRef.current.value = '';
       passwordRef.current.value = '';
     }
@@ -114,7 +105,6 @@ function AuthScreen(): JSX.Element {
           </section>
         </div>
       </main>
-      <ToastContainer autoClose={1500} />
     </div>
   );
 }

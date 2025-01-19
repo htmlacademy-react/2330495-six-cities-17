@@ -1,8 +1,12 @@
 import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
 import { AuthorizationStatus } from '../../const';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BookmarkButton from '../bookmark -button/bookmark -button';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../const';
+// import PrivateRoute from '../private-route/private-route';
 
 type CardProps = {
   offer: Offer;
@@ -27,6 +31,8 @@ function Card({
   onToggleFavorite,
   authorizationStatus,
 }: CardProps): JSX.Element {
+
+
   const { price, title, type, rating, id, isPremium, previewImage } = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
@@ -36,9 +42,26 @@ function Card({
   ] || { width: 260, height: 200 };
 
   const ratingPercentage = `${Math.round(rating) * 20}%`;
+
+  // console.log(authorizationStatus);
+  // const handleFavoriteClick = () => {
+  //   if (authorizationStatus !== AuthorizationStatus.Auth) {
+  //     console.log('User is not authorized, navigating to login page.');
+  //      navigate(AppRoute.Main);
+  //      return;
+  //   }
+
+  //   onToggleFavorite();
+  // };
+
+  const navigate = useNavigate();
+
+
   const handleFavoriteClick = () => {
     if (authorizationStatus !== AuthorizationStatus.Auth) {
-      toast.error('You must be logged in to add to favorites!');
+      console.log('AuthorizationStatus:', authorizationStatus);
+      console.log('Navigating to:', AppRoute.Main);
+      navigate(AppRoute.Login);
       return;
     }
 
@@ -78,7 +101,7 @@ function Card({
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
+          {/* <button
             className={`place-card__bookmark-button ${
               isFavorite ? 'place-card__bookmark-button--active' : ''
             } button`}
@@ -92,7 +115,8 @@ function Card({
               {' '}
               {isFavorite ? 'In bookmarks' : 'Add to bookmarks'}
             </span>
-          </button>
+          </button> */}
+          <BookmarkButton isFavorite = {isFavorite } handleFavoriteClick ={handleFavoriteClick}/>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
