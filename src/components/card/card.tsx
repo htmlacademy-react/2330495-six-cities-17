@@ -12,7 +12,7 @@ type CardProps = {
   offer: Offer;
   cardClassName: string;
   onHandleActiveIdChange?: (id: string | null) => void;
-  isFavorite: boolean;
+  isFavorite?: boolean;
   onToggleFavorite?: () => void;
   authorizationStatus?: AuthorizationStatus;
 };
@@ -112,7 +112,7 @@ function Card({
             </span>
           </button> */}
           <BookmarkButton
-            isFavorite={isFavorite}
+            isFavorite={isFavorite ?? false}
             handleFavoriteClick={handleFavoriteClick}
           />
         </div>
