@@ -121,7 +121,7 @@ function CitiesPlacesList({
               offer={offer}
               cardClassName={cardClassName}
               onHandleActiveIdChange={handleActiveIdChange}
-              isFavorite={favorites[offer.id] || false}
+              isFavorite={favorites[offer.id] ?? false}
               onToggleFavorite={() => toggleFavorite(offer.id)}
               authorizationStatus={authorizationStatus}
             />
