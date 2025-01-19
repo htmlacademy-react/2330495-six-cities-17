@@ -25,7 +25,6 @@ type State = {
   isLoading: boolean;
   error: string | null;
   isDataLoading: boolean;
-  // fullOffers:FullInfoOffer [];
   currentOffer: FullInfoOffer | null;
   reviews: Review[];
   nearbyOffers: Offer[];
@@ -40,7 +39,6 @@ export const initialState: State = {
   isLoading: false,
   error: null,
   isDataLoading: false,
-  // fullOffers:[],
   currentOffer: null,
   reviews: [],
   nearbyOffers: [],

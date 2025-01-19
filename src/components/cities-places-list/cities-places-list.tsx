@@ -1,21 +1,21 @@
 import Card from '../card/card';
-// import Map from '../../components/map/map';
-import { useState } from 'react';
-// import { RootState } from '../../store';
+import { useState, useMemo } from 'react';
 import { RootState } from '../../types/state';
-// import { useSelector } from 'react-redux';
-import { City } from '../../types/offer';
-import { Offer } from '../../types/offers';
+import { Offer, City } from '../../types/offers';
 import { SortItem } from '../../const';
-// import { fetchOffersAction } from '../../store/api-actions';
 import Sorting from '../sorting/sorting';
 import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
 import { useOffersCity } from '../../hooks/use-offers-city';
 import { useCurrentCity } from '../../hooks/use-current-city';
 import { useAppSelector } from '../../hooks';
 import { CardClassName } from '../../const';
-import Spinner from '../../pages/spinner/spinner';
+// import Spinner from '../../pages/spinner/spinner';
 import { CitiesMap } from '../../utils/map-components';
+import React from 'react';
+import { useCallback } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { AuthorizationStatus } from '../../const';
+// import { useEffect } from 'react';
 
 type CitiesPlacesListProps = {
   cardClassName: CardClassName;
@@ -34,14 +34,31 @@ const sortOffers = (offers: Offer[], sortType: SortItem) => {
   }
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 function CitiesPlacesList({
   cardClassName,
 }: CitiesPlacesListProps): JSX.Element {
+  const authorizationStatus = useAppSelector(
+    (state: RootState) => state.authorizationStatus
+  );
+
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (authorizationStatus !== AuthorizationStatus.Auth) {
+  //     navigate('/login');
+  //   }
+  // }, [authorizationStatus, navigate]);
+
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
+  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
-
-  const isLoading = useAppSelector((state: RootState) => state.isLoading);
-
+  const toggleFavorite = (id: string) => {
+    setFavorites((prevFavorites) => ({
+      ...prevFavorites,
+      [id]: prevFavorites[id] ?? false, // Если undefined, ставим false
+    }));
+  };
 
   const currentCity = useCurrentCity();
 
@@ -49,30 +66,45 @@ function CitiesPlacesList({
 
   const currentSort = useAppSelector((state: RootState) => state.currentSort);
 
-  const sortedOffers = sortOffers(offersCity, currentSort);
+  // const sortedOffers = sortOffers(offersCity, currentSort);
 
+  const sortedOffers = useMemo(
+    () => sortOffers(offersCity, currentSort),
+    [offersCity, currentSort]
+  );
 
   const city: City | null =
     sortedOffers.length > 0 ? sortedOffers[0].city : null;
 
-  const points = sortedOffers.map((offer) => ({
-    id: offer.id,
-    location: offer.location,
-  }));
+  // const points = sortedOffers.map((offer) => ({
+  //   id: offer.id,
+  //   location: offer.location,
+  // }));
 
-  const handleActiveIdChange = (id: string | null) => {
+  const points = useMemo(
+    () =>
+      sortedOffers.map((offer) => ({
+        id: offer.id,
+        location: offer.location,
+      })),
+    [sortedOffers]
+  );
+
+  // const handleActiveIdChange = (id: string | null) => {
+  //   setIsActiveId(id);
+  // };
+
+  const handleActiveIdChange = useCallback((id: string | null) => {
     setIsActiveId(id);
-  };
+  }, []);
 
-  if (isLoading) {
-    return <Spinner />;
-    // return <p> Загрузка</p>;
-  }
+  // if (isLoading) {
+  //   return <Spinner />;
+  // }
 
   if (!city) {
-    return <MainEmptyScreen />;
+    return <MainEmptyScreen currentCity={currentCity} />;
   }
-
 
   return (
     <div className="cities__places-container container">
@@ -89,15 +121,19 @@ function CitiesPlacesList({
               offer={offer}
               cardClassName={cardClassName}
               onHandleActiveIdChange={handleActiveIdChange}
+              isFavorite={favorites[offer.id] ?? false}
+              onToggleFavorite={() => toggleFavorite(offer.id)}
+              authorizationStatus={authorizationStatus}
             />
           ))}
         </div>
       </section>
       <div className="cities__right-section">
-        <CitiesMap city={city} points={points} isActiveId={isActiveId}/>
+        <CitiesMap city={city} points={points} isActiveId={isActiveId} />
       </div>
     </div>
   );
 }
 
-export default CitiesPlacesList;
+// eslint-disable-next-line react-refresh/only-export-components
+export default React.memo(CitiesPlacesList);

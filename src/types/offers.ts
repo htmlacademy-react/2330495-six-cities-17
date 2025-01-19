@@ -1,7 +1,4 @@
-// import { BaseOffer } from './offer';
 import { User } from './reviews';
-
-// export type Offers = Offer[];
 
 export type Location = {
   latitude: number;
@@ -21,10 +18,6 @@ export type City = {
   name: string;
   location: Location;
 };
-
-// export type Goods ={
-//   goods: string;
-// }
 
 export type BaseOffer = {
   id: string;

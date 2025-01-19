@@ -1,21 +1,24 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-// import { clearUser } from '../../store/action';
 import { AuthorizationStatus } from '../../const';
 import { logoutAction } from '../../store/api-actions';
 import { RootState } from '../../types/state';
+import { useAuthorizationStatus } from '../../hooks/use-authorizationStatus';
 
 function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state: RootState) => state.user);
-  const authorizationStatus = useAppSelector(
-    (state: RootState) => state.authorizationStatus
-  );
+  // const authorizationStatus = useAppSelector(
+  //   (state: RootState) => state.authorizationStatus
+  // );
+
+  const authorizationStatus = useAuthorizationStatus();
 
   const handleLogout = () => {
     dispatch(logoutAction());
   };
-
+  // console.log(authorizationStatus)
+  // console.log(user)
   if (authorizationStatus === AuthorizationStatus.Auth && user) {
     return (
       <nav className="header__nav">
