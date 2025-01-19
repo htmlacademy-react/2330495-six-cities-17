@@ -13,8 +13,8 @@ type CardProps = {
   cardClassName: string;
   onHandleActiveIdChange?: (id: string | null) => void;
   isFavorite: boolean;
-  onToggleFavorite: () => void;
-  authorizationStatus: AuthorizationStatus;
+  onToggleFavorite?: () => void;
+  authorizationStatus?: AuthorizationStatus;
 };
 
 const IMAGE_SIZES = {
@@ -60,7 +60,7 @@ function Card({
       return;
     }
 
-    onToggleFavorite();
+    onToggleFavorite?.();
   };
 
   return (

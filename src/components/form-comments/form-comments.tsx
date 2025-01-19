@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { AuthorizationStatus } from '../../const';
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import { RootState } from '../../types/state';
+import { useAppDispatch } from '../../hooks';
+// import { RootState } from '../../types/state';
 import { postComment } from '../../store/api-actions';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import { AuthorizationStatus } from '../../const';
+import { useAuthorizationStatus } from '../../hooks/use-authorizationStatus';
 
 const initialState = { rating: '', review: '' };
 
@@ -16,9 +18,7 @@ function FormComments({ offerId }: FormCommentsProps): JSX.Element {
   const [formData, setFormData] = useState(initialState);
   const isSubmitDisabled = !formData.rating || formData.review.length < 50;
 
-  const authorizationStatus = useAppSelector(
-    (state: RootState) => state.authorizationStatus
-  );
+  const authorizationStatus = useAuthorizationStatus();
   const dispatch = useAppDispatch();
 
   const handleFieldChange = (
@@ -94,8 +94,7 @@ function FormComments({ offerId }: FormCommentsProps): JSX.Element {
           id="review"
           name="review"
           placeholder="Tell how was your stay, what you like and what can be improved"
-        >
-        </textarea>
+        ></textarea>
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
             To submit review please make sure to set{' '}

@@ -1,17 +1,12 @@
-
-
 type BookmarkButtonProps = {
   isFavorite: boolean;
   handleFavoriteClick: () => void;
-  
 };
 
 function BookmarkButton({
   isFavorite,
   handleFavoriteClick,
 }: BookmarkButtonProps): JSX.Element {
-
-
   return (
     <button
       className={`place-card__bookmark-button ${
