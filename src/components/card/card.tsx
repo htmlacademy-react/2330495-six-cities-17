@@ -31,8 +31,6 @@ function Card({
   onToggleFavorite,
   authorizationStatus,
 }: CardProps): JSX.Element {
-
-
   const { price, title, type, rating, id, isPremium, previewImage } = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
@@ -56,11 +54,8 @@ function Card({
 
   const navigate = useNavigate();
 
-
   const handleFavoriteClick = () => {
     if (authorizationStatus !== AuthorizationStatus.Auth) {
-      console.log('AuthorizationStatus:', authorizationStatus);
-      console.log('Navigating to:', AppRoute.Main);
       navigate(AppRoute.Login);
       return;
     }
@@ -116,7 +111,10 @@ function Card({
               {isFavorite ? 'In bookmarks' : 'Add to bookmarks'}
             </span>
           </button> */}
-          <BookmarkButton isFavorite = {isFavorite } handleFavoriteClick ={handleFavoriteClick}/>
+          <BookmarkButton
+            isFavorite={isFavorite}
+            handleFavoriteClick={handleFavoriteClick}
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
