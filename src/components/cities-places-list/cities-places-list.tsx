@@ -54,9 +54,9 @@ function CitiesPlacesList({
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
   const toggleFavorite = (id: string) => {
-    setFavorites((prev) => ({
-      ...prev,
-      [id]: !prev[id],
+    setFavorites((prevFavorites) => ({
+      ...prevFavorites,
+      [id]: prevFavorites[id] ?? false, // Если undefined, ставим false
     }));
   };
 
