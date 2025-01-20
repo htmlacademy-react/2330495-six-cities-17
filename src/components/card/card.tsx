@@ -7,6 +7,8 @@ import BookmarkButton from '../bookmark -button/bookmark -button';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 // import PrivateRoute from '../private-route/private-route';
+import { FavoritsButtonClassName } from '../../const';
+import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
 
 type CardProps = {
   offer: Offer;
@@ -14,7 +16,7 @@ type CardProps = {
   onHandleActiveIdChange?: (id: string | null) => void;
   isFavorite?: boolean;
   onToggleFavorite?: () => void;
-  authorizationStatus?: AuthorizationStatus;
+  // authorizationStatus?: AuthorizationStatus;
 };
 
 const IMAGE_SIZES = {
@@ -29,7 +31,7 @@ function Card({
   onHandleActiveIdChange,
   isFavorite,
   onToggleFavorite,
-  authorizationStatus,
+  // authorizationStatus,
 }: CardProps): JSX.Element {
   const { price, title, type, rating, id, isPremium, previewImage } = offer;
 
@@ -53,6 +55,8 @@ function Card({
   // };
 
   const navigate = useNavigate();
+
+  const authorizationStatus = useAuthorizationStatus();
 
   const handleFavoriteClick = () => {
     if (authorizationStatus !== AuthorizationStatus.Auth) {
@@ -96,24 +100,11 @@ function Card({
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          {/* <button
-            className={`place-card__bookmark-button ${
-              isFavorite ? 'place-card__bookmark-button--active' : ''
-            } button`}
-            onClick={handleFavoriteClick}
-            type="button"
-          >
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">
-              {' '}
-              {isFavorite ? 'In bookmarks' : 'Add to bookmarks'}
-            </span>
-          </button> */}
+
           <BookmarkButton
             isFavorite={isFavorite ?? false}
             handleFavoriteClick={handleFavoriteClick}
+            buttonClassName={FavoritsButtonClassName.Place}
           />
         </div>
         <div className="place-card__rating rating">

@@ -18,6 +18,7 @@ import OffersListTemplate from '../offer-list-template/offer-list-template';
 
 import CityMapSection from '../city-map-section/city-map-section';
 
+
 function CitiesPlacesList(): JSX.Element {
   const isDataLoading = useDataLoading();
 
@@ -32,14 +33,6 @@ function CitiesPlacesList(): JSX.Element {
   const city: City | null =
     sortedOffers.length > 0 ? sortedOffers[0].city : null;
 
-  // const points = useMemo(
-  //   () =>
-  //     sortedOffers.map((offer) => ({
-  //       id: offer.id,
-  //       location: offer.location,
-  //     })),
-  //   [sortedOffers]
-  // );
 
   const points = useMapPoints(sortedOffers);
 
@@ -68,6 +61,7 @@ function CitiesPlacesList(): JSX.Element {
           onHandleActiveIdChange={handleActiveIdChange}
           favorites={favorites}
           onToggleFavorite={toggleFavorite}
+
         />
       </section>
       {/* <div className="cities__right-section">

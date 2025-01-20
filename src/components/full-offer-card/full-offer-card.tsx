@@ -4,17 +4,29 @@ import OfferHost from '../offer-host/offer-host';
 import { OfferMap } from '../../utils/map-components';
 import { Point } from '../../types/map-points';
 // import { useMapPoints } from '../../hooks/use-map-points';
+import { AuthorizationStatus } from '../../const';
+import { FavoritsButtonClassName } from '../../const';
+import BookmarkButton from '../bookmark -button/bookmark -button';
+import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
+import { AppRoute } from '../../const';
+import { useNavigate } from 'react-router-dom';
 
 type FullOfferCardProps = {
   currentOffer: FullInfoOffer;
   points: Point[];
   isActiveId: string | null;
+  isFavorite?: boolean;
+  // favorites: Record<string, boolean>;
+  onToggleFavorite: (id: string) => void;
 };
 
 function FullOfferCard({
   currentOffer,
   points,
   isActiveId,
+  isFavorite,
+  // favorites,
+  onToggleFavorite,
 }: FullOfferCardProps): JSX.Element | null {
   const {
     goods,
@@ -32,6 +44,17 @@ function FullOfferCard({
     // isFavorite,
   } = currentOffer;
 
+  const authorizationStatus = useAuthorizationStatus();
+  const navigate = useNavigate();
+
+  const handleFavoriteClick = () => {
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+      return;
+    }
+
+    onToggleFavorite?. (id);
+  };
   const ratingPercentage = `${Math.round(rating) * 20}%`;
   if (!currentOffer || !currentOffer.goods) {
     return null;
@@ -58,12 +81,17 @@ function FullOfferCard({
           </div>
           <div className="offer__name-wrapper">
             <h1 className="offer__name">{title}</h1>
-            <button className="offer__bookmark-button button" type="button">
+            {/* <button className="offer__bookmark-button button" type="button">
               <svg className="offer__bookmark-icon" width="31" height="33">
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>
               <span className="visually-hidden">To bookmarks</span>
-            </button>
+            </button> */}
+            <BookmarkButton
+              isFavorite={isFavorite ?? false}
+              handleFavoriteClick={handleFavoriteClick}
+              buttonClassName={FavoritsButtonClassName.Offer}
+            />
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">

@@ -20,6 +20,8 @@ import { useState } from 'react';
 import Spinner from '../../pages/spinner/spinner';
 import OffersListTemplate from '../../components/offer-list-template/offer-list-template';
 import { useFavorites } from '../../hooks/use-favorite';
+// import { FavoritsButtonClassName } from '../../const';
+// import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
 
 function OfferScreen(): JSX.Element {
   const { id: offerId } = useParams<{ id: string }>();
@@ -61,8 +63,7 @@ function OfferScreen(): JSX.Element {
   };
 
   const { favorites, toggleFavorite } = useFavorites();
-
-  // const nearCardClassName = CardClassName.NearPlaces;
+  // const authorizationStatus = useAuthorizationStatus();
 
   return (
     <div className="page">
@@ -76,6 +77,10 @@ function OfferScreen(): JSX.Element {
             currentOffer={currentOffer}
             points={points}
             isActiveId={isActiveId}
+            isFavorite={favorites[currentOffer.id]}
+            // favorites={favorites}
+            onToggleFavorite={(id) => toggleFavorite(id)}
+            // buttonClassName={FavoritsButtonClassName.Offer}
           />
         ) : (
           <Spinner />
@@ -85,16 +90,6 @@ function OfferScreen(): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            {/* <div className="near-places__list places__list">
-              {offersSliced.map((offer) => (
-                <Card
-                  key={offer.id}
-                  offer={offer}
-                  cardClassName={nearCardClassName}
-                  onHandleActiveIdChange={handleActiveIdChange}
-                />
-              ))}
-            </div> */}
             <OffersListTemplate
               offers={offersSliced}
               cardClassName={CardClassName.NearPlaces}

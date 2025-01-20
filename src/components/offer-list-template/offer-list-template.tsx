@@ -1,4 +1,3 @@
-
 import Card from '../card/card';
 import { Offer } from '../../types/offers';
 import { CardClassName } from '../../const';
@@ -6,10 +5,12 @@ import { CardClassName } from '../../const';
 type OffersListTemplateProps = {
   offers: Offer[];
   cardClassName: CardClassName;
+
   onHandleActiveIdChange: (id: string | null) => void;
   favorites: Record<string, boolean>;
   onToggleFavorite: (id: string) => void;
-  wrapperClassName: string; // Класс для оборачивающего div
+  wrapperClassName: string;
+  // wrapperClassButtonName: string;
 };
 
 function OffersListTemplate({
@@ -37,4 +38,3 @@ function OffersListTemplate({
 }
 
 export default OffersListTemplate;
-
