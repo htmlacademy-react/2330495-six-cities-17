@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
 import { logoutAction } from '../../store/api-actions';
 import { RootState } from '../../types/state';
-import { useAuthorizationStatus } from '../../hooks/use-authorizationStatus';
+import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
 
 function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();

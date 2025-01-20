@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 // import FormComments from '../../form-comments/form-comments';
-import Card from '../../components/card/card';
+// import Card from '../../components/card/card';
 import { FullInfoOffer } from '../../types/offers';
 import FullOfferCard from '../../components/full-offer-card/full-offer-card';
 import { useEffect } from 'react';
@@ -18,10 +18,13 @@ import { CardClassName } from '../../const';
 import { Offer } from '../../types/offers';
 import { useState } from 'react';
 import Spinner from '../../pages/spinner/spinner';
+import OffersListTemplate from '../../components/offer-list-template/offer-list-template';
+import { useFavorites } from '../../hooks/use-favorite';
 
 function OfferScreen(): JSX.Element {
-  const { id } = useParams<{ id: string }>();
+  const { id: offerId } = useParams<{ id: string }>();
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
+  // const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
   const dispatch = useAppDispatch();
   // const offersCity = useOffersCity();
@@ -35,11 +38,11 @@ function OfferScreen(): JSX.Element {
   );
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchOfferById(id));
-      dispatch(fetchNearbyOffersAction(id));
+    if (offerId) {
+      dispatch(fetchOfferById(offerId));
+      dispatch(fetchNearbyOffersAction(offerId));
     }
-  }, [id, dispatch]);
+  }, [offerId, dispatch]);
 
   const offersSliced = nearbyOffers.slice(0, MAX_NEAR_PLACES_OFFERS);
 
@@ -57,7 +60,9 @@ function OfferScreen(): JSX.Element {
     setIsActiveId(idOffer);
   };
 
-  const nearCardClassName = CardClassName.NearPlaces;
+  const { favorites, toggleFavorite } = useFavorites();
+
+  // const nearCardClassName = CardClassName.NearPlaces;
 
   return (
     <div className="page">
@@ -80,7 +85,7 @@ function OfferScreen(): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <div className="near-places__list places__list">
+            {/* <div className="near-places__list places__list">
               {offersSliced.map((offer) => (
                 <Card
                   key={offer.id}
@@ -89,7 +94,16 @@ function OfferScreen(): JSX.Element {
                   onHandleActiveIdChange={handleActiveIdChange}
                 />
               ))}
-            </div>
+            </div> */}
+            <OffersListTemplate
+              offers={offersSliced}
+              cardClassName={CardClassName.NearPlaces}
+              wrapperClassName="near-places__list places__list"
+              onHandleActiveIdChange={handleActiveIdChange}
+              favorites={favorites}
+              onToggleFavorite={toggleFavorite}
+              // authorizationStatus={authorizationStatus}
+            />
           </section>
         </div>
       </main>
