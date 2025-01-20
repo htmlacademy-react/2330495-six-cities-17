@@ -17,9 +17,9 @@ import { useCallback } from 'react';
 // import { AuthorizationStatus } from '../../const';
 // import { useEffect } from 'react';
 
-type CitiesPlacesListProps = {
-  cardClassName: CardClassName;
-};
+// type CitiesPlacesListProps = {
+//   cardClassName: CardClassName;
+// };
 
 const sortOffers = (offers: Offer[], sortType: SortItem) => {
   switch (sortType) {
@@ -35,20 +35,13 @@ const sortOffers = (offers: Offer[], sortType: SortItem) => {
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-function CitiesPlacesList({
-  cardClassName,
-}: CitiesPlacesListProps): JSX.Element {
+function CitiesPlacesList(): JSX.Element {
   const authorizationStatus = useAppSelector(
     (state: RootState) => state.authorizationStatus
   );
 
-  // const navigate = useNavigate();
+  const citiesCardClassName = CardClassName.Cities;
 
-  // useEffect(() => {
-  //   if (authorizationStatus !== AuthorizationStatus.Auth) {
-  //     navigate('/login');
-  //   }
-  // }, [authorizationStatus, navigate]);
 
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
@@ -119,7 +112,7 @@ function CitiesPlacesList({
             <Card
               key={offer.id}
               offer={offer}
-              cardClassName={cardClassName}
+              cardClassName={citiesCardClassName}
               onHandleActiveIdChange={handleActiveIdChange}
               isFavorite={favorites[offer.id] ?? false}
               onToggleFavorite={() => toggleFavorite(offer.id)}

@@ -1,15 +1,18 @@
 import { Offer } from '../../types/offers';
 import Card from '../../components/card/card';
+import { CardClassName } from '../../const';
 
 type FavoritesPlacesListProps = {
   offers: Offer[];
-  cardClassName: string;
+  // cardClassName: string;
 };
 
 function FavoritesPlacesList({
   offers,
-  cardClassName,
+  // cardClassName,
 }: FavoritesPlacesListProps): JSX.Element {
+    const favoritesCardClassName = CardClassName.Favorites;
+
   return (
     <div className="favorites__places">
       {offers.map((offer) => (
@@ -17,7 +20,7 @@ function FavoritesPlacesList({
           key={offer.id}
           offer={offer}
           // onHandleActiveIdChange={onHandleActiveIdChange}
-          cardClassName={cardClassName}
+          cardClassName={favoritesCardClassName}
         />
       ))}
     </div>

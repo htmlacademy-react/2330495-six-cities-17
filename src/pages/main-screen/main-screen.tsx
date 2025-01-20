@@ -2,13 +2,13 @@ import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/location-list';
 import { Helmet } from 'react-helmet-async';
 import CitiesPlacesList from '../../components/cities-places-list/cities-places-list';
-import { CardClassName } from '../../const';
+// import { CardClassName } from '../../const';
 
-type MainScreenProps = {
-  cardClassName: CardClassName;
-};
+// type MainScreenProps = {
+//   cardClassName: CardClassName;
+// };
 
-function MainScreen({ cardClassName }: MainScreenProps): JSX.Element {
+function MainScreen(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -23,7 +23,7 @@ function MainScreen({ cardClassName }: MainScreenProps): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          <CitiesPlacesList cardClassName={cardClassName} />
+          <CitiesPlacesList />
         </div>
       </main>
     </div>

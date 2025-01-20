@@ -22,12 +22,12 @@ import { Offer } from '../../types/offers';
 import { useState } from 'react';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 
-type OfferScreenProps = {
-  cardClassName: CardClassName;
-  // onHandleActiveIdChange
-};
+// type OfferScreenProps = {
+//   cardClassName: CardClassName;
+//   // onHandleActiveIdChange
+// };
 
-function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
+function OfferScreen(): JSX.Element {
   const { id } = useParams<{ id: string }>();
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
 
@@ -65,10 +65,11 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
     setIsActiveId(idOffer);
   };
 
-
   if (!currentOffer) {
     return <NotFoundScreen />;
   }
+
+  const nearCardClassName = CardClassName.NearPlaces;
 
   return (
     <div className="page">
@@ -83,8 +84,8 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
             points={points}
             isActiveId={isActiveId}
           />
-          // </FullOfferCard>
         ) : (
+          // </FullOfferCard>
           <Spinner />
         )}
         <div className="container">
@@ -97,7 +98,7 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
                 <Card
                   key={offer.id}
                   offer={offer}
-                  cardClassName={cardClassName}
+                  cardClassName={nearCardClassName}
                   onHandleActiveIdChange={handleActiveIdChange}
                 />
               ))}
