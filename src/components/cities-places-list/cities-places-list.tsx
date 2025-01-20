@@ -13,6 +13,8 @@ import { CardClassName } from '../../const';
 import { CitiesMap } from '../../utils/map-components';
 import React from 'react';
 import { useCallback } from 'react';
+import { useDataLoading } from '../../hooks/use-data-loading';
+import Spinner from '../../pages/spinner/spinner';
 // import { useNavigate } from 'react-router-dom';
 // import { AuthorizationStatus } from '../../const';
 // import { useEffect } from 'react';
@@ -39,9 +41,9 @@ function CitiesPlacesList(): JSX.Element {
   const authorizationStatus = useAppSelector(
     (state: RootState) => state.authorizationStatus
   );
+  const isDataLoading = useDataLoading();
 
   const citiesCardClassName = CardClassName.Cities;
-
 
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
@@ -91,9 +93,9 @@ function CitiesPlacesList(): JSX.Element {
     setIsActiveId(id);
   }, []);
 
-  // if (isLoading) {
-  //   return <Spinner />;
-  // }
+  if (isDataLoading) {
+    return <Spinner />;
+  }
 
   if (!city) {
     return <MainEmptyScreen currentCity={currentCity} />;

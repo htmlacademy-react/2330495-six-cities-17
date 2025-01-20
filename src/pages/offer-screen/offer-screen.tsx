@@ -13,19 +13,11 @@ import {
 import { RootState } from '../../types/state';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import Spinner from '../spinner/spinner';
 import { MAX_NEAR_PLACES_OFFERS } from '../../const';
-// import NearbyPlacesList from '../../components/nearby-places-list/nearby-places-list';
-// import { useOffersCity } from '../../hooks/use-offers-city';
 import { CardClassName } from '../../const';
 import { Offer } from '../../types/offers';
 import { useState } from 'react';
-import NotFoundScreen from '../not-found-screen/not-found-screen';
-
-// type OfferScreenProps = {
-//   cardClassName: CardClassName;
-//   // onHandleActiveIdChange
-// };
+import Spinner from '../../pages/spinner/spinner';
 
 function OfferScreen(): JSX.Element {
   const { id } = useParams<{ id: string }>();
@@ -65,10 +57,6 @@ function OfferScreen(): JSX.Element {
     setIsActiveId(idOffer);
   };
 
-  if (!currentOffer) {
-    return <NotFoundScreen />;
-  }
-
   const nearCardClassName = CardClassName.NearPlaces;
 
   return (
@@ -85,7 +73,6 @@ function OfferScreen(): JSX.Element {
             isActiveId={isActiveId}
           />
         ) : (
-          // </FullOfferCard>
           <Spinner />
         )}
         <div className="container">
@@ -103,7 +90,6 @@ function OfferScreen(): JSX.Element {
                 />
               ))}
             </div>
-            {/* <NearbyPlacesList cardClassName={cardClassName}></NearbyPlacesList> */}
           </section>
         </div>
       </main>

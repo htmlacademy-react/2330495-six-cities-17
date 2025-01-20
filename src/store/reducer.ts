@@ -22,7 +22,7 @@ type State = {
   offers: Offer[];
   authorizationStatus: AuthorizationStatus;
   currentSort: SortItem;
-  isLoading: boolean;
+  // isLoading: boolean;
   error: string | null;
   isDataLoading: boolean;
   currentOffer: FullInfoOffer | null;
@@ -36,7 +36,7 @@ export const initialState: State = {
   offers: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   currentSort: SortItem.Popular,
-  isLoading: false,
+  // isLoading: false,
   error: null,
   isDataLoading: false,
   currentOffer: null,
