@@ -1,22 +1,21 @@
-// import Card from '../card/card';
-import { useMemo } from 'react';
-// import { RootState } from '../../types/state';
 import { City } from '../../types/offers';
-// import { SortItem } from '../../const';
+import { CardClassName } from '../../const';
+
 import Sorting from '../sorting/sorting';
+
 import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
+
 import { useOffersCity } from '../../hooks/use-offers-city';
 import { useCurrentCity } from '../../hooks/use-current-city';
-// import { useAppSelector } from '../../hooks';
-import { CardClassName } from '../../const';
-// import { CitiesMap } from '../../utils/map-components';
-// import { useCallback } from 'react';
 import { useDataLoading } from '../../hooks/use-data-loading';
-import Spinner from '../../pages/spinner/spinner';
-import OffersListTemplate from '../offer-list-template/offer-list-template';
 import { useFavorites } from '../../hooks/use-favorite';
 import { useSortedOffers } from '../../hooks/use-sorted-offers';
 import { useActiveId } from '../../hooks/use-active-id';
+import { useMapPoints } from '../../hooks/use-map-points';
+
+import Spinner from '../../pages/spinner/spinner';
+import OffersListTemplate from '../offer-list-template/offer-list-template';
+
 import CityMapSection from '../city-map-section/city-map-section';
 
 function CitiesPlacesList(): JSX.Element {
@@ -33,14 +32,16 @@ function CitiesPlacesList(): JSX.Element {
   const city: City | null =
     sortedOffers.length > 0 ? sortedOffers[0].city : null;
 
-  const points = useMemo(
-    () =>
-      sortedOffers.map((offer) => ({
-        id: offer.id,
-        location: offer.location,
-      })),
-    [sortedOffers]
-  );
+  // const points = useMemo(
+  //   () =>
+  //     sortedOffers.map((offer) => ({
+  //       id: offer.id,
+  //       location: offer.location,
+  //     })),
+  //   [sortedOffers]
+  // );
+
+  const points = useMapPoints(sortedOffers);
 
   const { isActiveId, handleActiveIdChange } = useActiveId();
 

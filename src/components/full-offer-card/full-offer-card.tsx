@@ -3,6 +3,7 @@ import Reviews from '../reviews/reviews';
 import OfferHost from '../offer-host/offer-host';
 import { OfferMap } from '../../utils/map-components';
 import { Point } from '../../types/map-points';
+// import { useMapPoints } from '../../hooks/use-map-points';
 
 type FullOfferCardProps = {
   currentOffer: FullInfoOffer;
