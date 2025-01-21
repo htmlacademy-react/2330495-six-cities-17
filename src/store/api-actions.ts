@@ -6,7 +6,7 @@ import {
   LoadCurrentOffer,
   loadComments,
   loadNearbyOffers,
-  setUser,
+  setUser, toggleFavoriteStatus, loadFavorites,
 } from './action';
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -174,3 +174,27 @@ export const postComment = createAsyncThunk<
     }
   }
 );
+
+export const toggleFavoriteAction = createAsyncThunk<
+  Offer,
+  { offerId: string; status: 0 | 1 },
+  { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
+>(
+  'favorites/toggleFavorite',
+  async ({ offerId, status }, { dispatch, extra: api }) => {
+    const { data } = await api.post<Offer>(`/favorite/${offerId}/${status}`);
+    dispatch(toggleFavoriteStatus(data)); // Обновляем состояние предложения
+    return data;
+  }
+);
+
+export const fetchFavoritesAction = createAsyncThunk<
+  Offer[],
+  undefined,
+  { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
+>('favorites/fetchFavorites', async (_arg, { dispatch, extra: api }) => {
+  const { data } = await api.get<Offer[]>('/favorite');
+  dispatch(loadFavorites(data)); // Загружаем избранные предложения
+  return data;
+});
+

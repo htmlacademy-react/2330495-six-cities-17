@@ -10,7 +10,7 @@ import {
   loadComments,
   loadNearbyOffers,
   setUser,
-  clearUser,
+  clearUser, loadFavorites, toggleFavoriteStatus
 } from './action';
 import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer, FullInfoOffer } from '../types/offers';
@@ -29,6 +29,7 @@ type State = {
   reviews: Review[];
   nearbyOffers: Offer[];
   user: UserData | null;
+  favorites: Offer[];
 };
 
 export const initialState: State = {
@@ -43,6 +44,7 @@ export const initialState: State = {
   reviews: [],
   nearbyOffers: [],
   user: null,
+  favorites: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -86,6 +88,24 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(clearUser, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
       state.user = null;
+    })
+    .addCase(loadFavorites, (state, action: PayloadAction<Offer[]>) => {
+      state.favorites = action.payload;
+    })
+    .addCase(toggleFavoriteStatus, (state, action: PayloadAction<Offer>) => {
+      const updatedOffer = action.payload;
+      const index = state.favorites.findIndex((offer) => offer.id === updatedOffer.id);
+
+      if (updatedOffer.isFavorite) {
+        if (index === -1) {
+          state.favorites.push(updatedOffer);
+        }
+      } else {
+        if (index !== -1) {
+          state.favorites.splice(index, 1);
+        }
+      }
     });
+
 });
 export { reducer };

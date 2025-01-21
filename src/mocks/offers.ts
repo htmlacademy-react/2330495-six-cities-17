@@ -68,7 +68,7 @@ const offerListTotal: Offer[] = [
     isFavorite: false,
     isPremium: false,
     rating: 4,
-    previewImage: 'https://url-to-image/image.png',
+    previewImage:  'https://16.design.htmlacademy.pro/static/hotel/8.jpg',
   },
   {
     id: '06dbd96a-8880-43f7-94ea-b2c6a466c2ce',

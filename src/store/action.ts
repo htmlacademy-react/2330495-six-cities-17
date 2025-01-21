@@ -32,3 +32,7 @@ export const loadNearbyOffers = createAction<Offer[]>('data/loadNearbyOffers');
 export const setUser = createAction<UserData>('user/setUser');
 
 export const clearUser = createAction<void>('user/clearUser');
+
+export const toggleFavoriteStatus = createAction<Offer>('favorites/toggleFavoriteStatus');
+
+export const loadFavorites = createAction<Offer[]>('favorites/loadFavorites');
