@@ -9,13 +9,14 @@ import { AppRoute } from '../../const';
 // import PrivateRoute from '../private-route/private-route';
 import { FavoritsButtonClassName } from '../../const';
 import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
+import { useFavorites } from '../../hooks/use-favorite';
 
 type CardProps = {
   offer: Offer;
   cardClassName: string;
   onHandleActiveIdChange?: (id: string | null) => void;
-  isFavorite?: boolean;
-  onToggleFavorite?: () => void;
+  // isFavorite?: boolean;
+  // onToggleFavorite?: () => void;
   // authorizationStatus?: AuthorizationStatus;
 };
 
@@ -29,8 +30,8 @@ function Card({
   offer,
   cardClassName,
   onHandleActiveIdChange,
-  isFavorite,
-  onToggleFavorite,
+  // isFavorite,
+  // onToggleFavorite,
   // authorizationStatus,
 }: CardProps): JSX.Element {
   const { price, title, type, rating, id, isPremium, previewImage } = offer;
@@ -53,6 +54,9 @@ function Card({
 
   //   onToggleFavorite();
   // };
+  const { favorites, toggleFavorite } = useFavorites(); // Исправлено имя функции
+  const isFavorite = favorites[offer?.id] ?? false;
+  // const  onToggleFavorite=() => onToggleFavorite(offer.id)
 
   const navigate = useNavigate();
 
@@ -64,7 +68,7 @@ function Card({
       return;
     }
 
-    onToggleFavorite?.();
+    toggleFavorite(offer.id);
   };
 
   return (
@@ -102,7 +106,7 @@ function Card({
           </div>
 
           <BookmarkButton
-            isFavorite={isFavorite ?? false}
+            isFavorite={isFavorite}
             handleFavoriteClick={handleFavoriteClick}
             buttonClassName={FavoritsButtonClassName.Place}
           />

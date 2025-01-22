@@ -196,7 +196,7 @@ export const fetchFavoritesAction = createAsyncThunk<
   { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
 >('favorites/fetchFavorites', async (_arg, { dispatch, extra: api }) => {
   const { data } = await api.get<Offer[]>('/favorite');
-  dispatch(loadFavorites(data)); // Загружаем избранные предложения
+  dispatch(loadFavorites(data)); 
   return data;
 });
 

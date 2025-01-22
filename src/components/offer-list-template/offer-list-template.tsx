@@ -7,8 +7,8 @@ type OffersListTemplateProps = {
   cardClassName: CardClassName;
 
   onHandleActiveIdChange: (id: string | null) => void;
-  favorites: Record<string, boolean>;
-  onToggleFavorite: (id: string) => void;
+  // favorites: Record<string, boolean>;
+  // onToggleFavorite: (id: string) => void;
   wrapperClassName: string;
   // wrapperClassButtonName: string;
 };
@@ -17,8 +17,8 @@ function OffersListTemplate({
   offers,
   cardClassName,
   onHandleActiveIdChange,
-  favorites,
-  onToggleFavorite,
+  // favorites,
+  // onToggleFavorite,
   wrapperClassName,
 }: OffersListTemplateProps): JSX.Element {
   return (
@@ -29,8 +29,8 @@ function OffersListTemplate({
           offer={offer}
           cardClassName={cardClassName}
           onHandleActiveIdChange={onHandleActiveIdChange}
-          isFavorite={favorites[offer.id] ?? false}
-          onToggleFavorite={() => onToggleFavorite(offer.id)}
+          // isFavorite={favorites[offer.id] ?? false}
+          // onToggleFavorite={() => onToggleFavorite(offer.id)}
         />
       ))}
     </div>

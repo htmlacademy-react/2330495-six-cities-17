@@ -3,12 +3,12 @@ import { CardClassName } from '../../const';
 
 import Sorting from '../sorting/sorting';
 
-import MainEmptyScreen from '../../pages/main-empty-screen/main-empty-screen';
+import MainEmptyScreen from '../main-empty-screen';
 
 import { useOffersCity } from '../../hooks/use-offers-city';
 import { useCurrentCity } from '../../hooks/use-current-city';
 import { useDataLoading } from '../../hooks/use-data-loading';
-import { useFavorites } from '../../hooks/use-favorite';
+// import { useFavorites } from '../../hooks/use-favorite';
 import { useSortedOffers } from '../../hooks/use-sorted-offers';
 import { useActiveId } from '../../hooks/use-active-id';
 import { useMapPoints } from '../../hooks/use-map-points';
@@ -18,11 +18,10 @@ import OffersListTemplate from '../offer-list-template/offer-list-template';
 
 import CityMapSection from '../city-map-section/city-map-section';
 
-
 function CitiesPlacesList(): JSX.Element {
   const isDataLoading = useDataLoading();
 
-  const { favorites, toggleFavorite } = useFavorites();
+  // const { favorites, toggleFavorite } = useFavorites();
 
   const currentCity = useCurrentCity();
 
@@ -32,7 +31,6 @@ function CitiesPlacesList(): JSX.Element {
 
   const city: City | null =
     sortedOffers.length > 0 ? sortedOffers[0].city : null;
-
 
   const points = useMapPoints(sortedOffers);
 
@@ -59,9 +57,8 @@ function CitiesPlacesList(): JSX.Element {
           cardClassName={CardClassName.Cities}
           wrapperClassName="cities__places-list places__list tabs__content"
           onHandleActiveIdChange={handleActiveIdChange}
-          favorites={favorites}
-          onToggleFavorite={toggleFavorite}
-
+          // favorites={favorites}
+          // onToggleFavorite={toggleFavorite}
         />
       </section>
       {/* <div className="cities__right-section">
