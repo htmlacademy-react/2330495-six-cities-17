@@ -18,11 +18,10 @@ import FavoritiesEmptyScreen from '../../components/favorites-empty-screen';
 //   // onHandleActiveIdChange: (id: string | null) => void;
 // };
 
-function FavoritesScreen(
-  // offers,
+function FavoritesScreen(): JSX.Element {
+// offers,
 // cardClassName,
 // onHandleActiveIdChange,
-): JSX.Element {
   // const getFavorites = (state: RootState) => state.favorites;
   // const useFavorites = () => useAppSelector(getFavorites);
 
@@ -36,12 +35,14 @@ function FavoritesScreen(
 
   const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favorites);
+  // eslint-disable-next-line no-console
   console.log(favorites);
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.log('Favorites updated:', favorites);
     dispatch(fetchFavoritesAction());
-  }, [dispatch]);
+  }, [dispatch, favorites]);
 
   const groupedOffers = groupOffersByCity(favorites);
 

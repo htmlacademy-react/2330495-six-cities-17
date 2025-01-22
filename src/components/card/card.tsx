@@ -10,6 +10,9 @@ import { AppRoute } from '../../const';
 import { FavoritsButtonClassName } from '../../const';
 import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
 import { useFavorites } from '../../hooks/use-favorite';
+import { useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchFavoritesAction } from '../../store/api-actions';
 
 type CardProps = {
   offer: Offer;
@@ -30,10 +33,10 @@ function Card({
   offer,
   cardClassName,
   onHandleActiveIdChange,
-  // isFavorite,
-  // onToggleFavorite,
-  // authorizationStatus,
-}: CardProps): JSX.Element {
+}: // isFavorite,
+// onToggleFavorite,
+// authorizationStatus,
+CardProps): JSX.Element {
   const { price, title, type, rating, id, isPremium, previewImage } = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
@@ -57,6 +60,12 @@ function Card({
   const { favorites, toggleFavorite } = useFavorites(); // Исправлено имя функции
   const isFavorite = favorites[offer?.id] ?? false;
   // const  onToggleFavorite=() => onToggleFavorite(offer.id)
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoritesAction());
+  }, [dispatch, favorites]);
 
   const navigate = useNavigate();
 

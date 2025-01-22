@@ -28,23 +28,23 @@ function BookmarkButton({
 
   return (
     <button
-  className={`${buttonClass} ${
-    isFavorite ? `${buttonClass}--active` : ''
-  } button`}
-  onClick={() => {
-    console.log('Bookmark button clicked. Current status:', isFavorite);
-    handleFavoriteClick(); // Передаем управление обработчику
-  }}
-  type="button"
-  title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
->
-  <svg className={iconClass} width={width} height={height}>
-    <use xlinkHref="#icon-bookmark"></use>
-  </svg>
-  <span className="visually-hidden">
-    {isFavorite ? 'In bookmarks' : 'Add to bookmarks'}
-  </span>
-</button>
+      className={`${buttonClass} ${
+        isFavorite ? `${buttonClass}--active` : ''
+      } button`}
+      onClick={() => {
+        console.log('Bookmark button clicked. Current status:', isFavorite);
+        handleFavoriteClick();
+      }}
+      type="button"
+      title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+    >
+      <svg className={iconClass} width={width} height={height}>
+        <use xlinkHref="#icon-bookmark"></use>
+      </svg>
+      <span className="visually-hidden">
+        {isFavorite ? 'In bookmarks' : 'Add to bookmarks'}
+      </span>
+    </button>
   );
 }
 

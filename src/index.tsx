@@ -20,10 +20,7 @@ root.render(
   <React.StrictMode>
     <Provider store = {store}>
       <ErrorMessage />
-      <App
-        // offers={offerListTotal}
-        // fullOffer={fullInfoOffer}
-      />
+      <App/>
     </Provider>
   </React.StrictMode>
 );

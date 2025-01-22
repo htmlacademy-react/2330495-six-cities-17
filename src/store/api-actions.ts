@@ -6,7 +6,7 @@ import {
   LoadCurrentOffer,
   loadComments,
   loadNearbyOffers,
-  setUser, toggleFavoriteStatus, loadFavorites,
+  setUser, loadFavorites,
 } from './action';
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -181,6 +181,7 @@ export const toggleFavoriteAction = createAsyncThunk<
   Offer,
   { id: string; isFavorite: boolean },
   { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
+
 >('favorites/toggleFavorite', async ({ id, isFavorite }, { extra: api }) => {
   const { data } = await api.post<Offer>(`/favorite/${id}/${isFavorite ? 1 : 0}`);
   return data;
