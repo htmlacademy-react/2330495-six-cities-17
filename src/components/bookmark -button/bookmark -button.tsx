@@ -1,12 +1,65 @@
+
+import { useAppDispatch } from '../../hooks';
+// import { AuthorizationStatus } from '../../const';
+import { uploadFavoritesStatusAction } from '../../store/api-actions';
+import { useAppSelector } from '../../hooks';
+import { RootState } from '../../types/state';
+
 type BookmarkButtonProps = {
-  isFavorite: boolean;
-  handleFavoriteClick: () => void;
+  // isFavorite: boolean;
+  // handleFavoriteClick: () => void;
+  offerId: string;
 };
 
 function BookmarkButton({
-  isFavorite,
-  handleFavoriteClick,
-}: BookmarkButtonProps): JSX.Element {
+  offerId,
+}: // isFavorite,
+// handleFavoriteClick,
+BookmarkButtonProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const favoriteOffers = useAppSelector(
+    (state: RootState) => state.favoriteOffers
+  );
+
+  const isFavorite = favoriteOffers.some((offer) => offer.id === offerId);
+  const handleFavoriteClick = () => {
+    // eslint-disable-next-line no-console
+    console.log(
+      `Current favorite status: ${isFavorite ? 'Favorited' : 'Not Favorited'}`
+    );
+    // eslint-disable-next-line no-console
+    console.log(
+      `Attempting to update offerId: ${offerId} to status: ${
+        isFavorite ? 0 : 1
+      }`
+    );
+
+    if (!offerId) {
+      // eslint-disable-next-line no-console
+      console.error('Invalid offerId:', offerId);
+      return;
+    }
+
+    dispatch(
+      uploadFavoritesStatusAction({ offerId, status: isFavorite ? 0 : 1 })
+    )
+      .unwrap()
+      .then(() => {
+        // eslint-disable-next-line no-console
+        console.log(
+          `Successfully updated favorite status for offerId: ${offerId}`
+        );
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(
+          'Error updating favorite status:',
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          error.response?.data || error.message
+        );
+      });
+  };
   return (
     <button
       className={`place-card__bookmark-button ${
