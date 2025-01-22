@@ -32,6 +32,7 @@ type State = {
   nearbyOffers: Offer[];
   user: UserData | null;
   favoriteOffers: Offer[];
+  favorites:Offer[];
 };
 
 export const initialState: State = {
@@ -47,6 +48,7 @@ export const initialState: State = {
   nearbyOffers: [],
   user: null,
   favoriteOffers: [],
+  favorites: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
