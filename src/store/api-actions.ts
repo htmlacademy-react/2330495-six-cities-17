@@ -179,16 +179,12 @@ export const postComment = createAsyncThunk<
 
 export const toggleFavoriteAction = createAsyncThunk<
   Offer,
-  { offerId: string; status: 0 | 1 },
+  { id: string; isFavorite: boolean },
   { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
->(
-  'favorites/toggleFavorite',
-  async ({ offerId, status }, { dispatch, extra: api }) => {
-    const { data } = await api.post<Offer>(`/favorite/${offerId}/${status}`);
-    dispatch(toggleFavoriteStatus(data)); // Обновляем состояние предложения
-    return data;
-  }
-);
+>('favorites/toggleFavorite', async ({ id, isFavorite }, { extra: api }) => {
+  const { data } = await api.post<Offer>(`/favorite/${id}/${isFavorite ? 1 : 0}`);
+  return data;
+});
 
 export const fetchFavoritesAction = createAsyncThunk<
   Offer[],
@@ -196,7 +192,7 @@ export const fetchFavoritesAction = createAsyncThunk<
   { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
 >('favorites/fetchFavorites', async (_arg, { dispatch, extra: api }) => {
   const { data } = await api.get<Offer[]>('/favorite');
-  dispatch(loadFavorites(data)); 
+  dispatch(loadFavorites(data));
   return data;
 });
 

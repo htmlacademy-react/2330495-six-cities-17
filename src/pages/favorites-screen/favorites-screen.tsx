@@ -39,6 +39,7 @@ function FavoritesScreen(
   console.log(favorites);
 
   useEffect(() => {
+    console.log('Favorites updated:', favorites);
     dispatch(fetchFavoritesAction());
   }, [dispatch]);
 
