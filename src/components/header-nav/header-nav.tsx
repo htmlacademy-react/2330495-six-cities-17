@@ -4,7 +4,7 @@ import { AuthorizationStatus } from '../../const';
 import { logoutAction } from '../../store/api-actions';
 import { RootState } from '../../types/state';
 import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
-import { AppRoute } from '../../const';
+// import { AppRoute } from '../../const';
 
 function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();

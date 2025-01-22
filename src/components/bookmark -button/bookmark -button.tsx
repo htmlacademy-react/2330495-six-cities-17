@@ -32,6 +32,7 @@ function BookmarkButton({
         isFavorite ? `${buttonClass}--active` : ''
       } button`}
       onClick={() => {
+        // eslint-disable-next-line no-console
         console.log('Bookmark button clicked. Current status:', isFavorite);
         handleFavoriteClick();
       }}

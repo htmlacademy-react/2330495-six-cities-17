@@ -95,8 +95,8 @@ function OfferScreen(): JSX.Element {
               cardClassName={CardClassName.NearPlaces}
               wrapperClassName="near-places__list places__list"
               onHandleActiveIdChange={handleActiveIdChange}
-              favorites={favorites}
-              onToggleFavorite={toggleFavorite}
+              // favorites={favorites}
+              // onToggleFavorite={toggleFavorite}
               // authorizationStatus={authorizationStatus}
             />
           </section>
