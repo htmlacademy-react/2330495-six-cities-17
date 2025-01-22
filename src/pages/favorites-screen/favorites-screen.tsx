@@ -1,6 +1,6 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-import { Offer } from '../../types/offers';
+// import { Offer } from '../../types/offers';
 import FavoritesPlacesList from '../../components/favoriets-places-list/favoriets-places-list';
 import { Link } from 'react-router-dom';
 // import { RootState } from '../../types/state';
@@ -12,17 +12,17 @@ import { useEffect } from 'react';
 import { fetchFavoritesAction } from '../../store/api-actions';
 import FavoritiesEmptyScreen from '../../components/favorites-empty-screen';
 
-type FavoritesScreenProps = {
-  offers: Offer[];
-  // cardClassName: string;
-  // onHandleActiveIdChange: (id: string | null) => void;
-};
+// type FavoritesScreenProps = {
+//   // offers: Offer[];
+//   // cardClassName: string;
+//   // onHandleActiveIdChange: (id: string | null) => void;
+// };
 
-function FavoritesScreen({
-  offers,
-}: // cardClassName,
+function FavoritesScreen(
+  // offers,
+// cardClassName,
 // onHandleActiveIdChange,
-FavoritesScreenProps): JSX.Element {
+): JSX.Element {
   // const getFavorites = (state: RootState) => state.favorites;
   // const useFavorites = () => useAppSelector(getFavorites);
 

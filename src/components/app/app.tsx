@@ -7,18 +7,18 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
-import { Offer } from '../../types/offers';
+// import { Offer } from '../../types/offers';
 // import { FullInfoOffer} from '../../types/offer';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../types/state';
 import Spinner from '../../pages/spinner/spinner';
 
-type AppScreenProps = {
-  offers: Offer[];
-  // fullOffer: FullInfoOffer;
-};
+// type AppScreenProps = {
+//   offers: Offer[];
+//   // fullOffer: FullInfoOffer;
+// };
 
-function App({ offers }: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
   const authorizationStatus = useSelector(
     (state: RootState) => state.authorizationStatus
   );
@@ -38,8 +38,6 @@ function App({ offers }: AppScreenProps): JSX.Element {
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
                 <FavoritesScreen
-                  offers={offers}
-                  // cardClassName={favoritesCardClassNam}
                 />
               </PrivateRoute>
             }
