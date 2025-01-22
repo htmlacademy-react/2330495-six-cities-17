@@ -38,9 +38,9 @@ const sortOffers = (offers: Offer[], sortType: SortItem) => {
 function CitiesPlacesList({
   cardClassName,
 }: CitiesPlacesListProps): JSX.Element {
-  const authorizationStatus = useAppSelector(
-    (state: RootState) => state.authorizationStatus
-  );
+  // const authorizationStatus = useAppSelector(
+  //   (state: RootState) => state.authorizationStatus
+  // );
 
   // const navigate = useNavigate();
 
@@ -51,14 +51,14 @@ function CitiesPlacesList({
   // }, [authorizationStatus, navigate]);
 
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
-  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+  // const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
-  const toggleFavorite = (id: string) => {
-    setFavorites((prevFavorites) => ({
-      ...prevFavorites,
-      [id]: prevFavorites[id] ?? false, // Если undefined, ставим false
-    }));
-  };
+  // const toggleFavorite = (id: string) => {
+  //   setFavorites((prevFavorites) => ({
+  //     ...prevFavorites,
+  //     [id]: prevFavorites[id] ?? false, // Если undefined, ставим false
+  //   }));
+  // };
 
   const currentCity = useCurrentCity();
 
@@ -121,9 +121,9 @@ function CitiesPlacesList({
               offer={offer}
               cardClassName={cardClassName}
               onHandleActiveIdChange={handleActiveIdChange}
-              isFavorite={favorites[offer.id] ?? false}
-              onToggleFavorite={() => toggleFavorite(offer.id)}
-              authorizationStatus={authorizationStatus}
+              // isFavorite={favorites[offer.id] ?? false}
+              // onToggleFavorite={() => toggleFavorite(offer.id)}
+              // authorizationStatus={authorizationStatus}
             />
           ))}
         </div>

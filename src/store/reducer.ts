@@ -11,6 +11,8 @@ import {
   loadNearbyOffers,
   setUser,
   clearUser,
+  loadFavoriteOffers,
+  uploadFavoritesStatus,
 } from './action';
 import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer, FullInfoOffer } from '../types/offers';
@@ -29,6 +31,7 @@ type State = {
   reviews: Review[];
   nearbyOffers: Offer[];
   user: UserData | null;
+  favoriteOffers: Offer[];
 };
 
 export const initialState: State = {
@@ -43,6 +46,7 @@ export const initialState: State = {
   reviews: [],
   nearbyOffers: [],
   user: null,
+  favoriteOffers: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -86,6 +90,21 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(clearUser, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
       state.user = null;
+    })
+    .addCase(loadFavoriteOffers, (state, action: PayloadAction<Offer[]>) => {
+      state.favoriteOffers = action.payload;
+    })
+    .addCase(uploadFavoritesStatus, (state, action: PayloadAction<Offer>) => {
+      const existingOfferIndex = state.favoriteOffers.findIndex(
+        (offer) => offer.id === action.payload.id
+      );
+
+      if (existingOfferIndex !== -1) {
+        state.favoriteOffers[existingOfferIndex] = action.payload;
+      } else {
+        state.favoriteOffers.push(action.payload);
+      }
     });
 });
+
 export { reducer };

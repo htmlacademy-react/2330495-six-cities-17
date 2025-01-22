@@ -6,7 +6,7 @@ import {
   LoadCurrentOffer,
   loadComments,
   loadNearbyOffers,
-  setUser,
+  setUser,loadFavoriteOffers
 } from './action';
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -174,3 +174,64 @@ export const postComment = createAsyncThunk<
     }
   }
 );
+export const loadFavoriteOfferCards = createAsyncThunk<
+  Offer[],
+  undefined,
+  {
+    dispatch: AppDispatch;
+    state: RootState;
+    extra: AxiosInstance;
+  }
+>('data/loadFavoriteOffers', async (_arg, { dispatch, extra: api }) => {
+  const { data } = await api.get<Offer[]>(buildApiRoute(APIRoute.Favoriete));
+
+  dispatch(loadFavoriteOffers(data));
+  return data;
+});
+
+//   Offer,
+//   { offerId: string; wasFavorite: boolean },
+//   {
+//     dispatch: AppDispatch;
+//     state: RootState;
+//     extra: AxiosInstance;
+//   }
+// >(
+//   'data/uploadFavoritesStatus',
+//   async ({ offerId, wasFavorite }, { getState, extra: api }) => {
+//     const nextFavoriteStatus = Number(!wasFavorite);
+//     const { data } = await api.post<Offer>(
+//       buildApiRoute(
+//         buildApiRoute(
+//           APIRoute.Favoriete,
+//           offerId,
+//           nextFavoriteStatus.toString()
+//         )
+//       )
+//       // `${APIRoute.Favoriete}/${offerId}/${nextFavoriteStatus}`
+//     );
+//     const { offers } = getState();
+//     const currentOfferCard = offers.find((card) => card.id === data.id);
+
+//     if (!currentOfferCard) {
+//       throw new Error(`No such offer with given id:${data.id}`);
+//     }
+//     return { ...currentOfferCard, isFavorite: data.isFavorite };
+//   }
+// );
+export const uploadFavoritesStatusAction = createAsyncThunk<
+  Offer,
+  { offerId: string; status: number },
+  { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
+>(
+  'data/uploadFavoritesStatus',
+  async ({ offerId, status }, { extra: api }) => {
+    if (!api) {
+      throw new Error('API client is not defined.');
+    }
+
+    const { data } = await api.post<Offer>(`${APIRoute.Favoriete}/${offerId}/${status}`);
+    return data;
+  }
+);
+

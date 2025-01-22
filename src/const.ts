@@ -36,6 +36,7 @@ export enum APIRoute {
   // /six-cities/offers/{offerId}
   //  /six-cities/offers/{offerId}/nearby
   // FavoritsOffers /six-cities/favorite
+  Favoriete = '/favorite',
   Login = '/login',
   Logout = '/logout',
   Reviews = '/comments',
