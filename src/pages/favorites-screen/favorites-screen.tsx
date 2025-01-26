@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 // import { useEffect } from 'react';
 import { groupOffersByCity } from '../../utils/group -offers-by-city';
-import { useAppDispatch } from '../../hooks';
-import { useEffect } from 'react';
-import { fetchFavoritesAction } from '../../store/api-actions';
+// import { useAppDispatch } from '../../hooks';
+// import { useEffect } from 'react';
+// import { fetchFavoritesAction } from '../../store/api-actions';
 import FavoritiesEmptyScreen from '../../components/favorites-empty-screen';
 
 // type FavoritesScreenProps = {
@@ -33,16 +33,16 @@ function FavoritesScreen(): JSX.Element {
   //   console.log('Favorites updated:', favorites);
   // }, [favorites]);
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favorites);
   // eslint-disable-next-line no-console
   console.log(favorites);
 
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('Favorites updated:', favorites);
-    dispatch(fetchFavoritesAction());
-  }, [dispatch, favorites]);
+  // useEffect(() => {
+  //   // eslint-disable-next-line no-console
+  //   console.log('Favorites updated:', favorites);
+  //   dispatch(fetchFavoritesAction());
+  // }, [dispatch, favorites]);
 
   const groupedOffers = groupOffersByCity(favorites);
 

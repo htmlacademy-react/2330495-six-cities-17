@@ -19,11 +19,13 @@ import { Offer } from '../../types/offers';
 import { useState } from 'react';
 import Spinner from '../../pages/spinner/spinner';
 import OffersListTemplate from '../../components/offer-list-template/offer-list-template';
-import { useFavorites } from '../../hooks/use-favorite';
+// import { useFavorites } from '../../hooks/use-favorite';
 // import { FavoritsButtonClassName } from '../../const';
 // import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
+// import { useDataLoading } from '../../hooks/use-data-loading';
 
 function OfferScreen(): JSX.Element {
+  // const isDataLoading = useDataLoading();
   const { id: offerId } = useParams<{ id: string }>();
   const [isActiveId, setIsActiveId] = useState<string | null>(null);
   // const [favorites, setFavorites] = useState<Record<string, boolean>>({});
@@ -62,7 +64,11 @@ function OfferScreen(): JSX.Element {
     setIsActiveId(idOffer);
   };
 
-  const { favorites, toggleFavorite } = useFavorites();
+  // if (isDataLoading) {
+  //   return <Spinner />;
+  // }
+
+  // const { favorites, toggleFavorite } = useFavorites();
   // const authorizationStatus = useAuthorizationStatus();
 
   return (
@@ -77,9 +83,9 @@ function OfferScreen(): JSX.Element {
             currentOffer={currentOffer}
             points={points}
             isActiveId={isActiveId}
-            isFavorite={favorites[currentOffer.id]}
+            // isFavorite={favorites[currentOffer.id]}
             // favorites={favorites}
-            onToggleFavorite={(id) => toggleFavorite(id)}
+            // onToggleFavorite={(id) => toggleFavorite(id)}
             // buttonClassName={FavoritsButtonClassName.Offer}
           />
         ) : (

@@ -6,7 +6,9 @@ import {
   LoadCurrentOffer,
   loadComments,
   loadNearbyOffers,
-  setUser, loadFavorites,
+  setUser,
+  loadFavorites,
+  toggleFavoriteStatus,
 } from './action';
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -113,6 +115,7 @@ export const fetchOfferById = createAsyncThunk<
   const { data } = await api.get<FullInfoOffer | null>(
     buildApiRoute(APIRoute.Offers, offerId)
   );
+
   dispatch(LoadCurrentOffer(data));
   return data;
 });
@@ -181,11 +184,16 @@ export const toggleFavoriteAction = createAsyncThunk<
   Offer,
   { id: string; isFavorite: boolean },
   { dispatch: AppDispatch; state: RootState; extra: AxiosInstance }
-
->('favorites/toggleFavorite', async ({ id, isFavorite }, { extra: api }) => {
-  const { data } = await api.post<Offer>(`/favorite/${id}/${isFavorite ? 1 : 0}`);
-  return data;
-});
+>(
+  'favorites/toggleFavorite',
+  async ({ id, isFavorite }, { dispatch, extra: api }) => {
+    const { data } = await api.post<Offer>(
+      `/favorite/${id}/${isFavorite ? 0 : 1}`
+    );
+    dispatch(toggleFavoriteStatus(data));
+    return data;
+  }
+);
 
 export const fetchFavoritesAction = createAsyncThunk<
   Offer[],
@@ -196,4 +204,3 @@ export const fetchFavoritesAction = createAsyncThunk<
   dispatch(loadFavorites(data));
   return data;
 });
-

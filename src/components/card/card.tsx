@@ -1,18 +1,18 @@
 import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
-import { AuthorizationStatus } from '../../const';
+// import { AuthorizationStatus } from '../../const';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookmarkButton from '../bookmark -button/bookmark -button';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
+// import { useNavigate } from 'react-router-dom';
+// import { AppRoute } from '../../const';
 // import PrivateRoute from '../private-route/private-route';
 import { FavoritsButtonClassName } from '../../const';
-import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
-import { useFavorites } from '../../hooks/use-favorite';
-import { useAppDispatch } from '../../hooks';
-import { useEffect } from 'react';
-import { fetchFavoritesAction } from '../../store/api-actions';
+// import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
+// import { useFavorites } from '../../hooks/use-favorite';
+// import { useAppDispatch } from '../../hooks';
+// import { useEffect } from 'react';
+// import { fetchFavoritesAction } from '../../store/api-actions';
 
 type CardProps = {
   offer: Offer;
@@ -57,28 +57,28 @@ CardProps): JSX.Element {
 
   //   onToggleFavorite();
   // };
-  const { favorites, toggleFavorite } = useFavorites(); // Исправлено имя функции
-  const isFavorite = favorites[offer?.id] ?? false;
+  // const { favorites, toggleFavorite } = useFavorites(); // Исправлено имя функции
+  // const isFavorite = favorites[offer?.id] ?? false;
   // const  onToggleFavorite=() => onToggleFavorite(offer.id)
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchFavoritesAction());
-  }, [dispatch, favorites]);
+  // useEffect(() => {
+  //   dispatch(fetchFavoritesAction());
+  // }, [dispatch, favorites]);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const authorizationStatus = useAuthorizationStatus();
+  // const authorizationStatus = useAuthorizationStatus();
 
-  const handleFavoriteClick = () => {
-    if (authorizationStatus !== AuthorizationStatus.Auth) {
-      navigate(AppRoute.Login);
-      return;
-    }
+  // const handleFavoriteClick = () => {
+  //   if (authorizationStatus !== AuthorizationStatus.Auth) {
+  //     navigate(AppRoute.Login);
+  //     return;
+  //   }
 
-    toggleFavorite(offer.id);
-  };
+  //   toggleFavorite(offer.id);
+  // };
 
   return (
     <article
@@ -115,8 +115,9 @@ CardProps): JSX.Element {
           </div>
 
           <BookmarkButton
-            isFavorite={isFavorite}
-            handleFavoriteClick={handleFavoriteClick}
+            idFavorite={id}
+            // isFavorite={isFavorite}
+            // handleFavoriteClick={handleFavoriteClick}
             buttonClassName={FavoritsButtonClassName.Place}
           />
         </div>

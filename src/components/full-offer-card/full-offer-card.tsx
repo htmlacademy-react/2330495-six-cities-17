@@ -4,29 +4,29 @@ import OfferHost from '../offer-host/offer-host';
 import { OfferMap } from '../../utils/map-components';
 import { Point } from '../../types/map-points';
 // import { useMapPoints } from '../../hooks/use-map-points';
-import { AuthorizationStatus } from '../../const';
+// import { AuthorizationStatus } from '../../const';
 import { FavoritsButtonClassName } from '../../const';
 import BookmarkButton from '../bookmark -button/bookmark -button';
-import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
-import { AppRoute } from '../../const';
-import { useNavigate } from 'react-router-dom';
+// import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
+// import { AppRoute } from '../../const';
+// import { useNavigate } from 'react-router-dom';
 
 type FullOfferCardProps = {
   currentOffer: FullInfoOffer;
   points: Point[];
   isActiveId: string | null;
-  isFavorite?: boolean;
+  // isFavorite?: boolean;
   // favorites: Record<string, boolean>;
-  onToggleFavorite: (id: string) => void;
+  // onToggleFavorite: (id: string) => void;
 };
 
 function FullOfferCard({
   currentOffer,
   points,
   isActiveId,
-  isFavorite,
+  // isFavorite,
   // favorites,
-  onToggleFavorite,
+  // onToggleFavorite,
 }: FullOfferCardProps): JSX.Element | null {
   const {
     goods,
@@ -44,17 +44,17 @@ function FullOfferCard({
     // isFavorite,
   } = currentOffer;
 
-  const authorizationStatus = useAuthorizationStatus();
-  const navigate = useNavigate();
+  // const authorizationStatus = useAuthorizationStatus();
+  // const navigate = useNavigate();
 
-  const handleFavoriteClick = () => {
-    if (authorizationStatus !== AuthorizationStatus.Auth) {
-      navigate(AppRoute.Login);
-      return;
-    }
+  // const handleFavoriteClick = () => {
+  //   if (authorizationStatus !== AuthorizationStatus.Auth) {
+  //     navigate(AppRoute.Login);
+  //     return;
+  //   }
 
-    onToggleFavorite?. (id);
-  };
+  //   onToggleFavorite?. (id);
+  // };
   const ratingPercentage = `${Math.round(rating) * 20}%`;
   if (!currentOffer || !currentOffer.goods) {
     return null;
@@ -88,9 +88,10 @@ function FullOfferCard({
               <span className="visually-hidden">To bookmarks</span>
             </button> */}
             <BookmarkButton
-              isFavorite={isFavorite ?? false}
-              handleFavoriteClick={handleFavoriteClick}
+              // isFavorite={isFavorite ?? false}
+              // handleFavoriteClick={handleFavoriteClick}
               buttonClassName={FavoritsButtonClassName.Offer}
+              idFavorite={id}
             />
           </div>
           <div className="offer__rating rating">

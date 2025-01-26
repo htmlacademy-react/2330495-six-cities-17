@@ -9,9 +9,14 @@ import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 // import { Offer } from '../../types/offers';
 // import { FullInfoOffer} from '../../types/offer';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { RootState } from '../../types/state';
 import Spinner from '../../pages/spinner/spinner';
+import { useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchFavoritesAction } from '../../store/api-actions';
+import { useAppSelector } from '../../hooks';
+import { useDataLoading } from '../../hooks/use-data-loading';
 
 // type AppScreenProps = {
 //   offers: Offer[];
@@ -19,10 +24,20 @@ import Spinner from '../../pages/spinner/spinner';
 // };
 
 function App(): JSX.Element {
-  const authorizationStatus = useSelector(
+  const authorizationStatus = useAppSelector(
     (state: RootState) => state.authorizationStatus
   );
-  const isDataLoading = useSelector((state: RootState) => state.isDataLoading);
+  // const isDataLoading = useAppSelector((state: RootState) => state.isDataLoading);
+  const isDataLoading = useDataLoading();
+
+  // // eslint-disable-next-line react-hooks/rules-of-hooks
+  const dispatch = useAppDispatch();
+  // // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoritesAction());
+    }
+  }, [dispatch, authorizationStatus]);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
     return <Spinner />;

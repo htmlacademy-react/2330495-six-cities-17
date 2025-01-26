@@ -94,18 +94,23 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(toggleFavoriteStatus, (state, action: PayloadAction<Offer>) => {
       const updatedOffer = action.payload;
+
+
       const index = state.favorites.findIndex((offer) => offer.id === updatedOffer.id);
 
       if (updatedOffer.isFavorite) {
+
         if (index === -1) {
-          state.favorites.push(updatedOffer);
+          state.favorites = [...state.favorites, updatedOffer];
         }
       } else {
+
         if (index !== -1) {
-          state.favorites.splice(index, 1);
+          state.favorites = state.favorites.filter((offer) => offer.id !== updatedOffer.id);
         }
       }
     });
+
 
 });
 export { reducer };
