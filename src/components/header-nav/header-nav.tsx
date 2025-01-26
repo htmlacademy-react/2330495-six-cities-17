@@ -18,8 +18,10 @@ function HeaderNav(): JSX.Element {
   const handleLogout = () => {
     dispatch(logoutAction());
   };
-  // console.log(authorizationStatus)
-  // console.log(user)
+  const favorites = useAppSelector((state) => state.favorites);
+  const countFavoritesPlaces = favorites.length;
+
+
   if (authorizationStatus === AuthorizationStatus.Auth && user) {
     return (
       <nav className="header__nav">
@@ -28,7 +30,7 @@ function HeaderNav(): JSX.Element {
             <Link className="header__nav-link header__nav-link--profile" to="/favorites">
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
               <span className="header__user-name user__name">{user.email}</span>
-              <span className="header__favorite-count">3</span>
+              <span className="header__favorite-count">{countFavoritesPlaces}</span>
             </Link>
           </li>
           <li className="header__nav-item">
