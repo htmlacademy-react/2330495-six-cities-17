@@ -23,10 +23,7 @@ type FullOfferCardProps = {
 function FullOfferCard({
   currentOffer,
   points,
-  // isActiveId,
-}: // isFavorite,
-// favorites,
-// onToggleFavorite,
+}:
 FullOfferCardProps): JSX.Element | null {
   const {
     goods,
@@ -40,21 +37,8 @@ FullOfferCardProps): JSX.Element | null {
     rating,
     id,
     city,
-    // isPremium,
-    // isFavorite,
   } = currentOffer;
 
-  // const authorizationStatus = useAuthorizationStatus();
-  // const navigate = useNavigate();
-
-  // const handleFavoriteClick = () => {
-  //   if (authorizationStatus !== AuthorizationStatus.Auth) {
-  //     navigate(AppRoute.Login);
-  //     return;
-  //   }
-
-  //   onToggleFavorite?. (id);
-  // };
   const ratingPercentage = `${Math.round(rating) * 20}%`;
   if (!currentOffer || !currentOffer.goods) {
     return null;
@@ -77,15 +61,7 @@ FullOfferCardProps): JSX.Element | null {
           </div>
           <div className="offer__name-wrapper">
             <h1 className="offer__name">{title}</h1>
-            {/* <button className="offer__bookmark-button button" type="button">
-              <svg className="offer__bookmark-icon" width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button> */}
             <BookmarkButton
-              // isFavorite={isFavorite ?? false}
-              // handleFavoriteClick={handleFavoriteClick}
               buttonClassName={FavoritsButtonClassName.Offer}
               idFavorite={id}
             />
@@ -98,9 +74,11 @@ FullOfferCardProps): JSX.Element | null {
             <span className="offer__rating-value rating__value">{rating}</span>
           </div>
           <ul className="offer__features">
-            <li className="offer__feature offer__feature--entire">{type.charAt(0).toUpperCase() + type.slice(1)}</li>
+            <li className="offer__feature offer__feature--entire">
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </li>
             <li className="offer__feature offer__feature--bedrooms">
-              {bedrooms}  {bedrooms === 1 ? 'Bedroom' : 'Bedrooms'}
+              {bedrooms} {bedrooms === 1 ? 'Bedroom' : 'Bedrooms'}
             </li>
             <li className="offer__feature offer__feature--adults">
               Max {maxAdults} adults
@@ -125,7 +103,7 @@ FullOfferCardProps): JSX.Element | null {
             name={host.name}
             avatarUrl={host.avatarUrl}
             isPro={host.isPro}
-            city = {city.name}
+            city={city.name}
           />
           {/* </OfferHost> */}
           <Reviews offerId={id}></Reviews>

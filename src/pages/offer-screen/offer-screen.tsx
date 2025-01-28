@@ -1,7 +1,5 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-// import FormComments from '../../form-comments/form-comments';
-// import Card from '../../components/card/card';
 import { FullInfoOffer } from '../../types/offers';
 import FullOfferCard from '../../components/full-offer-card/full-offer-card';
 import { useEffect } from 'react';
@@ -16,22 +14,16 @@ import { useAppDispatch } from '../../hooks';
 import { MAX_NEAR_PLACES_OFFERS } from '../../const';
 import { CardClassName } from '../../const';
 import { Offer } from '../../types/offers';
-import { useState } from 'react';
 import Spinner from '../../pages/spinner/spinner';
 import OffersListTemplate from '../../components/offer-list-template/offer-list-template';
-// import { useFavorites } from '../../hooks/use-favorite';
-// import { FavoritsButtonClassName } from '../../const';
-// import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
-// import { useDataLoading } from '../../hooks/use-data-loading';
+
 
 function OfferScreen(): JSX.Element {
-  // const isDataLoading = useDataLoading();
+
   const { id: offerId } = useParams<{ id: string }>();
-  const [isActiveId, setIsActiveId] = useState<string | null>(null);
-  // const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+  // const [isActiveId, setIsActiveId] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
-  // const offersCity = useOffersCity();
 
   const currentOffer = useSelector<RootState, FullInfoOffer | null>(
     (state) => state.currentOffer
@@ -60,16 +52,10 @@ function OfferScreen(): JSX.Element {
       : []),
   ];
 
-  const handleActiveIdChange = (idOffer: string | null) => {
-    setIsActiveId(idOffer);
-  };
+  // const handleActiveIdChange = (idOffer: string | null) => {
+  //   setIsActiveId(idOffer);
+  // };
 
-  // if (isDataLoading) {
-  //   return <Spinner />;
-  // }
-
-  // const { favorites, toggleFavorite } = useFavorites();
-  // const authorizationStatus = useAuthorizationStatus();
 
   return (
     <div className="page">
@@ -82,11 +68,6 @@ function OfferScreen(): JSX.Element {
           <FullOfferCard
             currentOffer={currentOffer}
             points={points}
-            isActiveId={isActiveId}
-            // isFavorite={favorites[currentOffer.id]}
-            // favorites={favorites}
-            // onToggleFavorite={(id) => toggleFavorite(id)}
-            // buttonClassName={FavoritsButtonClassName.Offer}
           />
         ) : (
           <Spinner />
@@ -100,10 +81,6 @@ function OfferScreen(): JSX.Element {
               offers={offersSliced}
               cardClassName={CardClassName.NearPlaces}
               wrapperClassName="near-places__list places__list"
-              onHandleActiveIdChange={handleActiveIdChange}
-              // favorites={favorites}
-              // onToggleFavorite={toggleFavorite}
-              // authorizationStatus={authorizationStatus}
             />
           </section>
         </div>

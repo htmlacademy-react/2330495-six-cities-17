@@ -24,22 +24,13 @@ export const URL_MARKER_DEFAULT = './public/img/pin.svg';
 
 export const URL_MARKER_CURRENT = '/img/pin-active.svg';
 
-// export enum ActionType {
-//   ChangeCity = 'CHANGE_CITY',
-//   LoadOffers = 'LOAD_OFFERS',
-// }
 
 export enum APIRoute {
   Offers = '/offers',
-  // /six-cities/offers
   FullInfoOffer = '/offers/',
-  // /six-cities/offers/{offerId}
-  //  /six-cities/offers/{offerId}/nearby
-  // FavoritsOffers /six-cities/favorite
   Login = '/login',
   Logout = '/logout',
   Reviews = '/comments',
-  // /six-cities/comments/{offerId}
 }
 
 export enum SortItem {
