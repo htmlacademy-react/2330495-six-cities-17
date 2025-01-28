@@ -14,7 +14,7 @@ import BookmarkButton from '../bookmark -button/bookmark -button';
 type FullOfferCardProps = {
   currentOffer: FullInfoOffer;
   points: Point[];
-  isActiveId: string | null;
+  // isActiveId: string | null;
   // isFavorite?: boolean;
   // favorites: Record<string, boolean>;
   // onToggleFavorite: (id: string) => void;
@@ -23,11 +23,11 @@ type FullOfferCardProps = {
 function FullOfferCard({
   currentOffer,
   points,
-  isActiveId,
-  // isFavorite,
-  // favorites,
-  // onToggleFavorite,
-}: FullOfferCardProps): JSX.Element | null {
+  // isActiveId,
+}: // isFavorite,
+// favorites,
+// onToggleFavorite,
+FullOfferCardProps): JSX.Element | null {
   const {
     goods,
     price,
@@ -63,13 +63,9 @@ function FullOfferCard({
     <section className="offer">
       <div className="offer__gallery-container container">
         <div className="offer__gallery">
-          {images?.map((image, index) => (
+          {images?.map((image) => (
             <div className="offer__image-wrapper" key={image}>
-              <img
-                className="offer__image"
-                src={image}
-                alt={`Photo ${index + 1}`}
-              />
+              <img className="offer__image" src={image} alt="Photo studio" />
             </div>
           ))}
         </div>
@@ -102,9 +98,9 @@ function FullOfferCard({
             <span className="offer__rating-value rating__value">{rating}</span>
           </div>
           <ul className="offer__features">
-            <li className="offer__feature offer__feature--entire">{type}</li>
+            <li className="offer__feature offer__feature--entire">{type.charAt(0).toUpperCase() + type.slice(1)}</li>
             <li className="offer__feature offer__feature--bedrooms">
-              {bedrooms} Bedrooms
+              {bedrooms}  {bedrooms === 1 ? 'Bedroom' : 'Bedrooms'}
             </li>
             <li className="offer__feature offer__feature--adults">
               Max {maxAdults} adults
@@ -129,12 +125,13 @@ function FullOfferCard({
             name={host.name}
             avatarUrl={host.avatarUrl}
             isPro={host.isPro}
+            city = {city.name}
           />
           {/* </OfferHost> */}
           <Reviews offerId={id}></Reviews>
         </div>
       </div>
-      <OfferMap city={city} points={points} isActiveId={isActiveId || id} />
+      <OfferMap city={city} points={points} isActiveId={id} />
     </section>
   );
 }

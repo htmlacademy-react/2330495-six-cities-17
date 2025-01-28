@@ -15,6 +15,7 @@ type FormCommentsProps = {
 };
 
 function FormComments({ offerId }: FormCommentsProps): JSX.Element {
+
   const [formData, setFormData] = useState(initialState);
   const isSubmitDisabled = !formData.rating || formData.review.length < 50;
 

@@ -10,9 +10,8 @@ import { AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { toggleFavoriteAction } from '../../store/api-actions';
 
-
 type BookmarkButtonProps = {
-  idFavorite:string;
+  idFavorite: string;
   // isFavorite: boolean;
   // handleFavoriteClick: () => void;
   buttonClassName: FavoritsButtonClassName;
@@ -27,7 +26,6 @@ function BookmarkButton({
   const buttonClass = `${buttonClassName}__bookmark-button`;
   const iconClass = `${buttonClassName}__bookmark-icon`;
 
-
   const BUTTON_SIZES = {
     'place-card__bookmark-icon': { width: 18, height: 19 },
     'offer__bookmark-icon': { width: 31, height: 33 },
@@ -38,12 +36,12 @@ function BookmarkButton({
 
   const favorites = useAppSelector((state) => state.favorites);
 
-  const isFavorite = favorites.findIndex((offer)=>offer.id === idFavorite) !== -1;
+  const isFavorite =
+    favorites.findIndex((offer) => offer.id === idFavorite) !== -1;
 
   const navigate = useNavigate();
 
   const authorizationStatus = useAuthorizationStatus();
-
 
   const dispatch = useAppDispatch();
 
@@ -56,12 +54,9 @@ function BookmarkButton({
     dispatch(toggleFavoriteAction({ id: idFavorite, isFavorite }));
   };
 
-
   return (
     <button
-      className={`${buttonClass} ${
-        isFavorite ? `${buttonClass}--active` : ''
-      } button`}
+      className={`${buttonClass} ${isFavorite ? `${buttonClass}--active` : ''} button`}
       onClick={() => {
         // eslint-disable-next-line no-console
         console.log('Bookmark button clicked. Current status:', isFavorite);
