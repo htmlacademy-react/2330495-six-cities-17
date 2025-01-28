@@ -4,29 +4,40 @@ import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
 import AuthScreen from '../../pages/auth-screen/auth-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
-import { AppRoute, AuthorizationStatus, CardClassName } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
-import { Offer } from '../../types/offers';
+// import { Offer } from '../../types/offers';
 // import { FullInfoOffer} from '../../types/offer';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { RootState } from '../../types/state';
 import Spinner from '../../pages/spinner/spinner';
+import { useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchFavoritesAction } from '../../store/api-actions';
+import { useAppSelector } from '../../hooks';
+import { useDataLoading } from '../../hooks/use-data-loading';
 
-type AppScreenProps = {
-  offers: Offer[];
-  // fullOffer: FullInfoOffer;
-};
+// type AppScreenProps = {
+//   offers: Offer[];
+//   // fullOffer: FullInfoOffer;
+// };
 
-function App({ offers }: AppScreenProps): JSX.Element {
-  const citiesCardClassName = CardClassName.Cities;
-  const favoritesCardClassName = CardClassName.Favorites;
-  const nearCardClassName = CardClassName.NearPlaces;
-
-  const authorizationStatus = useSelector(
+function App(): JSX.Element {
+  const authorizationStatus = useAppSelector(
     (state: RootState) => state.authorizationStatus
   );
-  const isDataLoading = useSelector((state: RootState) => state.isDataLoading);
+  // const isDataLoading = useAppSelector((state: RootState) => state.isDataLoading);
+  const isDataLoading = useDataLoading();
+
+  // // eslint-disable-next-line react-hooks/rules-of-hooks
+  const dispatch = useAppDispatch();
+  // // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoritesAction());
+    }
+  }, [dispatch, authorizationStatus]);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
     return <Spinner />;
@@ -36,29 +47,16 @@ function App({ offers }: AppScreenProps): JSX.Element {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route
-            path={AppRoute.Main}
-            element={<MainScreen cardClassName={citiesCardClassName} />}
-          />
+          <Route path={AppRoute.Main} element={<MainScreen />} />
           <Route
             path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <FavoritesScreen
-                  offers={offers}
-                  cardClassName={favoritesCardClassName}
-                />
+                <FavoritesScreen />
               </PrivateRoute>
             }
           />
-          <Route
-            path={AppRoute.Offer}
-            element={
-              <OfferScreen
-                cardClassName={nearCardClassName}
-              />
-            }
-          />
+          <Route path={AppRoute.Offer} element={<OfferScreen />} />
           <Route
             path={AppRoute.Login}
             // element={

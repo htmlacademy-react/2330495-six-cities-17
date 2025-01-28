@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import offerListTotal from './mocks/offers';
+// import offerListTotal from './mocks/offers';
 // import fullInfoOffer from './mocks/offer';
 import { Provider } from 'react-redux';
 import { store } from './store';
@@ -20,10 +20,7 @@ root.render(
   <React.StrictMode>
     <Provider store = {store}>
       <ErrorMessage />
-      <App
-        offers={offerListTotal}
-        // fullOffer={fullInfoOffer}
-      />
+      <App/>
     </Provider>
   </React.StrictMode>
 );

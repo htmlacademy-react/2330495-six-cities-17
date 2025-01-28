@@ -6,7 +6,7 @@ import { postComment } from '../../store/api-actions';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import { AuthorizationStatus } from '../../const';
-import { useAuthorizationStatus } from '../../hooks/use-authorizationStatus';
+import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
 
 const initialState = { rating: '', review: '' };
 
@@ -15,6 +15,7 @@ type FormCommentsProps = {
 };
 
 function FormComments({ offerId }: FormCommentsProps): JSX.Element {
+
   const [formData, setFormData] = useState(initialState);
   const isSubmitDisabled = !formData.rating || formData.review.length < 50;
 

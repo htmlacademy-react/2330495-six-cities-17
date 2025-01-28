@@ -1,21 +1,30 @@
 import { FullInfoOffer } from '../../types/offer';
 import Reviews from '../reviews/reviews';
-// import OfferMap from '../../utils/map-components';
 import OfferHost from '../offer-host/offer-host';
 import { OfferMap } from '../../utils/map-components';
 import { Point } from '../../types/map-points';
+// import { useMapPoints } from '../../hooks/use-map-points';
+// import { AuthorizationStatus } from '../../const';
+import { FavoritsButtonClassName } from '../../const';
+import BookmarkButton from '../bookmark -button/bookmark -button';
+// import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
+// import { AppRoute } from '../../const';
+// import { useNavigate } from 'react-router-dom';
 
 type FullOfferCardProps = {
   currentOffer: FullInfoOffer;
   points: Point[];
-  isActiveId: string | null;
+  // isActiveId: string | null;
+  // isFavorite?: boolean;
+  // favorites: Record<string, boolean>;
+  // onToggleFavorite: (id: string) => void;
 };
 
 function FullOfferCard({
   currentOffer,
   points,
-  isActiveId,
-}: FullOfferCardProps): JSX.Element | null {
+}:
+FullOfferCardProps): JSX.Element | null {
   const {
     goods,
     price,
@@ -28,8 +37,6 @@ function FullOfferCard({
     rating,
     id,
     city,
-    // isPremium,
-    // isFavorite,
   } = currentOffer;
 
   const ratingPercentage = `${Math.round(rating) * 20}%`;
@@ -40,13 +47,9 @@ function FullOfferCard({
     <section className="offer">
       <div className="offer__gallery-container container">
         <div className="offer__gallery">
-          {images?.map((image, index) => (
+          {images?.map((image) => (
             <div className="offer__image-wrapper" key={image}>
-              <img
-                className="offer__image"
-                src={image}
-                alt={`Photo ${index + 1}`}
-              />
+              <img className="offer__image" src={image} alt="Photo studio" />
             </div>
           ))}
         </div>
@@ -58,12 +61,10 @@ function FullOfferCard({
           </div>
           <div className="offer__name-wrapper">
             <h1 className="offer__name">{title}</h1>
-            <button className="offer__bookmark-button button" type="button">
-              <svg className="offer__bookmark-icon" width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <BookmarkButton
+              buttonClassName={FavoritsButtonClassName.Offer}
+              idFavorite={id}
+            />
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">
@@ -73,9 +74,11 @@ function FullOfferCard({
             <span className="offer__rating-value rating__value">{rating}</span>
           </div>
           <ul className="offer__features">
-            <li className="offer__feature offer__feature--entire">{type}</li>
+            <li className="offer__feature offer__feature--entire">
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </li>
             <li className="offer__feature offer__feature--bedrooms">
-              {bedrooms} Bedrooms
+              {bedrooms} {bedrooms === 1 ? 'Bedroom' : 'Bedrooms'}
             </li>
             <li className="offer__feature offer__feature--adults">
               Max {maxAdults} adults
@@ -100,12 +103,13 @@ function FullOfferCard({
             name={host.name}
             avatarUrl={host.avatarUrl}
             isPro={host.isPro}
+            city={city.name}
           />
           {/* </OfferHost> */}
           <Reviews offerId={id}></Reviews>
         </div>
       </div>
-      <OfferMap city={city} points={points} isActiveId={isActiveId || id} />
+      <OfferMap city={city} points={points} isActiveId={id} />
     </section>
   );
 }

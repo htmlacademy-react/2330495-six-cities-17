@@ -1,7 +1,5 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-// import FormComments from '../../form-comments/form-comments';
-import Card from '../../components/card/card';
 import { FullInfoOffer } from '../../types/offers';
 import FullOfferCard from '../../components/full-offer-card/full-offer-card';
 import { useEffect } from 'react';
@@ -13,26 +11,19 @@ import {
 import { RootState } from '../../types/state';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import Spinner from '../spinner/spinner';
 import { MAX_NEAR_PLACES_OFFERS } from '../../const';
-// import NearbyPlacesList from '../../components/nearby-places-list/nearby-places-list';
-// import { useOffersCity } from '../../hooks/use-offers-city';
 import { CardClassName } from '../../const';
 import { Offer } from '../../types/offers';
-import { useState } from 'react';
-import NotFoundScreen from '../not-found-screen/not-found-screen';
+import Spinner from '../../pages/spinner/spinner';
+import OffersListTemplate from '../../components/offer-list-template/offer-list-template';
 
-type OfferScreenProps = {
-  cardClassName: CardClassName;
-  // onHandleActiveIdChange
-};
 
-function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
-  const { id } = useParams<{ id: string }>();
-  const [isActiveId, setIsActiveId] = useState<string | null>(null);
+function OfferScreen(): JSX.Element {
+
+  const { id: offerId } = useParams<{ id: string }>();
+  // const [isActiveId, setIsActiveId] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
-  // const offersCity = useOffersCity();
 
   const currentOffer = useSelector<RootState, FullInfoOffer | null>(
     (state) => state.currentOffer
@@ -43,11 +34,11 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
   );
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchOfferById(id));
-      dispatch(fetchNearbyOffersAction(id));
+    if (offerId) {
+      dispatch(fetchOfferById(offerId));
+      dispatch(fetchNearbyOffersAction(offerId));
     }
-  }, [id, dispatch]);
+  }, [offerId, dispatch]);
 
   const offersSliced = nearbyOffers.slice(0, MAX_NEAR_PLACES_OFFERS);
 
@@ -61,14 +52,10 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
       : []),
   ];
 
-  const handleActiveIdChange = (idOffer: string | null) => {
-    setIsActiveId(idOffer);
-  };
+  // const handleActiveIdChange = (idOffer: string | null) => {
+  //   setIsActiveId(idOffer);
+  // };
 
-
-  if (!currentOffer) {
-    return <NotFoundScreen />;
-  }
 
   return (
     <div className="page">
@@ -81,9 +68,7 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
           <FullOfferCard
             currentOffer={currentOffer}
             points={points}
-            isActiveId={isActiveId}
           />
-          // </FullOfferCard>
         ) : (
           <Spinner />
         )}
@@ -92,17 +77,11 @@ function OfferScreen({ cardClassName }: OfferScreenProps): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <div className="near-places__list places__list">
-              {offersSliced.map((offer) => (
-                <Card
-                  key={offer.id}
-                  offer={offer}
-                  cardClassName={cardClassName}
-                  onHandleActiveIdChange={handleActiveIdChange}
-                />
-              ))}
-            </div>
-            {/* <NearbyPlacesList cardClassName={cardClassName}></NearbyPlacesList> */}
+            <OffersListTemplate
+              offers={offersSliced}
+              cardClassName={CardClassName.NearPlaces}
+              wrapperClassName="near-places__list places__list"
+            />
           </section>
         </div>
       </main>
