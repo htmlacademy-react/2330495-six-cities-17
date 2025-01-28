@@ -9,8 +9,7 @@ type FavoritesPlacesListProps = {
 
 function FavoritesPlacesList({
   offers,
-}: // cardClassName,
-FavoritesPlacesListProps): JSX.Element {
+}: FavoritesPlacesListProps): JSX.Element {
   const favoritesCardClassName = CardClassName.Favorites;
 
   return (

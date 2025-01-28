@@ -7,9 +7,6 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
-// import { Offer } from '../../types/offers';
-// import { FullInfoOffer} from '../../types/offer';
-// import { useSelector } from 'react-redux';
 import { RootState } from '../../types/state';
 import Spinner from '../../pages/spinner/spinner';
 import { useAppDispatch } from '../../hooks';
@@ -17,11 +14,6 @@ import { useEffect } from 'react';
 import { fetchFavoritesAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks';
 import { useDataLoading } from '../../hooks/use-data-loading';
-
-// type AppScreenProps = {
-//   offers: Offer[];
-//   // fullOffer: FullInfoOffer;
-// };
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(

@@ -5,7 +5,7 @@ type CityMapSectionProps = {
   city: City;
   points: { id: string; location: Offer['location'] }[];
   isActiveId: string | null;
-  wrapperClassName?: string; // Позволяет передавать класс обертки
+  wrapperClassName?: string;
 };
 
 function CityMapSection({
