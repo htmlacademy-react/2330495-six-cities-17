@@ -6,7 +6,7 @@ import {
   changeSorting,
   setError,
   setDataLoadingStatus,
-  LoadCurrentOffer,
+  loadCurrentOffer,
   loadComments,
   loadNearbyOffers,
   setUser,
@@ -22,7 +22,6 @@ type State = {
   offers: Offer[];
   authorizationStatus: AuthorizationStatus;
   currentSort: SortItem;
-  // isLoading: boolean;
   error: string | null;
   isDataLoading: boolean;
   currentOffer: FullInfoOffer | null;
@@ -37,7 +36,6 @@ export const initialState: State = {
   offers: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   currentSort: SortItem.Popular,
-  // isLoading: false,
   error: null,
   isDataLoading: false,
   currentOffer: null,
@@ -71,7 +69,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.isDataLoading = action.payload;
     })
     .addCase(
-      LoadCurrentOffer,
+      loadCurrentOffer,
       (state, action: PayloadAction<FullInfoOffer | null>) => {
         state.currentOffer = action.payload;
       }

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { AuthorizationStatus } from '../../const';
 import { useAppDispatch } from '../../hooks';
-// import { RootState } from '../../types/state';
 import { postComment } from '../../store/api-actions';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { AuthorizationStatus } from '../../const';
 import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
 
 const initialState = { rating: '', review: '' };
@@ -15,7 +13,6 @@ type FormCommentsProps = {
 };
 
 function FormComments({ offerId }: FormCommentsProps): JSX.Element {
-
   const [formData, setFormData] = useState(initialState);
   const isSubmitDisabled = !formData.rating || formData.review.length < 50;
 
@@ -96,7 +93,6 @@ function FormComments({ offerId }: FormCommentsProps): JSX.Element {
           name="review"
           placeholder="Tell how was your stay, what you like and what can be improved"
         />
-        {/* </textarea> */}
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
             To submit review please make sure to set{' '}

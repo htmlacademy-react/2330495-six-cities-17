@@ -1,26 +1,15 @@
 import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
-// import { AuthorizationStatus } from '../../const';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookmarkButton from '../bookmark -button/bookmark -button';
-// import { useNavigate } from 'react-router-dom';
-// import { AppRoute } from '../../const';
-// import PrivateRoute from '../private-route/private-route';
 import { FavoritsButtonClassName } from '../../const';
-// import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
-// import { useFavorites } from '../../hooks/use-favorite';
-// import { useAppDispatch } from '../../hooks';
-// import { useEffect } from 'react';
-// import { fetchFavoritesAction } from '../../store/api-actions';
+
 
 type CardProps = {
   offer: Offer;
   cardClassName: string;
   onHandleActiveIdChange?: (id: string | null) => void;
-  // isFavorite?: boolean;
-  // onToggleFavorite?: () => void;
-  // authorizationStatus?: AuthorizationStatus;
 };
 
 const IMAGE_SIZES = {
@@ -33,10 +22,7 @@ function Card({
   offer,
   cardClassName,
   onHandleActiveIdChange,
-}: // isFavorite,
-// onToggleFavorite,
-// authorizationStatus,
-CardProps): JSX.Element {
+}: CardProps): JSX.Element {
   const { price, title, type, rating, id, isPremium, previewImage } = offer;
 
   const cardClass = `${cardClassName}__card place-card`;
@@ -46,39 +32,6 @@ CardProps): JSX.Element {
   ] || { width: 260, height: 200 };
 
   const ratingPercentage = `${Math.round(rating) * 20}%`;
-
-  // console.log(authorizationStatus);
-  // const handleFavoriteClick = () => {
-  //   if (authorizationStatus !== AuthorizationStatus.Auth) {
-  //     console.log('User is not authorized, navigating to login page.');
-  //      navigate(AppRoute.Main);
-  //      return;
-  //   }
-
-  //   onToggleFavorite();
-  // };
-  // const { favorites, toggleFavorite } = useFavorites(); // Исправлено имя функции
-  // const isFavorite = favorites[offer?.id] ?? false;
-  // const  onToggleFavorite=() => onToggleFavorite(offer.id)
-
-  // const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchFavoritesAction());
-  // }, [dispatch, favorites]);
-
-  // const navigate = useNavigate();
-
-  // const authorizationStatus = useAuthorizationStatus();
-
-  // const handleFavoriteClick = () => {
-  //   if (authorizationStatus !== AuthorizationStatus.Auth) {
-  //     navigate(AppRoute.Login);
-  //     return;
-  //   }
-
-  //   toggleFavorite(offer.id);
-  // };
 
   return (
     <article
@@ -97,7 +50,7 @@ CardProps): JSX.Element {
       )}
 
       <div className={imgCardClass}>
-        <Link to="#">
+        <Link to={`/offer/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -116,8 +69,6 @@ CardProps): JSX.Element {
 
           <BookmarkButton
             idFavorite={id}
-            // isFavorite={isFavorite}
-            // handleFavoriteClick={handleFavoriteClick}
             buttonClassName={FavoritsButtonClassName.Place}
           />
         </div>

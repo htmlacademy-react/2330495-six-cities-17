@@ -3,28 +3,18 @@ import Reviews from '../reviews/reviews';
 import OfferHost from '../offer-host/offer-host';
 import { OfferMap } from '../../utils/map-components';
 import { Point } from '../../types/map-points';
-// import { useMapPoints } from '../../hooks/use-map-points';
-// import { AuthorizationStatus } from '../../const';
 import { FavoritsButtonClassName } from '../../const';
 import BookmarkButton from '../bookmark -button/bookmark -button';
-// import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
-// import { AppRoute } from '../../const';
-// import { useNavigate } from 'react-router-dom';
 
 type FullOfferCardProps = {
   currentOffer: FullInfoOffer;
   points: Point[];
-  // isActiveId: string | null;
-  // isFavorite?: boolean;
-  // favorites: Record<string, boolean>;
-  // onToggleFavorite: (id: string) => void;
 };
 
 function FullOfferCard({
   currentOffer,
   points,
-}:
-FullOfferCardProps): JSX.Element | null {
+}: FullOfferCardProps): JSX.Element | null {
   const {
     goods,
     price,
@@ -105,7 +95,6 @@ FullOfferCardProps): JSX.Element | null {
             isPro={host.isPro}
             city={city.name}
           />
-          {/* </OfferHost> */}
           <Reviews offerId={id}></Reviews>
         </div>
       </div>

@@ -46,15 +46,6 @@ export enum CardClassName {
   NearPlaces = 'near-places',
 }
 
-// export enum CardListClassName {
-//   Cities = 'cities',
-//   Favorites = 'favorites',
-//   NearPlaces = 'near-places',
-// }
-
-// <div className="cities__places-list places__list tabs__content">
-// <div className="near-places__list places__list">
-// <div className="favorites__places">
 
 export enum MapClassName {
   Cities = 'cities__map',

@@ -1,7 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Town, AuthorizationStatus, SortItem } from '../const';
 import { Offer, FullInfoOffer } from '../types/offers';
-// import Review from '../components/review/review';
 import { Review } from '../types/reviews';
 import { UserData } from '../types/user-data';
 
@@ -16,10 +15,8 @@ export const requireAuthorization = createAction<AuthorizationStatus>(
   'user/requireAuthorization'
 );
 export const changeSorting = createAction<SortItem>('main/changeSorting');
-// export const loadFullOffers = createAction<FullInfoOffer[]>(
-//   'data/loadFullOffer'
-// );
-export const LoadCurrentOffer = createAction<FullInfoOffer | null>(
+
+export const loadCurrentOffer = createAction<FullInfoOffer | null>(
   'offer/setCurrentOffer'
 );
 
@@ -33,6 +30,8 @@ export const setUser = createAction<UserData>('user/setUser');
 
 export const clearUser = createAction<void>('user/clearUser');
 
-export const toggleFavoriteStatus = createAction<Offer>('favorites/toggleFavoriteStatus');
+export const toggleFavoriteStatus = createAction<Offer>(
+  'favorites/toggleFavoriteStatus'
+);
 
 export const loadFavorites = createAction<Offer[]>('favorites/loadFavorites');

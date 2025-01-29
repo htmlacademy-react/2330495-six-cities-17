@@ -1,4 +1,3 @@
-
 import { RootState } from '../types/state';
 import { useAppSelector } from './index';
 import { Town } from '../const';

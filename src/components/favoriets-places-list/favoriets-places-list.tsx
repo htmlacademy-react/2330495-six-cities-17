@@ -4,7 +4,6 @@ import { CardClassName } from '../../const';
 
 type FavoritesPlacesListProps = {
   offers: Offer[];
-  // cardClassName: string;
 };
 
 function FavoritesPlacesList({
@@ -18,7 +17,6 @@ function FavoritesPlacesList({
         <Card
           key={offer.id}
           offer={offer}
-          // onHandleActiveIdChange={onHandleActiveIdChange}
           cardClassName={favoritesCardClassName}
         />
       ))}

@@ -4,14 +4,13 @@ import { CardClassName } from '../../const';
 import Sorting from '../sorting/sorting';
 
 import MainEmptyScreen from '../main-empty-screen';
-
 import { useOffersCity } from '../../hooks/use-offers-city';
 import { useCurrentCity } from '../../hooks/use-current-city';
 import { useDataLoading } from '../../hooks/use-data-loading';
 import { useSortedOffers } from '../../hooks/use-sorted-offers';
 import { useActiveId } from '../../hooks/use-active-id';
 import { useMapPoints } from '../../hooks/use-map-points';
-import Spinner from '../../pages/spinner/spinner';
+import Spinner from '../spinner/spinner';
 import OffersListTemplate from '../offer-list-template/offer-list-template';
 import CityMapSection from '../city-map-section/city-map-section';
 

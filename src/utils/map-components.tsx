@@ -1,5 +1,4 @@
 import Map from '../components/map/map';
-// import { Location, City } from '../types/offers';
 import { MapClassName } from '../const';
 import { MapPoints } from '../types/map-points';
 

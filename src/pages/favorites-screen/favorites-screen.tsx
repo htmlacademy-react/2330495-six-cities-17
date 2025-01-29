@@ -1,48 +1,13 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-// import { Offer } from '../../types/offers';
 import FavoritesPlacesList from '../../components/favoriets-places-list/favoriets-places-list';
 import { Link } from 'react-router-dom';
-// import { RootState } from '../../types/state';
 import { useAppSelector } from '../../hooks';
-// import { useEffect } from 'react';
 import { groupOffersByCity } from '../../utils/group -offers-by-city';
-// import { useAppDispatch } from '../../hooks';
-// import { useEffect } from 'react';
-// import { fetchFavoritesAction } from '../../store/api-actions';
 import FavoritiesEmptyScreen from '../../components/favorites-empty-screen';
 
-// type FavoritesScreenProps = {
-//   // offers: Offer[];
-//   // cardClassName: string;
-//   // onHandleActiveIdChange: (id: string | null) => void;
-// };
-
 function FavoritesScreen(): JSX.Element {
-// offers,
-// cardClassName,
-// onHandleActiveIdChange,
-  // const getFavorites = (state: RootState) => state.favorites;
-  // const useFavorites = () => useAppSelector(getFavorites);
-
-  // const favorites = useFavorites();
-  // console.log(favorites);
-  // console.log('Favorites from Redux:', favorites);
-
-  // useEffect(() => {
-  //   console.log('Favorites updated:', favorites);
-  // }, [favorites]);
-
-  // const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favorites);
-  // eslint-disable-next-line no-console
-  console.log(favorites);
-
-  // useEffect(() => {
-  //   // eslint-disable-next-line no-console
-  //   console.log('Favorites updated:', favorites);
-  //   dispatch(fetchFavoritesAction());
-  // }, [dispatch, favorites]);
 
   const groupedOffers = groupOffersByCity(favorites);
 
@@ -65,7 +30,7 @@ function FavoritesScreen(): JSX.Element {
                   <li key={city} className="favorites__locations-items">
                     <div className="favorites__locations locations locations--current">
                       <div className="locations__item">
-                        <Link className="locations__item-link" to="#">
+                        <Link className="locations__item-link" to="/">
                           <span>{city}</span>
                         </Link>
                       </div>

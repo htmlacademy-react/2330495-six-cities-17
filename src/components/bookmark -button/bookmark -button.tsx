@@ -1,26 +1,16 @@
-import { FavoritsButtonClassName } from '../../const';
+import { FavoritsButtonClassName, AppRoute, AuthorizationStatus } from '../../const';
 import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
-// import { useFavorites } from '../../hooks/use-favorite';
-// import { useAppDispatch } from '../../hooks';
-// import { useEffect } from 'react';
-// import { fetchFavoritesAction } from '../../store/api-actions';
 import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { toggleFavoriteAction } from '../../store/api-actions';
 
 type BookmarkButtonProps = {
   idFavorite: string;
-  // isFavorite: boolean;
-  // handleFavoriteClick: () => void;
   buttonClassName: FavoritsButtonClassName;
 };
 
 function BookmarkButton({
-  // isFavorite,
   idFavorite,
-  // handleFavoriteClick,
   buttonClassName,
 }: BookmarkButtonProps): JSX.Element {
   const buttonClass = `${buttonClassName}__bookmark-button`;
@@ -58,8 +48,6 @@ function BookmarkButton({
     <button
       className={`${buttonClass} ${isFavorite ? `${buttonClass}--active` : ''} button`}
       onClick={() => {
-        // eslint-disable-next-line no-console
-        console.log('Bookmark button clicked. Current status:', isFavorite);
         handleFavoriteClick();
       }}
       type="button"

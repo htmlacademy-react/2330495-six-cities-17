@@ -6,8 +6,7 @@ import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks';
 import { useState, useEffect } from 'react';
-import { AppRoute } from '../../const';
-import { AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 function AuthScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
