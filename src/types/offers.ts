@@ -8,12 +8,6 @@ export type Location = {
 
 export type Locations = Location[];
 
-// type Host = {
-//   name: string;
-//   avatarUrl: string;
-//   isPro: boolean;
-// };
-
 export type City = {
   name: string;
   location: Location;

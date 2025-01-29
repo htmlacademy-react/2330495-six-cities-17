@@ -3,7 +3,7 @@ import {
   requireAuthorization,
   setError,
   setDataLoadingStatus,
-  LoadCurrentOffer,
+  loadCurrentOffer,
   loadComments,
   loadNearbyOffers,
   setUser,
@@ -116,7 +116,7 @@ export const fetchOfferById = createAsyncThunk<
     buildApiRoute(APIRoute.Offers, offerId)
   );
 
-  dispatch(LoadCurrentOffer(data));
+  dispatch(loadCurrentOffer(data));
   return data;
 });
 
@@ -161,22 +161,16 @@ export const postComment = createAsyncThunk<
 >(
   'data/postComment',
   async ({ offerId, comment, rating }, { dispatch, getState, extra: api }) => {
-    try {
-      const response = await api.post<Review>(`/comments/${offerId}`, {
-        comment,
-        rating,
-      });
+    const response = await api.post<Review>(`/comments/${offerId}`, {
+      comment,
+      rating,
+    });
 
-      const currentReviews = getState().reviews;
+    const currentReviews = getState().reviews;
 
-      const updatedReviews = [...currentReviews, response.data];
+    const updatedReviews = [...currentReviews, response.data];
 
-      dispatch(loadComments(updatedReviews));
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Error posting comment:', error);
-      throw error;
-    }
+    dispatch(loadComments(updatedReviews));
   }
 );
 

@@ -11,17 +11,13 @@ import {
 import { RootState } from '../../types/state';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import { MAX_NEAR_PLACES_OFFERS } from '../../const';
-import { CardClassName } from '../../const';
+import { MAX_NEAR_PLACES_OFFERS, CardClassName } from '../../const';
 import { Offer } from '../../types/offers';
-import Spinner from '../../pages/spinner/spinner';
+import Spinner from '../../components/spinner/spinner';
 import OffersListTemplate from '../../components/offer-list-template/offer-list-template';
 
-
 function OfferScreen(): JSX.Element {
-
   const { id: offerId } = useParams<{ id: string }>();
-  // const [isActiveId, setIsActiveId] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
 
@@ -52,11 +48,6 @@ function OfferScreen(): JSX.Element {
       : []),
   ];
 
-  // const handleActiveIdChange = (idOffer: string | null) => {
-  //   setIsActiveId(idOffer);
-  // };
-
-
   return (
     <div className="page">
       <Helmet>
@@ -65,10 +56,7 @@ function OfferScreen(): JSX.Element {
       <Header></Header>
       <main className="page__main page__main--offer">
         {currentOffer ? (
-          <FullOfferCard
-            currentOffer={currentOffer}
-            points={points}
-          />
+          <FullOfferCard currentOffer={currentOffer} points={points} />
         ) : (
           <Spinner />
         )}
