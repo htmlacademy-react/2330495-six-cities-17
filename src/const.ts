@@ -60,3 +60,14 @@ export enum FavoritsButtonClassName {
 export const TIMEOUT_SHOW_ERROR = 2000;
 
 export const MAX_NEAR_PLACES_OFFERS = 3;
+
+const ICON_SIZES = {
+  SMALL: { width: 18, height: 19 },
+  LARGE: { width: 31, height: 33 },
+};
+
+export const BUTTON_SIZES = {
+  'place-card__bookmark-icon': ICON_SIZES.SMALL,
+  'offer__bookmark-icon': ICON_SIZES.LARGE,
+};
+

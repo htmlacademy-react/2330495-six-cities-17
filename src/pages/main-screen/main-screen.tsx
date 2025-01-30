@@ -1,5 +1,5 @@
 import Header from '../../components/header/header';
-import LocationsList from '../../components/locations-list/location-list';
+import LocationsList from '../../components/locations-list/locations-list';
 import { Helmet } from 'react-helmet-async';
 import CitiesPlacesList from '../../components/cities-places-list/cities-places-list';
 

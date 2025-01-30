@@ -1,4 +1,9 @@
-import { FavoritsButtonClassName, AppRoute, AuthorizationStatus } from '../../const';
+import {
+  FavoritsButtonClassName,
+  AppRoute,
+  AuthorizationStatus,
+  BUTTON_SIZES,
+} from '../../const';
 import { useAuthorizationStatus } from '../../hooks/use-authorization-status';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -16,10 +21,6 @@ function BookmarkButton({
   const buttonClass = `${buttonClassName}__bookmark-button`;
   const iconClass = `${buttonClassName}__bookmark-icon`;
 
-  const BUTTON_SIZES = {
-    'place-card__bookmark-icon': { width: 18, height: 19 },
-    'offer__bookmark-icon': { width: 31, height: 33 },
-  };
   const { width, height } = BUTTON_SIZES[
     iconClass as keyof typeof BUTTON_SIZES
   ] || { width: 18, height: 19 };
@@ -46,7 +47,9 @@ function BookmarkButton({
 
   return (
     <button
-      className={`${buttonClass} ${isFavorite ? `${buttonClass}--active` : ''} button`}
+      className={`${buttonClass} ${
+        isFavorite ? `${buttonClass}--active` : ''
+      } button`}
       onClick={() => {
         handleFavoriteClick();
       }}
