@@ -1,4 +1,4 @@
-import { Town } from '../const';
+import { Town } from '../../const';
 
 type MainEmptyScreenProps = {
   currentCity: Town;
@@ -15,7 +15,7 @@ function MainEmptyScreen({ currentCity }: MainEmptyScreenProps): JSX.Element {
               <b className="cities__status">No places to stay available</b>
               <p className="cities__status-description">
                 We could not find any property available at the moment in
-                { currentCity}
+                {currentCity}
               </p>
             </div>
           </section>
