@@ -1,4 +1,4 @@
-function FavoritiesEmptyScreen(): JSX.Element {
+function FavoritiesEmpty(): JSX.Element {
   return (
     <main className="page__main page__main--favorites page__main--favorites-empty">
       <div className="page__favorites-container container">
@@ -16,4 +16,4 @@ function FavoritiesEmptyScreen(): JSX.Element {
   );
 }
 
-export default FavoritiesEmptyScreen;
+export default FavoritiesEmpty;

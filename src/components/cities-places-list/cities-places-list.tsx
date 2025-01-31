@@ -3,7 +3,7 @@ import { CardClassName } from '../../const';
 
 import Sorting from '../sorting/sorting';
 
-import MainEmptyScreen from '../main-empty-screen';
+import MainEmptyScreen from '../main-empty/main-empty';
 import { useOffersCity } from '../../hooks/use-offers-city';
 import { useCurrentCity } from '../../hooks/use-current-city';
 import { useDataLoading } from '../../hooks/use-data-loading';

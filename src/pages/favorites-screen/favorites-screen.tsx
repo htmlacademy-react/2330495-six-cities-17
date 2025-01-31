@@ -4,7 +4,7 @@ import FavoritesPlacesList from '../../components/favoriets-places-list/favoriet
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { groupOffersByCity } from '../../utils/group -offers-by-city';
-import FavoritiesEmptyScreen from '../../components/favorites-empty-screen';
+import FavoritiesEmpty from '../../components/favorites-empty/favorites-empty';
 
 function FavoritesScreen(): JSX.Element {
   const favorites = useAppSelector((state) => state.favorites);
@@ -18,7 +18,7 @@ function FavoritesScreen(): JSX.Element {
       </Helmet>
       <Header />
       {favorites.length === 0 ? (
-        <FavoritiesEmptyScreen />
+        <FavoritiesEmpty />
       ) : (
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">

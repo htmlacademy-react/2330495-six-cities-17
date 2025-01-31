@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import MainScreen from '../../pages/main-screen/main-screen';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
@@ -13,6 +13,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchFavoritesAction } from '../../store/api-actions';
 import { useDataLoading } from '../../hooks/use-data-loading';
+import HistoryRouter from '../../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(
@@ -35,7 +37,7 @@ function App(): JSX.Element {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path={AppRoute.Main} element={<MainScreen />} />
           <Route
@@ -50,7 +52,7 @@ function App(): JSX.Element {
           <Route path={AppRoute.Login} element={<AuthScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }
