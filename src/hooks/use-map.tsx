@@ -1,5 +1,5 @@
 import {useEffect, useState,MutableRefObject, useRef} from 'react';
-import { City } from '../types/offer';
+import { City } from '../types/offers';
 import {Map, TileLayer} from 'leaflet';
 
 function useMap(

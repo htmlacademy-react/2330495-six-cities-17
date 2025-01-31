@@ -1,4 +1,4 @@
-import { FullInfoOffer } from '../../types/offer';
+import { FullInfoOffer } from '../../types/offers';
 import Reviews from '../reviews/reviews';
 import OfferHost from '../offer-host/offer-host';
 import { OfferMap } from '../../utils/map-components';

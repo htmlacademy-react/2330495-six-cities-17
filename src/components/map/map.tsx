@@ -7,7 +7,7 @@ import {
   MapClassName,
 } from '../../const';
 import 'leaflet/dist/leaflet.css';
-import { City, Location } from '../../types/offer';
+import { City, Location } from '../../types/offers';
 
 type MapProps = {
   city: City;
